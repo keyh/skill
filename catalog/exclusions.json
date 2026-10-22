@@ -1,0 +1,807 @@
+[
+  {
+    "owner": "anysearch",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "baoyu-design",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "beautiful-article",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "brandkit",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "cangjie-skill",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "codex-ppt",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "dashi-ppt",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "design-taste-frontend",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-api-design",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-article-writing",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-backend-patterns",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-benchmark-methodology",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-brand-discovery",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-brand-voice",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-bun-runtime",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-change-impact",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-coding-standards",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-competitive-platform-analysis",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-competitive-report-structure",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-content-engine",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-context-and-decisions",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-deep-research",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-documentation-lookup",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-e2e-testing",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-eval-harness",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-frontend-patterns",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-frontend-slides",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-investor-materials",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-investor-outreach",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-market-research",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-mcp-dependency-review",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-mcp-server-patterns",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-plan-canvas",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-product-capability",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-security-review",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-tdd-workflow",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-verification-loop",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ecc-video-editing",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "full-output-enforcement",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gordenimage2pptx",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gordenimagepptgen",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gordensuperpptskill",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gpt-image-2",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "graphify",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-core",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-frameworks",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-performance",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-plugins",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-react",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-scrolltrigger",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-timeline",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "gsap-utils",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "guizang-ppt-skill",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "high-end-visual-design",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "html-mender",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "html-ppt",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "humanize-ppt",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "image-to-code",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "imagegen-frontend-mobile",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "imagegen-frontend-web",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "industrial-brutalist-ui",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "karpathy-guidelines-zh",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "kb-retriever",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "llm-wiki",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "minimalist-ui",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "motion-showreel",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "open-model-workbench",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-apply-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-archive-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-bulk-archive-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-continue-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-explore",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-ff-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-new-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-onboard",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-propose",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-sync-specs",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-update-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "openspec-verify-change",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "planning-with-files",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "ppt-master",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "redesign-existing-projects",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-best-practices",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-captions",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-create",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-docs",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-interactivity",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-maps",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-markup",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-multimedia",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-render",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-saas",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-studio",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "remotion-upgrade",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "second-brain",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "second-brain-ingest",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "second-brain-lint",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "second-brain-query",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "vibehub",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "web-design-engineer",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "web-video-presentation",
+    "path": "LOCAL-INSTALL.json",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "skill-installer",
+    "path": "scripts/__pycache__/github_utils.cpython-312.pyc",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "skill-installer",
+    "path": "scripts/__pycache__/install-skill-from-github.cpython-312.pyc",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "canva",
+    "path": ".cursor",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "canva",
+    "path": ".cursor-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "canva",
+    "path": ".claude-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "canva",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "contentasoft-cad-converter",
+    "path": "server",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "contentasoft-cad-converter",
+    "path": ".claude-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "contentasoft-cad-converter",
+    "path": ".gitattributes",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "contentasoft-cad-converter",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "design",
+    "path": ".claude-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "design",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "unity",
+    "path": ".agents",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "unity",
+    "path": ".claude-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "unity",
+    "path": ".github",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "unity",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "visualize",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "adobe",
+    "path": "adobe-fonts/.DS_Store",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "adobe",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "adobe",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "build-ios-apps",
+    "path": ".mcp.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "build-ios-apps",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "build-macos-apps",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "build-web-apps",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "build-web-data-visualization",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "data-analytics",
+    "path": "tests",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "data-analytics",
+    "path": ".prettierrc.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "data-analytics",
+    "path": ".gitignore",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "data-analytics",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "figma",
+    "path": ".mcp.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "figma",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "figma",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "google-drive",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "google-drive",
+    "path": "OWNERS",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "google-drive",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "hugging-face",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "hugging-face",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "notion",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "notion",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "pages",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "pages",
+    "path": "OWNERS",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "pages",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "plugin-management",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "plugin-management",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "product-design",
+    "path": ".npmignore",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "product-design",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "product-design",
+    "path": "integrity.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "sites",
+    "path": "analytics.yaml",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "sites",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "sites",
+    "path": "OWNERS",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "sites",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "superpowers",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "work-pets",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "work-pets",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "pdf",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "presentations",
+    "path": "presentations/container_tools/__pycache__/runtime_helpers.cpython-312.pyc",
+    "reason": "cache-or-local-install-metadata"
+  },
+  {
+    "owner": "presentations",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "spreadsheets",
+    "path": ".app.json",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "spreadsheets",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  },
+  {
+    "owner": "template-creator",
+    "path": ".codex-plugin",
+    "reason": "plugin-registration-or-host-runtime-not-a-skill-payload"
+  }
+]

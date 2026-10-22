@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "ecc-competitive-report-structure",
+  "repository": "affaan-m/ECC",
+  "commit": "76aaa77df6adc5b889e689007bf99b9a4f74af34",
+  "source_path": ".agents/skills/competitive-report-structure",
+  "source_archive_sha256": "a9b2ece734d936fb23368d694dde910e0ee48bae1516b0c6dc79faf11153129c",
+  "original_name": "competitive-report-structure",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/affaan-m/ECC",
+  "original_skill_sha256": "a0dc2e9346a5c7af1858a11e92d083e16c4211f5855dbfbbfe63feeacb585e02"
+}

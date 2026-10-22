@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/receiving-code-review",
+  "original_skill_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
+}

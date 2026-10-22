@@ -1,0 +1,3 @@
+interface:
+  display_name: "交互与动效说明"
+  short_description: "将弹层和空间卡片意图写成可实现的交互规格，补齐关闭归位与验收"

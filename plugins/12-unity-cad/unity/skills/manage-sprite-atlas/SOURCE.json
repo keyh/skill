@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/manage-sprite-atlas",
+  "original_skill_sha256": "72e846735159183a51fefdb7aa10fbc6317110606e737804f118cf61ddc7d914"
+}

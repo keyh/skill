@@ -1,0 +1,17 @@
+# 开发文档实时查询
+
+开发文档实时查询。适用于网页检索、站点采集、文献研究和竞争分析相关任务；具体输入、步骤和输出见原始技能说明。
+
+- 仓库唯一编号：`ecc-documentation-lookup`
+- 原始技能名：`ecc-documentation-lookup`
+- 分类：搜索与研究
+- 兼容性：文本工作流
+- 依赖：按 SKILL.md 安装和配置所需运行环境；本仓库安装器只复制文件，不执行技能脚本或启用后台功能。
+- 许可：MIT
+- 来源：https://github.com/affaan-m/ECC
+
+## 原始说明
+
+Use up-to-date library and framework docs via Context7 MCP instead of training data. Activates for setup questions, API references, code examples, or when the user names a framework (e.g. React, Next.js, Prisma).
+
+[阅读 SKILL.md](SKILL.md) · [完整技能清单](../../../CATALOG.md)

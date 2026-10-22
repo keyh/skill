@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ios-app-intents",
+  "original_skill_sha256": "ecfa87ec1070bccfdfa0d21ee997bbfbfd78edfb1f22da5da9c05ff006e9fa52"
+}

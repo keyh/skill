@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "openspec-sync-specs",
+  "repository": "Fission-AI/OpenSpec",
+  "commit": "c794978f4f8845ce59693373c9dd882ee776588c",
+  "source_path": "skills/openspec-sync-specs",
+  "source_archive_sha256": "df0c2be216100550034bea1178befe81f741068e812df2f6026e307d5b51f06d",
+  "original_name": "openspec-sync-specs",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: compatibility"
+  ],
+  "upstream_url": "https://github.com/Fission-AI/OpenSpec",
+  "original_skill_sha256": "caf1c5e22272300fff5fbe00ac6d892556db26c9011b26c800d9423326a02579"
+}

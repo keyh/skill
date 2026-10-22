@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "sites",
+  "version": "1.1.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/sites",
+  "original_skill_sha256": "00750ea5ca37e2b49afd2a57fee2149d22ee4f48af40bc094e6d2cee3e7bd1ad"
+}

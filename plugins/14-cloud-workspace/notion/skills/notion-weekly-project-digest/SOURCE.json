@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "notion",
+  "version": "3.0.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/notion-weekly-project-digest",
+  "original_skill_sha256": "ed54b98bc6a1294e621446a67ce448e88eccadd22dad00260991d036d619d69a"
+}

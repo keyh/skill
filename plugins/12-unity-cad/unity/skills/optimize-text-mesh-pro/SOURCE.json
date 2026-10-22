@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/optimize-text-mesh-pro",
+  "original_skill_sha256": "40b56146b6ab0dc8062e1a4001be510e288f91d2b9479bcdea5a2f1a6eddf412"
+}

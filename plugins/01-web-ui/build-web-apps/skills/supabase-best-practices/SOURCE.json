@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/supabase-best-practices",
+  "original_skill_sha256": "cfc4da3ed47c14f4fb24c5b4db4be443fa200e12e71d674fb1270eecce87a302"
+}

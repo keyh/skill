@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "presentations",
+  "version": "26.1011.51657",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/presentations",
+  "original_skill_sha256": "bbc129458b6eb0dccb2c88ca4e89e51798c527ff5be482b626f5f65c30076465"
+}

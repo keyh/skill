@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "app-69312da8e4dc81919370cb86fd172b6c",
+  "version": "10.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/adobe-design-from-template",
+  "original_skill_sha256": "11d9eaed34c526b350185c298d8dd3c764d3cebeb111905f59230d3b3c291207"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-code-workflows",
+  "original_skill_sha256": "ac69b52d96a5d1b1832be9f0be99c221cfd861f8aad2260a0508386229982c7c"
+}

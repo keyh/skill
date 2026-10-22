@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/appkit-interop",
+  "original_skill_sha256": "7c91be82e30340ed9c929270f102965da3d67bcf509eecf8bf207c8a679fd3b6"
+}

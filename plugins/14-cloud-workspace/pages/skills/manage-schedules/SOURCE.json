@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "pages",
+  "version": "0.1.23",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/manage-schedules",
+  "original_skill_sha256": "e0a464a83f15a6e896c5536cab775f667ebd0dd61eb64fe3c877a41935d64bd9"
+}

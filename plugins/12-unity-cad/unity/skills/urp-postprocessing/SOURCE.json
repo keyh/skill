@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/urp-postprocessing",
+  "original_skill_sha256": "230c14873792646c3f65870be874ec57b0832a1630b064518f6d51e751ece086"
+}

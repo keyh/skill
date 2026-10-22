@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/packaging-notarization",
+  "original_skill_sha256": "adc0d5e0c48e74ac6c5078b5846d00cbb798a8fd08bd775590f23793c8e69b2b"
+}

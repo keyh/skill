@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/vision-trainer",
+  "original_skill_sha256": "c7aba4de75fa6595ffdaf5c50136786e8346aba0c9ff0261eaee656af4a3b0d9"
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "system",
+  "source_root": "codex-system",
+  "source_relative_path": "openai-docs",
+  "original_skill_sha256": "aa6829e21df2223167c85d2e49b6337a7345c84c1033f1ec10182c7882b36d45",
+  "upstream_url": "https://github.com/openai/skills"
+}

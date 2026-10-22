@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/branded-presentation",
+  "original_skill_sha256": "cb941d4892cfeda9034f77cccaf1e1d8c45546bd3a41c5c85e72e37055150ca1"
+}

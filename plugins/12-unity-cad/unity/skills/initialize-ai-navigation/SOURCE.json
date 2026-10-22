@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/initialize-ai-navigation",
+  "original_skill_sha256": "3c2f6dc620630b83988c13a861728a716e2ffa2e6a3f1346059e38e4aba33696"
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "ppt-master",
+  "repository": "hugohe3/ppt-master",
+  "commit": "b113d23720260c411ee47b2b05a73615f954deeb",
+  "source_path": "skills/ppt-master",
+  "source_archive_sha256": "4197ebfaa2b21c4957f156a56a08e091d9dd96c8089a082c8a27c60f34f79b8f",
+  "original_name": "ppt-master",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/hugohe3/ppt-master",
+  "original_skill_sha256": "ca3c2d9cd522b38120a03b6b6cfb2722d6c3d524510f84ef7b1b0394bbae8f3e"
+}

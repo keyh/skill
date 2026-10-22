@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/jupyter-notebooks",
+  "original_skill_sha256": "91a1a7f03544d4136544a60ef98e750ed694ab85768815861bbc7c4eec08a987"
+}

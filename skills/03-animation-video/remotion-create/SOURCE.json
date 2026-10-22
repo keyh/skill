@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "remotion-create",
+  "repository": "remotion-dev/skills",
+  "commit": "1441a11e95db35443bd76bb318386c0d3ca00053",
+  "source_path": "skills/remotion-create",
+  "source_archive_sha256": "8c05e2e585b3b1c8062cc9e7ffe5e2432334ba9b2fa33b96c45384921b1dd592",
+  "original_name": "remotion-create",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: version"
+  ],
+  "upstream_url": "https://github.com/remotion-dev/skills",
+  "original_skill_sha256": "49f8e23e77505206da6d4a1e28d72279ed7f291ddb8d7cec8e9f66c20409eda4"
+}

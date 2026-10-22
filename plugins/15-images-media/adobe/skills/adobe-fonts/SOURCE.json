@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "app-69312da8e4dc81919370cb86fd172b6c",
+  "version": "10.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/adobe-fonts",
+  "original_skill_sha256": "09c39f6b0ac8d496cc913f41200057d2be2e1d0026c501a230b69d0e741c074a"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/test-driven-development",
+  "original_skill_sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d"
+}

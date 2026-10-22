@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/telemetry",
+  "original_skill_sha256": "64fae6fd88c411d108b321462f90b74deb42fb043b815baae04b199a07dfbd25"
+}

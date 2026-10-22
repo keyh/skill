@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ios-ettrace-performance",
+  "original_skill_sha256": "1888c0b2fc6b7d9f3d54d06333e9628a2c4660b9d9b5ddf3edc37f126c773935"
+}

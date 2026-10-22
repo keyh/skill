@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "work-pets",
+  "version": "0.1.6",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/pets",
+  "original_skill_sha256": "1bf5d45fd6a6390aab777229293fb05cef7cf898aac882f8955e40c378e52fcd"
+}

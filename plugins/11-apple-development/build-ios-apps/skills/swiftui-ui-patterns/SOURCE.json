@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftui-ui-patterns",
+  "original_skill_sha256": "a96f078512c6c679a3504ec20e0eedff4a9be3a06eb9a95107f3556c081bb708"
+}

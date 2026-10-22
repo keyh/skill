@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{title}} 数字教材详情页</title>
+<style>
+/* 布局概念：首页式深蓝动效首屏（封面落在台面上 + 醒目购买卡）→ 一条数据带 → 身份分段 → 蓝色胶囊一级标签（独立页）→ 页头内二级锚点条（吸顶）→ 全宽内容块；单一浅色视觉，与首页同一套主色与页脚 */
+:root{
+  --blue:#165bd4;--blue-h:#0d48b6;--ink:#142c4a;--text:#344b64;--muted:#607185;--light:#f3f7fc;--line:#d7e1ec;--teal:#16716d;
+  --bg:#eef2f9;--card:#fff;--radius:18px;--shadow:0 16px 42px rgba(33,65,103,.08);--hair:rgba(20,44,74,.07);--whisper:0 1px 3px rgba(20,44,74,.05),0 10px 30px -24px rgba(20,44,74,.25);
+  --navy:#0b2250;--navy2:#123a7c;--price:#e5430f;
+  --stu:#e4731c;--tea:#1d8a6a;--sch:#165bd4;
+  --c1:#4f7df3;--c2:#35b37e;--c3:#8b6cf0;--c4:#ef5e9c;--c5:#f29a3a;--c6:#2bb5c9;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;--serif:"Noto Serif CJK SC","Songti SC",STSong,"SimSun",serif;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;color:var(--ink);line-height:1.3;text-wrap:balance}p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.container{max-width:1200px;margin:0 auto;padding-inline:clamp(16px,2.5vw,24px)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.num{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.15s;white-space:nowrap}
+.btn.primary{background:var(--blue);color:#fff}.btn.primary:hover{background:var(--blue-h)}
+.btn.ghost{border-color:var(--line);background:#fff;color:var(--ink)}.btn.ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn.small{padding:7px 14px;font-size:13px;border-radius:8px}.btn.big{padding:11px 20px;font-size:15px;border-radius:12px}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3px 9px;border-radius:999px;background:var(--light);color:var(--text);border:1px solid var(--line);font-weight:500;white-space:nowrap}
+.tag.blue{background:#eaf1fd;color:var(--blue);border-color:transparent}.tag.teal{background:#e9f6f3;color:var(--teal);border-color:transparent}.tag.gold{background:#fff6e5;color:#b7701a;border-color:transparent}.tag.purple{background:#f1edff;color:#6a4ee0;border-color:transparent}
+.tag.glass{background:rgba(255,255,255,.12);color:#e6efff;border-color:rgba(255,255,255,.22)}
+.eyebrow{font-size:12px;letter-spacing:.1em;color:var(--muted);font-weight:600}
+
+/* 顶栏（沿用首页） */
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;gap:24px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand img{width:46px;height:46px;border-radius:50%}
+.brand-name{font-size:21px;font-weight:800;color:var(--blue);letter-spacing:.02em;display:flex;align-items:center;gap:10px;white-space:nowrap}.brand-name i{width:1px;height:20px;background:var(--line)}
+.brand-sub{display:block;font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.02em}
+.nav{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--ink);font-weight:500}.nav a{text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}.nav a.active{color:var(--blue);border-color:var(--blue)}
+.header-actions{display:flex;gap:10px;align-items:center}
+@media (max-width:960px){.nav{display:none}}@media (max-width:600px){.brand-sub{display:none}.brand-name{font-size:17px}.brand img{width:38px;height:38px}.header-inner{gap:12px}}
+
+/* ---------- 首屏：深蓝动效 ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(118deg,#0a1f47 0%,#0f3270 48%,#0b2a63 100%);color:#fff}
+#fx{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.hero .container{position:relative}
+.crumbs{font-size:12px;color:rgba(255,255,255,.6);padding-top:14px;display:flex;gap:8px;align-items:center}.crumbs b{font-weight:500;color:#fff}
+.hero-grid{display:grid;grid-template-columns:270px minmax(0,1fr) 340px;gap:34px;align-items:stretch;padding-block:22px 40px}
+@media (max-width:1080px){.hero-grid{grid-template-columns:250px minmax(0,1fr)}.offer{grid-column:1/-1}}
+@media (max-width:700px){.hero-grid{grid-template-columns:1fr}}
+/* 封面落在台面上 */
+.shelf{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:8px}.hero-main{display:flex;flex-direction:column;justify-content:center}
+.book3d{position:relative;width:min(236px,64vw);aspect-ratio:3/4.15;perspective:1400px}
+.cover{position:absolute;inset:0;border-radius:4px 10px 10px 4px;overflow:hidden;background:linear-gradient(160deg,#eef6f3 0%,#dceee9 55%,#cfe6e0 100%);transform:rotateY(-14deg) rotateX(2deg);transform-origin:left center;transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:14px 24px 50px -18px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}
+.book3d:hover .cover{transform:rotateY(-6deg) rotateX(1deg)}
+.cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:linear-gradient(90deg,rgba(0,0,0,.16),transparent);z-index:2}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,.22) 0%,transparent 32%,transparent 70%,rgba(255,255,255,.1) 100%);z-index:2;pointer-events:none}
+.cover .wedge{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(135deg,#1c6f66,#124f49);clip-path:polygon(0 48%,100% 0,100% 100%,0 100%)}
+.cover .ct{position:absolute;left:18px;top:18px;right:14px;color:#1f3a36}
+.cover .ct small{display:block;font-size:10px;letter-spacing:.14em;color:#4e6c67;margin-bottom:2px}.cover .ct .en{font-size:7.5px;letter-spacing:.14em;color:#7a948f;margin-bottom:16px}
+.cover .ct h2{font-family:var(--serif);font-size:30px;line-height:1.25;letter-spacing:.08em;color:#163a35}.cover .ct .line{width:28px;height:2px;background:#1c6f66;margin-top:12px}
+.cover .lines{position:absolute;right:-12%;top:38%;width:120%;height:40%;opacity:.5}
+.cover .pub{position:absolute;left:18px;bottom:14px;color:#fff;font-size:11px;letter-spacing:.06em}.cover .brandmark{position:absolute;right:14px;bottom:14px;color:#fff;font-size:11px;font-weight:600}
+.cover .try{position:absolute;left:14px;bottom:40px;background:rgba(20,44,74,.75);color:#fff;font-size:10px;padding:2px 8px;border-radius:4px}
+.shelf .ground{width:120%;height:26px;margin-top:-6px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,.25) 45%,transparent 72%);filter:blur(4px)}
+.shelf .reflect{position:absolute;top:calc(100% - 2px);left:0;right:0;height:60px;pointer-events:none}
+.cover-actions{display:flex;gap:18px;font-size:12.5px;color:rgba(255,255,255,.75);margin-top:0;padding-bottom:2px}.cover-actions button:hover{color:#fff}
+/* 书名区 */
+.hero-main{min-width:0}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.hero h1{color:#fff;font-size:42px;font-weight:800;letter-spacing:.04em;margin-top:12px;line-height:1.2}
+.hero h1 small{display:block;font-size:12px;letter-spacing:.22em;color:rgba(255,255,255,.55);font-weight:500;margin-top:6px}
+.hero .lead{margin-top:14px;font-size:15px;color:#c9d8ef;max-width:50em;line-height:1.8}.hero .lead b{color:#fff;font-weight:600}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:13px}
+.meta div{display:flex;gap:10px;min-width:0}.meta dt{color:rgba(255,255,255,.55);flex:none;width:58px}.meta dd{margin:0;color:#fff;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 灵枢 AI 售前咨询条（与首页搜索框同构） */
+.ai-ask{position:relative;display:flex;align-items:center;gap:10px;margin-top:16px;padding:6px 6px 6px 8px;border-radius:14px;background:rgba(255,255,255,.1);border:1px solid rgba(79,209,255,.45);box-shadow:0 0 0 4px rgba(79,209,255,.08),0 12px 30px -16px rgba(79,209,255,.6)}
+.ai-ask:focus-within{border-color:#4fd1ff;box-shadow:0 0 0 4px rgba(79,209,255,.18)}
+.ai-ask .orb{position:relative;width:34px;height:34px;flex:none}
+.ai-ask .core{position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#9fe8ff,#4fd1ff 40%,#5b5bff 100%);display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;box-shadow:0 0 18px rgba(79,209,255,.7);animation:breathe 2.6s ease-in-out infinite}
+.ai-ask .ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(79,209,255,.6);animation:ripple 2.6s ease-out infinite}.ai-ask .r2{animation-delay:1.3s}
+@keyframes ripple{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.ai-ask .ai-tag{flex:none;font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(79,209,255,.18);color:#bfe9ff;border:1px solid rgba(79,209,255,.35)}
+.ai-ask input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:14px;padding:8px 4px}.ai-ask input::placeholder{color:#bfe9ff}
+.ai-ask .btn{flex:none;background:linear-gradient(135deg,#4fd1ff,#7c6bff);border:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* 购买卡 */
+.offer{background:#fff;border-radius:18px;box-shadow:0 30px 70px -24px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.4);overflow:hidden;color:var(--text)}
+.offer-tabs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--light);border-bottom:1px solid var(--line)}
+.offer-tabs button{padding:11px 6px;font-weight:600;font-size:14px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:1px;position:relative}.offer-tabs button small{font-size:11px;font-weight:400}
+.offer-tabs button[aria-selected="true"]{color:var(--blue);background:#fff}.offer-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--blue)}
+.offer-body{padding:14px 16px 14px}.offer-body[hidden]{display:none}
+.offer-title{font-size:16px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:8px}.offer-title small{font-size:12px;color:var(--muted);font-weight:400;white-space:nowrap}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.plan{text-align:center;border:1px solid var(--line);border-radius:10px;padding:8px 4px;background:#fff;position:relative;transition:.15s}
+.plan b{display:block;font-size:13px;color:var(--ink)}.plan span{display:none}.plan em{display:block;font-style:normal;font-weight:700;color:var(--ink);font-size:13px;margin-top:2px}
+.plan[aria-pressed="true"]{border-color:var(--blue);background:#f3f7ff;box-shadow:0 0 0 3px rgba(22,91,212,.14)}
+.plan .best{position:absolute;z-index:1;left:50%;transform:translateX(-50%);top:-9px;font-size:10px;background:var(--price);color:#fff;padding:1px 7px;border-radius:999px}
+.price-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:10px}
+.price{color:var(--price);font-weight:800;font-size:32px;line-height:1}.price i{font-style:normal;font-size:16px;margin-right:2px}.price small{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
+.offer-actions{display:grid;gap:7px;margin-top:10px}
+.offer-note{font-size:12px;color:var(--muted);margin-top:8px}.offer-note button{color:var(--blue);font-weight:600}
+.checks{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:7px;font-size:13px}.checks li{display:flex;gap:8px}.checks li::before{content:"✓";color:var(--blue);font-weight:700;flex:none}
+.offer-foot{display:flex;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.motion-toggle{position:absolute;right:clamp(16px,2.5vw,24px);bottom:10px;font-size:12px;color:rgba(255,255,255,.7);display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.2)}
+/* 数据带（覆盖首屏底边） */
+.seam{height:64px;background:#0b2a63}
+.strip{position:relative;z-index:2;margin-top:-64px;background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:0 24px 50px -24px rgba(11,42,99,.45);display:grid;grid-template-columns:auto repeat(4,1fr) auto repeat(3,1fr);align-items:stretch;gap:8px;padding:10px}
+@media (max-width:1000px){.strip{grid-template-columns:repeat(4,1fr)}.use.fresh{grid-column:1/-1}.strip .ver,.strip .sep{grid-column:1/-1}.strip .sep{height:1px;width:auto;margin:2px 0}}
+@media (max-width:560px){.strip{grid-template-columns:1fr 1fr}}
+.strip .ver{padding:12px 16px;border-radius:12px;background:#0f3270;color:rgba(255,255,255,.75);font-size:12px;display:flex;flex-direction:column;justify-content:center}.strip .ver b{display:block;color:#fff;font-size:13.5px}
+.strip .sep{width:1px;background:var(--line);margin:6px 4px}
+.sys{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--tb,#f3f6fb)}
+.sys i{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;background:#fff!important;box-shadow:0 2px 6px rgba(20,44,74,.08)}.sys svg{width:18px;height:18px}
+.sys b{font-size:24px;font-weight:800;color:var(--tc,var(--ink));line-height:1.1;display:block}.sys span{font-size:12px;color:var(--muted);white-space:nowrap}
+.use{padding:10px 12px;border-radius:12px;background:#eef4ff}.use b{display:block;font-size:20px;font-weight:800;color:var(--blue);line-height:1.1}.use span{font-size:12px;color:var(--muted);white-space:nowrap}.use.fresh{grid-column:span 3}.use.fresh b{font-size:16px}.use.fresh span{white-space:normal}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:28px 20px;border:1.5px dashed #cfd9e8;border-radius:14px;background:#f8fafd;color:var(--muted);font-size:13px}.empty i{width:44px;height:44px;border-radius:12px;background:#eef3ff;color:var(--blue);display:grid;place-items:center}.empty i svg{width:22px;height:22px}.empty b{color:var(--ink);font-size:15px}.empty .btn{margin-top:6px}
+
+/* ---------- 身份分段 ---------- */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+@media (max-width:900px){.roles{grid-template-columns:1fr}}
+.role-card{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;border:1.5px solid transparent;box-shadow:var(--whisper);background:var(--rs);text-align:left;transition:.15s;cursor:pointer;position:relative}
+.role-card:hover{border-color:#b9cbe9}
+.role-card .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--rs);color:var(--rc)}.role-card .ic svg{width:22px;height:22px}
+.role-card b{display:block;font-size:16px;color:var(--ink)}.role-card span{font-size:12.5px;color:var(--muted)}
+.role-card .chk{margin-left:auto;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12px;color:#fff;flex:none;transition:.15s}
+.role-card[aria-pressed="true"]{border-color:var(--blue);background:#eef4ff;box-shadow:0 14px 30px -16px rgba(22,91,212,.55)}
+.role-card[aria-pressed="true"] .chk{background:var(--blue);border-color:var(--blue)}
+.role-card[aria-pressed="true"] .ic{background:var(--rc);color:#fff}
+.role-card .pill{position:absolute;top:10px;right:48px;font-size:10px;padding:2px 8px;border-radius:999px;background:var(--blue);color:#fff;z-index:1}
+.role-line{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 14px;border-radius:10px;background:#fff;border:1px solid var(--hair);font-size:13px;color:var(--muted)}
+.role-line b{color:var(--blue);display:flex;align-items:center;gap:6px}.role-line b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.role-line .cms-btn{margin-left:auto;font-size:12px;color:var(--muted);display:inline-flex;gap:6px;align-items:center;padding:3px 10px;border-radius:999px;border:1px solid var(--line)}
+.role-line .cms-btn[aria-pressed="true"]{color:var(--blue);border-color:var(--blue);background:#eef4ff}
+
+/* ---------- 一级标签（蓝色胶囊、独立页） ---------- */
+.tabbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:40;padding-block:10px 8px;background:linear-gradient(var(--bg) 85%,transparent);display:flex;gap:10px;align-items:stretch}.tabbar .inner{flex:1;min-width:0}
+.tab-cta{flex:none;display:flex;align-items:center;gap:10px;padding:6px 8px 6px 14px;background:#fff;border:1px solid var(--hair);border-radius:14px;box-shadow:var(--shadow);font-size:13px;color:var(--text);animation:rise .3s both}.tab-cta b{color:var(--price);font-size:18px;font-weight:800}.tab-cta[hidden]{display:none}@media (max-width:700px){.tab-cta{display:none!important}}
+.tabbar .inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;background:#fff;border:1px solid var(--hair);border-radius:14px;padding:6px;box-shadow:var(--shadow)}
+.tabbar .inner::-webkit-scrollbar{display:none}
+.tabbar button{flex:1 0 auto;padding:9px 13px;border-radius:10px;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.tabbar button:hover{color:var(--blue);background:#eef4ff}
+.tabbar button[aria-selected="true"]{color:#fff;background:var(--blue);box-shadow:0 8px 18px -10px rgba(22,91,212,.8)}
+.tabbar button sup{font-size:9px;font-weight:800;padding:1px 5px;border-radius:999px;background:linear-gradient(135deg,#4fd1ff,#7c6bff);color:#fff;line-height:1.4}
+
+/* ---------- 页面：页头 + 二级锚点条 + 全宽内容 ---------- */
+.page{margin-top:6px;padding-bottom:40px;display:grid;gap:12px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:18px 22px;border-radius:16px;background:#e9f0fd}
+.page-head h2{font-size:28px;font-weight:800;letter-spacing:.02em;display:flex;align-items:center;gap:12px}.page-head h2 b{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--blue);background:#eef4ff;border-radius:6px;padding:2px 8px}
+.page-head p{color:var(--text);margin-top:4px;max-width:60em}
+.subnav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 134px);z-index:30;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:6px;background:#fff;border:1px solid var(--hair);border-radius:12px;box-shadow:var(--whisper)}
+.subnav::-webkit-scrollbar{display:none}
+.subnav a{flex:none;text-decoration:none;font-size:13px;font-weight:500;color:var(--text);padding:7px 12px;border-radius:8px;display:inline-flex;gap:7px;align-items:center;transition:.15s}
+.subnav a b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--muted)}
+.subnav a:hover{background:#eef4ff;color:var(--blue)}
+.subnav a.on{background:#eef4ff;color:var(--blue);font-weight:600}.subnav a.on b{color:var(--blue)}
+.subnav .cms-legend{margin-left:auto;display:none;gap:8px;align-items:center;font-size:11px;color:var(--muted);padding-right:6px;white-space:nowrap}
+.cms-mode .subnav .cms-legend{display:inline-flex}
+.content{display:grid;gap:14px}
+.block{position:relative;min-width:0;overflow:hidden;background:#fff;border:1px solid var(--hair);border-radius:var(--radius);padding:22px 24px;scroll-margin-top:200px;box-shadow:var(--whisper);animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.block::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#4f7df3,#2bb5c9,#8b6cf0);opacity:.0}
+.hchip{width:10px;height:22px;border-radius:4px;flex:none;box-shadow:0 4px 10px -4px currentColor}
+.block:nth-child(2){animation-delay:.06s}.block:nth-child(3){animation-delay:.12s}.block:nth-child(4){animation-delay:.18s}.block:nth-child(5){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.block h3{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:14px}.block h3 small{font-size:12px;color:var(--muted);font-weight:400}
+.block .src{display:none;position:absolute;right:14px;top:14px;font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;letter-spacing:.02em}
+.cms-mode .block .src{display:inline-flex}
+.src.manual,.lg.manual{background:#eef4ff;color:var(--blue)}.src.parse,.lg.parse{background:#eaf8f1;color:#1d8a5b}.src.ai,.lg.ai{background:#f1edff;color:#6a4ee0}.src.live,.lg.live{background:#fff4e8;color:#c26a11}
+.lg{padding:2px 7px;border-radius:999px;font-weight:600}
+.cms-mode .block{outline:1.5px dashed #c7d4ea;outline-offset:-1px}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+@media (max-width:1000px){.g5,.g6{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.g2,.g3,.g4,.g5,.g6{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+.cell{border-radius:14px;padding:14px 16px;background:var(--light);border:1px solid transparent;min-width:0;transition:transform .2s,box-shadow .2s}.cell:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(20,44,74,.35)}
+.cell h4{font-size:14.5px;font-weight:700;margin-bottom:4px}.cell p{font-size:13px;color:var(--text)}.cell ul{margin:6px 0 0;padding-left:16px;font-size:13px;color:var(--text)}
+.cell .k{font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.cell.white{background:#fff;border-color:var(--hair);box-shadow:0 1px 3px rgba(20,44,74,.04)}
+.cell.tint{background:color-mix(in srgb,var(--tc) 9%,#fff);border-color:color-mix(in srgb,var(--tc) 18%,transparent)}.cell.tint h4::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tc);margin-right:8px;vertical-align:1px}
+.cell.c1{background:#eef3ff}.cell.c2{background:#eaf8f1}.cell.c3{background:#f1edff}.cell.c4{background:#fdeef5}.cell.c5{background:#fff4e8}.cell.c6{background:#e9f8fb}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.prose{max-width:70em;color:var(--text);font-size:14.5px}.prose p+p{margin-top:10px}.prose b{color:var(--ink)}
+/* 核心数据 */
+.kpi{display:grid;grid-template-columns:150px repeat(3,1fr);gap:10px}@media (max-width:800px){.kpi{grid-template-columns:1fr 1fr}.kpi .big{grid-row:span 2}}
+.kpi .big{grid-row:span 4;border-radius:14px;padding:16px;color:#fff;background:linear-gradient(160deg,#4f7df3,#165bd4);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px}
+.kpi .big b{font-size:44px;font-weight:800;line-height:1}.kpi .big span{font-size:13px;opacity:.9}.kpi .big::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.5),transparent 60%)}
+.kpi .tile{border-radius:14px;padding:12px 14px;background:var(--light);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;min-height:70px}
+.kpi .tile span{font-size:12.5px;color:var(--muted)}.kpi .tile b{font-size:24px;font-weight:800;color:var(--ink);line-height:1.1}
+.kpi .tile.c1{background:#eef3ff;border-color:transparent}.kpi .tile.c2{background:#eaf8f1;border-color:transparent}.kpi .tile.c3{background:#f1edff;border-color:transparent}.kpi .tile.c4{background:#fdeef5;border-color:transparent}.kpi .tile.c5{background:#fff4e8;border-color:transparent}.kpi .tile.c6{background:#e9f8fb;border-color:transparent}
+.viz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;position:relative;overflow:hidden;min-width:0}
+.viz.dots{background:radial-gradient(circle at 1px 1px,#dbe3ee 1px,transparent 1.6px) 0 0/18px 18px,#fbfcfe}
+.viz svg{width:100%;height:auto;display:block}
+.viz .panel{position:absolute;left:14px;top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);font-size:12.5px;min-width:120px}
+.viz .panel div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}.viz .panel b{color:var(--blue)}.viz .panel i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.viz .hint{position:absolute;right:14px;top:14px;font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.node-pill{cursor:pointer}.node-pill rect{transition:.15s}.node-pill:hover rect{filter:brightness(1.08)}
+#kgSvg path.branch{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.4s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ringc{transition:stroke-dasharray 1.2s cubic-bezier(.2,.8,.2,1)}
+.bar i{transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:800px){.detail{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;color:var(--muted);font-weight:600;background:var(--light)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.lvl{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600}.lvl.a{background:#eaf8f1;color:#1d8a5b}.lvl.b{background:#eef3ff;color:var(--blue)}.lvl.c{background:#fff4e8;color:#c26a11}
+.toc{display:grid;grid-template-columns:260px 1fr;gap:14px}@media (max-width:800px){.toc{grid-template-columns:1fr}}
+.toc-list{display:grid;gap:3px;max-height:460px;overflow:auto;padding-right:4px}
+.toc-list button{text-align:left;padding:8px 10px;border-radius:9px;font-size:13px;display:flex;gap:8px;align-items:center;color:var(--text)}.toc-list button b{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);width:20px}
+.toc-list button[aria-selected="true"]{background:#eef4ff;color:var(--blue);font-weight:600}.toc-list button[aria-selected="true"] b{color:var(--blue)}
+.toc-detail{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--light)}.toc-detail h4{font-size:17px}
+.toc-detail .tasks{display:grid;gap:6px;margin-top:10px}.toc-detail .tasks div{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-radius:9px;background:#fff;font-size:13px}.toc-detail .tasks div span:last-child{font-size:11.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chips span{font-size:12px;padding:3px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--text)}
+.chips span.sz{background:#fdeef5;color:#c2306f;border-color:transparent}.chips span.ct{background:#fff4e8;color:#c26a11;border-color:transparent}.chips span.ai{background:#e9f8fb;color:#1a8fa2;border-color:transparent}
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.flow div{padding:10px 8px;border-radius:10px;background:var(--light);border:1px solid var(--line);font-size:12.5px;text-align:center;position:relative}.flow div b{display:block;font-size:11px;color:var(--muted);font-family:var(--mono);font-weight:500}
+.flow div.on{background:#eef4ff;border-color:var(--blue);color:var(--blue);font-weight:600}
+.step-list{display:grid}.step-list>div{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}.step-list>div:last-child{border:0}
+.step-list b.n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#eef4ff;color:var(--blue);font-family:var(--mono);font-size:12px;font-weight:600}
+.step-list h4{font-size:14.5px}.step-list p{font-size:13px;color:var(--text)}
+.quote{border-left:3px solid var(--blue);background:var(--light);padding:12px 16px;border-radius:0 12px 12px 0;font-size:13.5px;color:var(--text)}
+.ai-box{background:linear-gradient(135deg,#eaf1fd,#e9f8fb);border:1px solid #cfe0fb;border-radius:12px;padding:14px 16px;font-size:13.5px;position:relative;overflow:hidden}
+.ai-box::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(79,209,255,.25),transparent 60%);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.ai-box .k{font-size:11px;letter-spacing:.08em;color:var(--blue);font-weight:700;display:flex;align-items:center;gap:6px}.ai-box .k i{width:7px;height:7px;border-radius:50%;background:var(--c6);box-shadow:0 0 0 3px rgba(43,181,201,.25)}
+.bar{height:8px;border-radius:4px;background:#e6edf7;overflow:hidden}.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--c1),var(--c6))}
+.ring{display:flex;gap:12px;align-items:center}.ring svg{width:64px;height:64px;flex:none}.ring b{display:block;font-size:14px;color:var(--ink)}.ring span{font-size:12px;color:var(--muted)}
+.badge-row{display:flex;gap:10px;flex-wrap:wrap}.badge{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+.badge i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;flex:none}.badge b{display:block;font-size:13.5px;color:var(--ink)}.badge span{font-size:12px;color:var(--muted)}
+.policy{display:grid;gap:8px}.policy a{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;text-decoration:none;font-size:13.5px;color:var(--ink)}
+.policy a small{display:block;color:var(--muted);font-size:12px}.policy a b{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--muted);white-space:nowrap}.policy a:hover{border-color:var(--blue)}
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media (max-width:900px){.people{grid-template-columns:repeat(2,1fr)}}
+.person{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+.person i{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;color:#fff;font-size:15px;background:linear-gradient(135deg,var(--c1),var(--c3))}
+.person b{display:block;font-size:14.5px;color:var(--ink)}.person span{font-size:12px;color:var(--muted);display:block}
+/* 教材导读可视化 */
+.gh{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:center}@media (max-width:900px){.gh{grid-template-columns:1fr}}
+.gh-ring{padding:10px}
+@keyframes drawArc{to{stroke-dashoffset:0}}
+.arc{cursor:pointer;transition:opacity .2s}.arc:hover{opacity:.8}
+.gh-side{display:grid;gap:12px}
+.gh-lead h4{font-size:20px;line-height:1.35}.gh-lead p{margin-top:6px;color:var(--text)}
+.gh-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}@media (max-width:600px){.gh-stages{grid-template-columns:repeat(2,1fr)}}
+.gh-stage{padding:10px 8px;border-radius:12px;background:color-mix(in srgb,var(--tc) 12%,#fff);border-top:3px solid var(--tc);text-align:center}.gh-stage b{display:block;font-size:13px;color:var(--ink)}.gh-stage span{font-size:11px;color:var(--muted);white-space:nowrap}
+.gh-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.gh-feat{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--hair);box-shadow:0 1px 3px rgba(20,44,74,.04)}.gh-feat::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--tc);box-shadow:0 0 0 4px color-mix(in srgb,var(--tc) 20%,transparent);flex:none}.gh-feat b{font-size:13.5px;color:var(--ink)}.gh-feat span{font-size:12px;color:var(--muted);margin-left:auto;text-align:right}
+.aud{display:grid;gap:10px}.aud-row{display:grid;grid-template-columns:260px 1fr 70px;gap:14px;align-items:center}@media (max-width:700px){.aud-row{grid-template-columns:1fr}}
+.aud-name b{display:block;font-size:14px;color:var(--ink)}.aud-name span{font-size:12px;color:var(--muted)}
+.aud-bar{height:12px;border-radius:6px;background:#e9eef6;overflow:hidden}.aud-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,color-mix(in srgb,var(--tc) 60%,#fff),var(--tc));transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.aud-row em{font-style:normal;font-size:12px;color:var(--tc);font-weight:600;white-space:nowrap}
+.aud-jobs{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.modes4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media (max-width:900px){.modes4{grid-template-columns:repeat(2,1fr)}}
+.mode{position:relative;padding:18px 16px 16px;border-radius:16px;background:linear-gradient(160deg,color-mix(in srgb,var(--tc) 16%,#fff),color-mix(in srgb,var(--tc) 4%,#fff));overflow:hidden;transition:transform .2s}.mode:hover{transform:translateY(-3px)}
+.mode::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:color-mix(in srgb,var(--tc) 18%,transparent)}
+.mode i{width:40px;height:40px;border-radius:12px;background:var(--tc);color:#fff;display:grid;place-items:center;margin-bottom:10px}.mode i svg{width:22px;height:22px}.mode b{display:block;font-size:16px;color:var(--ink)}.mode span{font-size:12.5px;color:var(--text);display:block;margin-top:4px;position:relative}
+.vtl{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}@media (max-width:800px){.vtl{grid-template-columns:1fr}}
+.vtl::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,#f29a3a,#4f7df3,#2bb5c9,#8b6cf0)}@media (max-width:800px){.vtl::before{display:none}}
+.vt{padding:0 12px 0 0;position:relative}.vt i{display:block;width:16px;height:16px;border-radius:50%;background:var(--tc);border:3px solid #fff;box-shadow:0 0 0 2px var(--tc);margin:1px 0 10px}.vt b{display:block;font-size:14px;color:var(--ink)}.vt em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--tc);display:block}.vt span{font-size:12px;color:var(--muted)}
+@supports not (color:color-mix(in srgb,#000,#fff)){.cell.tint{background:#f3f6fb;border-color:var(--hair)}.gh-stage,.mode{background:#f3f6fb}.gh-feat::before{box-shadow:none}.aud-bar i{background:var(--tc)}}
+/* 岗课赛证矩阵 */
+.matrix{overflow-x:auto}.matrix table{min-width:640px}.matrix td{text-align:center;padding:7px 8px}.matrix td:first-child{text-align:left;white-space:nowrap}
+.matrix .dot{display:inline-block;width:14px;height:14px;border-radius:50%}
+/* 获取方式（替代深色 banner） */
+.getit{margin-top:8px;border-radius:16px;border:1px solid var(--hair);background:#fff;padding:22px 24px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:14px;align-items:center;box-shadow:var(--shadow)}
+@media (max-width:900px){.getit{grid-template-columns:1fr}}
+.getit h2{font-size:20px}.getit p{color:var(--muted);margin-top:4px;font-size:13px}
+.getit .way{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;background:var(--light)}.getit .way b{font-size:14px;color:var(--ink)}.getit .way span{font-size:12px;color:var(--muted)}
+/* 页脚（沿用首页） */
+footer{background:#10263e;color:#bacbdc;padding:37px 0 18px;margin-top:30px}
+.footer-top{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:25px}@media (max-width:900px){.footer-top{grid-template-columns:1fr 1fr}.footer-top>div:first-child{grid-column:1/-1}}
+.footer-top h4{color:#eaf2fa;font-size:14px;margin-bottom:13px}.footer-top button,.footer-top a{display:block;border:0;background:none;padding:3px 0;margin:4px 0;color:#b8cde2;font-size:13px;text-align:left;text-decoration:none}.footer-top button:hover,.footer-top a:hover{color:#fff}
+.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand img{width:68px;height:68px;border-radius:50%;background:#fff}.footer-brand .brand-name{color:#e8f2ff}.footer-brand .brand-name i{background:#58748c}.footer-brand .brand-sub{color:#b2c8df;font-size:12px}
+.footer-top>div:first-child p{max-width:315px;font-size:13px;line-height:1.7;color:#bdcfe2;margin-top:16px}
+.footer-bottom{margin-top:27px;padding-top:16px;border-top:1px solid #365069;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;z-index:60;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+.totop{position:fixed;right:22px;bottom:28px;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;z-index:45}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ===== V27 能力结构（五级结构 · 能力进阶 · 岗课赛证 · 知识网络 · 支撑技能 · 路径 · 图谱自查） ===== */
+/* CapabilityScale */
+.cs{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.cs-i{position:relative;padding:12px 14px 12px 22px;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"lv lv" "num n" "sm sm";column-gap:8px;align-items:baseline;background:color-mix(in srgb,var(--lc) 7%,#fff)}
+.cs-i::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--lc)}
+.cs-i+.cs-i{border-left:1px solid var(--line)}
+.cs-i:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;background:inherit;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:1}
+.cs-lv{grid-area:lv;font-size:11px;font-weight:700;color:var(--lc);letter-spacing:.06em}
+.cs-i b{grid-area:num;font-size:26px;font-weight:800;color:var(--ink);line-height:1.15}
+.cs-n{grid-area:n;font-size:13.5px;font-weight:700;color:var(--ink)}
+.cs-i small{grid-area:sm;font-size:11.5px;color:var(--muted)}
+@media (max-width:760px){
+  .cs{grid-template-columns:repeat(2,1fr)}
+  .cs-i:not(:last-child)::after{display:none}
+  .cs-i+.cs-i{border-left:0}
+  .cs-i{border-top:1px solid var(--line)}
+  .cs-i:nth-child(-n+2){border-top:0}
+  .cs-i:nth-child(even){border-left:1px solid var(--line)}
+  .cs-i:last-child{grid-column:1/-1}
+}
+@supports not (color:color-mix(in srgb,#000,#fff)){
+  .cs-i{background:#fff}
+}
+/* ProjectPicker */
+.pp{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:flex-start;padding:10px 12px;background:var(--light);border:1px solid var(--line);border-radius:12px}
+.pp-g{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pp-st{flex:none;white-space:nowrap;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;margin-right:2px}
+.pp button{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;padding:4px 10px 4px 5px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--text);transition:.15s}
+.pp button b{font-family:var(--mono);font-size:10.5px;font-weight:600;color:#fff;background:var(--sc);border-radius:999px;padding:1px 6px}
+.pp button:hover{border-color:var(--sc)}
+.pp button[aria-selected="true"]{background:color-mix(in srgb,var(--sc) 12%,#fff);border-color:var(--sc);color:var(--ink);font-weight:600}
+@media (max-width:620px){
+  .pp{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .pp::-webkit-scrollbar{display:none}
+  .pp-g{flex-wrap:nowrap}
+  .pp button{white-space:nowrap}
+}
+@supports not (color:color-mix(in srgb,#000,#fff)){
+  .pp button[aria-selected="true"]{background:#eef4ff}
+}
+/* FiveLevelMap */
+.fl-bar{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin:12px 0 10px}
+.fl-tasks{display:flex;gap:6px;flex-wrap:wrap;min-width:0}
+.fl-tasks button{font-size:13px;padding:6px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--text);text-align:left;transition:.15s}
+.fl-tasks button b{font-weight:600;color:var(--muted);margin-right:6px;font-size:12px}
+.fl-tasks button[aria-selected="true"]{border-color:#2bb5c9;background:#e9f8fb;color:var(--ink);font-weight:600}
+.fl-tasks button[aria-selected="true"] b{color:#1a8fa2}
+.fl-view{display:inline-flex;flex:none;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.fl-view button{font-size:12.5px;padding:6px 12px;color:var(--muted)}
+.fl-view button[aria-pressed="true"]{background:var(--ink);color:#fff;font-weight:600}
+.fl{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.fl-row{display:grid;grid-template-columns:112px 1fr;border-bottom:1px solid var(--line);position:relative}
+.fl-lv{position:relative;padding:14px 12px 14px 18px;background:color-mix(in srgb,var(--lc) 8%,#fff);display:flex;flex-direction:column;gap:1px;border-right:1px solid var(--line)}
+.fl-lv::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--lc)}
+.fl-row:not(:nth-last-child(2)) .fl-lv::after{content:"";position:absolute;left:-4px;bottom:-6px;border:6px solid transparent;border-top:6px solid var(--lc);border-bottom:0;transform:translateX(4px);z-index:1}
+.fl-lv span{font-size:11px;font-weight:700;color:var(--lc);letter-spacing:.06em}
+.fl-lv b{font-size:15px;color:var(--ink)}
+.fl-lv small{font-size:11px;color:var(--muted);line-height:1.4}
+.fl-body{padding:14px 16px;min-width:0}
+.fl-proj{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:space-between}
+.fl-proj>div{display:flex;align-items:center;gap:8px}
+.fl-proj h4{font-size:16px}
+.fl-proj p{font-size:12.5px;color:var(--muted)}
+.fl-st{font-size:11px;color:#fff;border-radius:999px;padding:2px 8px;font-weight:600}
+.fl-seq{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px}
+.fl-seq li{position:relative;font-size:13px;padding:6px 10px;border-radius:8px;background:var(--light);cursor:pointer;color:var(--text)}
+.fl-seq li b{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px;font-weight:500}
+.fl-seq li:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:#9fb0c4;font-size:12px}
+.fl-seq li.on{background:#e9f8fb;color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px #2bb5c9}
+.fl-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 22px}
+.fl-steps li{position:relative;padding:10px 12px;border-radius:10px;background:#eaf8f1;display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--text)}
+.fl-steps li i{font-style:normal;width:20px;height:20px;border-radius:50%;background:#35b37e;color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-bottom:2px}
+.fl-steps li b{font-size:13.5px;color:var(--ink);margin-bottom:3px}
+.fl-steps li span::before{content:"· ";color:#35b37e}
+.fl-steps li em{font-style:normal;color:var(--muted);font-size:11.5px}
+.fl-steps li:not(:last-child)::after{content:"";position:absolute;right:-17px;top:20px;width:12px;height:2px;background:#9fd8bd}
+.fl-steps li:not(:last-child)::before{content:"";position:absolute;right:-18px;top:16px;border:5px solid transparent;border-left:6px solid #9fd8bd}
+.fl-score{display:flex;height:22px;border-radius:6px;overflow:hidden;margin-bottom:10px;gap:2px}
+.fl-score i{display:flex;align-items:center;min-width:0;padding:0 6px;color:#fff;font-style:normal;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden}
+.fl-score i span{overflow:hidden;text-overflow:ellipsis}
+.fl-skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.fl-dim{border:1px solid var(--line);border-top:3px solid var(--dc);border-radius:10px;padding:10px 12px;background:#fff}
+.fl-dim h5{font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:6px;margin:0 0 4px}
+.fl-dim h5 small{font-size:11px;color:var(--dc);font-weight:700;background:color-mix(in srgb,var(--dc) 12%,#fff);border-radius:999px;padding:0 7px}
+.fl-dim h5 em{font-style:normal;font-size:10.5px;color:#c2306f;background:#fdeef5;border-radius:999px;padding:0 6px;margin-left:auto}
+.fl-dim ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.fl-dim li{font-size:12.5px;line-height:1.55;color:var(--text);padding-left:12px;position:relative}
+.fl-dim li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--dc)}
+.fl-dim li small{margin-left:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.fl-know{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.fl-know>div{border-radius:10px;padding:9px 12px;background:#f1edff;display:flex;flex-wrap:wrap;gap:4px 6px;align-content:flex-start}
+.fl-know b{width:100%;font-size:13px;color:var(--ink)}
+.fl-know span{font-size:11.5px;color:#6a55c8;background:#fff;border-radius:999px;padding:1px 8px}
+.fl-none{font-size:12.5px;color:var(--muted)}
+.fl-foot{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fl-cell{padding:14px 16px}
+.fl-cell+.fl-cell{border-left:1px solid var(--line)}
+.fl-cell .k{font-size:11px;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.fl-cell p{font-size:13px;margin-top:4px;color:var(--text)}
+.fl-q{background:#fdf4f8}
+.chips span.fl-pd{background:#fff;border:1px dashed #c26a11;color:#c26a11}
+.fl-c{background:#fff8ef}
+.fl-table td{font-size:12.5px;min-width:120px}
+.fl-table td:first-child{min-width:150px;font-weight:600;color:var(--ink)}
+.fl-table ol,.fl-table ul{margin:0;padding-left:16px}
+.fl-table li{margin:1px 0}
+.fl-table tr.on td{background:#f5fbfd}
+.fl-tn{margin-left:6px;font-size:11px;color:var(--muted)}
+@media (max-width:760px){
+  .fl-bar{flex-direction:column}
+  .fl-tasks{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none}
+  .fl-tasks button{white-space:nowrap}
+  .fl-row{grid-template-columns:1fr}
+  .fl-lv{flex-direction:row;align-items:baseline;gap:8px;border-right:0;border-bottom:1px solid var(--line);padding:8px 12px 8px 16px}
+  .fl-row .fl-lv::after{display:none}
+  .fl-steps{grid-template-columns:1fr}
+  .fl-steps li:not(:last-child)::after,.fl-steps li:not(:last-child)::before{display:none}
+  .fl-foot{grid-template-columns:1fr}
+  .fl-cell+.fl-cell{border-left:0;border-top:1px solid var(--line)}
+}
+@supports not (color:color-mix(in srgb,#000,#fff)){
+  .fl-lv{background:var(--light)}
+  .fl-dim h5 small{background:var(--light)}
+}
+/* AbilityLadder */
+.ld-head{font-size:13.5px;color:var(--text);margin:12px 0 10px}
+.ld-grid{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:22px}
+.ld-col{position:relative;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ld-col:not(:last-child)::after{content:"";position:absolute;right:-17px;top:14px;border:6px solid transparent;border-left:8px solid var(--lc);opacity:.6}
+.ld-cap{display:flex;align-items:baseline;gap:8px;padding:8px 12px;border-radius:10px;background:var(--lc);color:#fff}
+.ld-cap b{font-size:14.5px}
+.ld-cap span{font-size:12px;opacity:.85}
+.ld-m{border:1px solid var(--line);border-left:3px solid var(--lc);border-radius:10px;padding:10px 12px;background:#fff}
+.ld-m h5{font-size:13.5px;color:var(--ink);margin:0 0 4px}
+.ld-m ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--text);line-height:1.55}
+.ld-std{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.55}
+.ld-std b{display:inline-block;font-size:11px;color:var(--lc);margin-right:6px}
+.ld-sc{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.ld-sc span{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--light);color:var(--muted)}
+@media (max-width:860px){
+  .ld-grid{grid-template-columns:1fr;gap:12px}
+  .ld-col:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-14px;border:6px solid transparent;border-top:8px solid var(--lc)}
+}
+/* CertCoverage */
+.cc table{min-width:720px}
+.cc th{font-size:12px;white-space:nowrap}
+.cc-k{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;color:#fff;font-size:11px;font-weight:700;margin-right:6px}
+.cc td{padding:8px 12px;font-size:13px}
+.cc td:first-child{white-space:nowrap;color:var(--ink);font-weight:600}
+.cc-st{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cc-dots{display:inline-flex;gap:4px}
+.cc-dots i{width:11px;height:11px;border-radius:50%;border:1.5px solid #cfd9e6;background:#fff}
+.cc-dots i.on{background:var(--cc);border-color:var(--cc)}
+.cc-dots i.pend{border:1.5px dashed var(--cc);background:color-mix(in srgb,var(--cc) 18%,#fff)}
+.cc-pd{margin-left:6px;font-size:11px;color:var(--muted)}
+.cc tfoot td{background:var(--light);font-size:12px;color:var(--muted);border-bottom:0}
+.cc tfoot b{font-size:15px;color:var(--ink)}
+.cc tfoot .bar{display:block;margin-top:4px;max-width:120px}
+/* KnowledgeNetwork */
+.kn-stats{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-bottom:10px;font-size:12.5px;color:var(--muted)}
+.kn-stats b{font-size:20px;color:var(--ink);font-weight:800;margin-right:4px;font-variant-numeric:tabular-nums}
+.kn-stats em{font-style:normal;font-size:11.5px;color:#8b6cf0;background:#f1edff;border-radius:999px;padding:2px 9px;margin-left:auto}
+.kn-viz{padding:4px}
+.kn-links path{stroke:#8b6cf0;stroke-width:1;opacity:.13;transition:opacity .2s}
+.kn-links path.near{opacity:.28}
+.kn-links path.hot{opacity:.95;stroke-width:2}
+.kn-hub{cursor:pointer}
+.kn-hub circle{transition:r .2s}
+.kn-dots circle{cursor:pointer;transition:r .15s,opacity .2s}
+.kn-tag{paint-order:stroke;stroke:#fff;stroke-width:4px;pointer-events:none}
+.kn-panel{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin-top:12px}
+.kn-tree,.kn-info{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;min-width:0}
+.kn-tree .k,.kn-info .k{font-size:11px;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.kn-task{padding:8px 0;border-bottom:1px dashed var(--line)}
+.kn-task:last-child{border:0}
+.kn-task>b{font-size:13px;color:var(--ink)}
+.kn-ks{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.kn-ks button{font-size:12px;padding:3px 9px;border-radius:999px;background:#f1edff;color:#4a3a9c;border:1px solid transparent}
+.kn-ks button i{font-style:normal;margin-left:5px;font-size:10.5px;color:#8b6cf0;font-weight:700}
+.kn-ks button[aria-pressed="true"]{background:#8b6cf0;color:#fff}
+.kn-ks button[aria-pressed="true"] i{color:#fff}
+.kn-info h4{font-size:17px;margin:4px 0}
+.kn-info h5{font-size:12.5px;color:var(--muted);margin:12px 0 4px;font-weight:700}
+.kn-list{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.kn-list li{font-size:12.5px;line-height:1.55;padding:6px 9px;border-radius:8px;background:var(--light);color:var(--text)}
+.kn-list li em{font-style:normal;font-size:11px;font-weight:700;color:#fff;background:#f29a3a;border-radius:5px;padding:0 6px;margin-right:6px}
+.kn-list li small{display:block;font-size:11px;color:var(--muted)}
+.kn-go{cursor:pointer}
+.kn-go:hover{background:#eef4ff}
+.kn-none{font-size:12px;color:var(--muted)}
+@media (max-width:800px){
+  .kn-panel{grid-template-columns:1fr}
+  .kn-viz{overflow-x:auto}
+  .kn-viz svg{min-width:680px}
+  .kn-viz .hint{position:sticky;left:8px;top:8px;display:inline-block;margin:6px}
+  .kn-stats em{margin-left:0}
+}
+/* KnowledgeSupport */
+.ks-tasks{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 10px}
+.ks-tasks button{font-size:13px;padding:6px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--text);text-align:left;transition:.15s}
+.ks-tasks button b{font-weight:600;color:var(--muted);margin-right:6px;font-size:12px}
+.ks-tasks button[aria-selected="true"]{border-color:#8b6cf0;background:#f6f3ff;color:var(--ink);font-weight:600}
+@media (max-width:760px){
+  .ks-tasks{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .ks-tasks button{white-space:nowrap}
+}
+.ks-grid{display:grid;grid-template-columns:1fr 56px 1.25fr;gap:0;align-items:stretch}
+.ks-col{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ks-col h5{font-size:13px;color:var(--ink);margin:0 0 2px;display:flex;align-items:center;gap:6px}
+.ks-col h5 i{width:9px;height:9px;border-radius:3px}
+.ks-col h5 small{font-weight:400;color:var(--muted);font-size:11.5px}
+.ks-k{text-align:left;border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:#fff;display:flex;flex-direction:column;gap:1px;transition:.15s}
+.ks-k b{font-size:13px;color:var(--ink)}
+.ks-k span{font-size:11.5px;color:var(--muted)}
+.ks-k i{font-style:normal;font-size:11px;color:#8b6cf0;font-weight:600}
+.ks-k[aria-pressed="true"]{border-color:#8b6cf0;background:#f6f3ff;box-shadow:0 0 0 3px rgba(139,108,240,.12)}
+.ks-mid{position:relative;display:flex;align-items:center;justify-content:center}
+.ks-mid::before{content:"";position:absolute;top:10%;bottom:10%;left:50%;border-left:2px dashed #d6cdf8}
+.ks-mid span{position:relative;writing-mode:vertical-rl;font-size:11.5px;letter-spacing:.2em;color:#8b6cf0;background:#fff;padding:6px 0;font-weight:700}
+.ks-g{border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:#fff}
+.ks-g>b{font-size:12.5px;color:var(--ink)}
+.ks-g>b small{color:#c26a11}
+.ks-g p{font-size:12.5px;line-height:1.55;color:var(--text);padding:4px 8px;border-radius:7px;margin-top:3px;transition:.2s}
+.ks-g p em{font-style:normal;font-size:11px;color:#fff;background:#8b6cf0;border-radius:999px;padding:0 7px;margin-left:6px}
+.ks-g p small{font-size:11px;color:var(--muted);margin-left:6px}
+.ks-g p.lit{background:#fff4e8;box-shadow:inset 3px 0 0 #f29a3a;color:var(--ink)}
+@media (max-width:760px){
+  .ks-grid{grid-template-columns:1fr;gap:10px}
+  .ks-mid{height:28px}
+  .ks-mid::before{top:50%;bottom:auto;left:10%;right:10%;border-left:0;border-top:2px dashed #d6cdf8}
+  .ks-mid span{writing-mode:horizontal-tb;padding:0 8px;letter-spacing:.1em}
+}
+/* BuildLearnPaths */
+.blp-main{display:grid;grid-template-columns:150px 1fr 150px;gap:14px;align-items:stretch}
+.blp-side{position:relative;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:12px 14px;border-radius:12px;background:var(--light);text-align:center}
+.blp-side b{font-size:14.5px;color:var(--ink)}
+.blp-side span{font-size:12px;font-weight:700}
+.blp-side small{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:4px}
+.blp-up span{color:#8b6cf0}
+.blp-down span{color:#4f7df3}
+.blp-up::after,.blp-down::after{position:absolute;left:50%;transform:translateX(-50%);font-size:18px;font-weight:700}
+.blp-up::after{content:"↑";top:6px;color:#8b6cf0}
+.blp-down::after{content:"↓";bottom:6px;color:#4f7df3}
+.blp-chain{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.blp-chain li{display:grid;grid-template-columns:22px 64px 1fr;gap:8px;align-items:center;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--lc) 9%,#fff);border-left:3px solid var(--lc)}
+.blp-chain i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--lc);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+.blp-chain b{font-size:13px;color:var(--ink)}
+.blp-chain span{font-size:12.5px;color:var(--text);min-width:0}
+.blp-flow-h{font-size:13px;font-weight:700;color:var(--ink);margin:16px 0 8px}
+.blp-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.blp-flow li{position:relative;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;gap:2px}
+.blp-flow li:not(:last-child)::after{content:"→";position:absolute;right:-8px;top:50%;transform:translate(50%,-50%);color:#9fb0c4;font-size:12px}
+.blp-flow i{font-style:normal;font-size:11px;font-family:var(--mono);color:var(--muted)}
+.blp-flow b{font-size:13.5px;color:var(--ink)}
+.blp-flow span{font-size:12px;color:var(--muted);line-height:1.5}
+.blp-diff{margin-top:14px}
+.blp-diff td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;width:96px}
+.blp-diff td{font-size:13px}
+@media (max-width:860px){
+  .blp-main{grid-template-columns:1fr}
+  .blp-side{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:6px;text-align:left;padding:10px 12px 10px 34px}
+  .blp-up::after,.blp-down::after{left:16px;top:50%;bottom:auto;transform:translate(-50%,-50%)}
+  .blp-side small{width:100%;margin:0}
+  .blp-flow{grid-template-columns:1fr}
+  .blp-flow li:not(:last-child)::after{display:none}
+}
+@media (max-width:520px){
+  .blp-chain li{grid-template-columns:22px 1fr}
+  .blp-chain span{grid-column:2}
+}
+@supports not (color:color-mix(in srgb,#000,#fff)){
+  .blp-chain li{background:var(--light)}
+}
+/* GraphCompliance */
+.gc-sum{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.gc-sum span{font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px}
+.gc-sum .ok{background:#eaf8f1;color:#1d8a5b}
+.gc-sum .part{background:#fff4e8;color:#c26a11}
+.gc-sum .todo{background:#fdeef0;color:#c2304a}
+.gc-sum em{font-style:normal;font-size:12px;color:var(--muted);margin-left:auto}
+.gc-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gc-i{display:grid;grid-template-columns:26px 1fr;gap:4px 10px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#fff}
+.gc-i i{grid-row:span 2;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:800;color:#fff}
+.gc-i.ok i{background:#35b37e}
+.gc-i.part i{background:#f29a3a}
+.gc-i.todo i{background:#e5484d}
+.gc-i.todo{border-color:#f6c9cc;background:#fffafa}
+.gc-i div{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.gc-i b{font-size:13.5px;color:var(--ink)}
+.gc-i span{font-size:12.5px;color:var(--text)}
+.gc-i p{font-size:12px;color:var(--muted);line-height:1.55}
+@media (max-width:800px){
+  .gc-list{grid-template-columns:1fr}
+  .gc-sum em{margin-left:0}
+}
+/* CapState */
+.capst{display:flex;align-items:center;gap:8px;justify-content:center;min-height:120px;border:1px dashed var(--line);border-radius:12px;background:var(--light);color:var(--muted);font-size:13px;padding:16px;text-align:center}
+.capst-wait i{width:7px;height:7px;border-radius:50%;background:var(--c1);animation:capdot 1s ease-in-out infinite}
+.capst-wait i:nth-child(2){animation-delay:.15s;background:var(--c6)}
+.capst-wait i:nth-child(3){animation-delay:.3s;background:var(--c3)}
+@keyframes capdot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){
+  .capst-wait i{animation:none;opacity:.6}
+}
+/* 新书状态：窄屏下“新书上线”整行显示（V26 中 span 3 在两列网格里撑出隐式第三列，手机横向溢出 7px） */
+@media (max-width:1000px){.strip .use.fresh{grid-column:1/-1}}
+</style>
+</head>
+<body>
+
+<header class="header"><div class="container header-inner">
+  <a class="brand" href="#top"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAAYFBMVEX///////3//v/+//7+/v/+/v7+/vz9/v78/v3+/f79/f79/f39/fz9/P38/fz8/Pz7/Pv5/Pv2+ffk7efI2s6px7OPsJtvoIFXjWs/jVc2gFAveksrckYebj0aZjkNVSvdDG9OAAA9Q0lEQVR42u29CXujuhItKpvG4CgRCDEZM/z/f/lqVUlMJul07H3fvd8J+3SOkzgGlWpYNUqp3+v3+r1+r9/r9/q9fq/f6/f6vX6v3+v3+r1+r9/r9/q9fq/f6/f6vX6v3+u/vWK6En/FcfQ/tPBEG2Pix5/jx8n/jZSI4/Wm8fXFe764znFizPydLRxdZVni/wo7/5zek0SH/LK++fZ+8eZFfPQHP2dTTf/5S2u9+tx49c36F+s/uIa3KZ1l8iSFK6u6adpbd7/3/uq6W9s2dV2VTijBzLC6j9ZHd9pfn/3qOQJ87x5fPBERJMvxaSktvWm7fhjHga5+fdH3I13D/dbUlSuYCLlZSKr9pwl1td7TQc/32v6I3/dzAuj4cGPXpNDx45Nsnk7nYPvMVTXWjnXfN9fyvafEOPZEhRJEiEEDvd14/Qkf6IVB9O7JnuAAtfsopryeb7AnSqz35OHVu7Ju71j7stRBrpG3HS+EJTwZwCNdU7nE02DhRc8BR4Rf/u2F5xkO0NvtX/2A+XC+ndqTB0bOZFh91XS0urB0rLW/dyTykHm56pqVwl2EIwgFcUJblyk9Rb7cXP5TKyLomfs/Y4qXiMCKteZb6c1P91pK52de/T3sPNbed6TrSNWJlG8usgql6AgwRaDBcKtL+uWsDva3e3gCfUCJpwlwKHD6S8WoafPzEns/r/7eNrT0/G/3LFhbBCIM4zS2laMPyz55kJkTlg2SnZlZ8TkzqI+10NcWAbxfVG0vq6fFEzNXy9p5r8H1bXujy4sD8cWMEqA1epaHATS410QCna1Wqg/M8ooAL2IA9dVK9aKQdm/D8l3d+b2nrSd15oGOpZU1N2Fytv18ER2Y8UdhEg+DoDzwPqjIaWhIEj6ynRxq/bWh9s/3Ghygvwk+NG20I8nvZfU9MbCsqIAtEBtHqyyK047zAZDajuSe9H9p/Z80d7ES9OO2BEA6vrHeS+eGOZ6zAvrBrH5Fg4SX3w/C+sT5bl78QBtcz7wA8J/Rled5lplFUxekCG+kLZvKBT7ovaVkEuR6Je3qUCVsmeQVSFB/KQmrFxcsv7775d8b2cgCa7i3VSmqn3BhZoxOks3nkItExMj0TC/iBDYALE7TmgSf0v+znXoRFF7p2E/oQK5OUQvz92S/nOfiAUvx6DYzyV/Qs8lz7bd+mDr/IVUrXDCNjVPaHFjdHTjS8UvMwD8B/5i2v7qNfvlVIZt3D4vI8u3ar7nNvNRkZ51n67sRk2gh3ji1/Em2bJkLxqmvIpUnf1V++j9yhj4BBdj+Kwn/sF5+RA/N2pvwbJbMS8sF1fDnXwWo2fleWbYo04z3/jb1QsEKJKD/JpKDs1bH+u8QlD1JgGMYpOMt+M5VVLHw90NXF/LoIxPiki9Se5bPJXIQczRtpRKtohrWsGTFrbdEN4AOxAZgfPImK+iCkaBRbVWu4jUE/twevsYM6qBz9Ya2egX8XMvbP2C/zrT8O2ssArEJ/i7JGNBnhANq0m1RHBXVdCus0UXXEwTqW2Xp16qqFPPAWd4v3lRR9xOTAC+AF6ZbqXTybRf9ZQGRON5jMf8TYtaw/cTyZ2UregHwxsKqIokHZIpkoquqZmoKnSg70aIz1U6OtrNq6EuSuOkmBMj47qJaSUDoA4UErplAAmICpbK/qNPXmMEZVa8w9x6D5kH6h65iae2YZ41/wj+iz0qV23Jq6JuavlpVjDf66ogMuc6cI/bPVTP1RZTQy5JwwKw0ga1sNUwsWmUnTNA6ZS+XlQm+LAiIXs9eEr2e13Naga/T6adWYM9xCe3szW8/uJ+2GcyfGS8bzPct4d04S7O+e7d50dOuZ6e+IwJUUx2TjjgR6AKH1PQb+sM8aehDTtkaXxX1NFQsB8QA4zDdS6LAogsDMWJZtA4G+3I5vZgAK9nClzRRVd/f+zvpfhWpohm7sHxiAqWSc9FMI+0d7V+uWnpV0EZXtPbuTl/qqY5I+lNedVtW9Buih6Y3uvyyojZDzBb7HqnyLmJAOvRTR0ivTOF/igMyZZt5+1OixVgbLJ9vfiFlWMTg7JKYnDAOvSLOjWtaZqFuPekGCIVl7U+KoHflVBMBDElGo5Y9FX4mXVD2U50QEzQiBk2iMv2plzKbgWcI8EkAaiY5iX87QvrvldJQUbRFcT6/peprsucxllWTyqM1YulJPZX0lbghiYtxTIkRyiqyRUdyApUQ8/simyxqPPduZl5PHRN6ZCZoiasuS7hUr3xAPPXl/ZgA32L/hQBfgj8R/4HskoEokJDyc2PZRJEOHK1V0fdt20HbEylILdx7S4rN63+yCaroSKvXjUpcfzdnAgf4XRrAU0RA+k2MwxVKsCYKkBgQKgI18uNQNDiAeegZAuj4a7xFO8fWb6A1kChg+0X3JQD+0RtJcl9cE9i6UpWO1gHWJi1Gj/2HyNU4fETbtV3viK0rW9A7C8JJYht0kLIS1oW/J1WQN9h4VbSsCvvygQL/hTOkP5H/igO5Qx0RELqNVXDVCBXXlXqzqmkg08zRJMFEn3KaCPaRQxOfnMuLDLpfudKxH1wXMQl5xbahItIEeBy7iVGV/06VYw+Gq1kRDCUg1HFcTj+vAx4Ya8P/Fas/4nt6ORI3Ggnj6wvp66kmK9aUpM2J27GjSTmVZ4KBcAyNt84C/zk4IN+6qm5cQWxeqKhwIsrMQK5t/bfEBK4TMnFUfQQP6M0jvr9v4oT/zvoPOuDAx76E9ZM9zoBtRB+xAFyKormDUZsK+q/AEkjB0Q7zY+RaoAqh2SiKdaKNjmidiHuy00yId6ycbQUWZ7AURB9ac6Y4Lkh+AKFJ+m5FgVVmwMv+gQj8iACfxECVX/9wc+pC8uihqbwpuTKm6VxdK2xmXnYS4Uk+yAdWIfpBhFDnM7uImUGMBLbOcg6xrJu+T/nTPoh6xGOuSXnpmejCiuj7RmYR3tG4kgK9C5XrV4nAKh8kjtqyfoh/KQpz9urfLwA1fVuTCbzVhXMcEUjT2Jjc6PN8A/puSRiDCVLgKwSGkrKM8Jk2KidinrbMSVbKWtSMhj3pcOt+GgIP6HjjoCwxshflBjf4P+x/W5yVuwdVTNJZqECfFhqvViX5RxfE9aEfcpuEDLHExTkqjrA4ouKRBE6S4AgnYk+6yRVdS5DHJAVgZi4GyI29p8AQpGD7pHojAv/M/l8gQbVaP/ktA4wxJ8KJ8d1V7vthSG+XfaPA+pd3eiaTvXNgvOLA+OSvMbwafeaE4yeQBjGoeUmGRCtyoTOGlI1oBgUKdCMo0EEKhp01XJNAPUMAfYgDyXj3sn4SwxFwjKHquerv1sd+2MMlA4c1G8JEVkuc79Zjsf0NKbKqKnFVzA23+4DfICaeMw38EsgilOqkPjK2jp3KvW6kOxQd7Tx4gKjYw4nSxyULL4gIbUhAJtjdZf0fsv7Mi79LCc3JTiTErrDdF5hGlnNXtXcCsLLPj7nB1OfEiAiSE/XRMcTC6qJq8jx10+QM3bHwgQJV3IQCHCMpNvpar+oqXgmE8LkfpPX6e0f6D5iktfBfIf5lrK6qrYUCZKPaEgF/BHolUTZCKZaOtcBZS0YgY2tg8jzUj5T0RqYBcXcK+54bDgSVccHWwBIqArzOmAIWEJOEkP0Cw8wncQG9NofPKcGH9JPRRUsKoL/RUsqxyS9GxL8vY1pR0ZfCoX+cENBojuyP093nOpI8N/oorEum8f3kcyHT1COcykYv96KEOIqgSrLBfBMT2RZ6oAQinIT53i9zKACA6Nn0uNrGmRXvLfu/d5B+bM35g/FpOZLGt0Atd5f4siCNyi9ENUlTS44ozTJ9FFRY7BcRQcSF08IJ/UUcv+WwiogWEb+coBNix2ROU+gBYsSKfcOK4cAOFb5MBKTaZgHAED5YwY8r/Upp54RBraq9ECREghzLH7CbGVJChAP2nluyDbouZSUg20QKj4MLOteukZ0nfFUkOif8/UEEyFRxJ7qIXzBtTMGSQH42Pb7WqVdCIGwAK/Xu+lvB8m8Adsku0wNYa8tWmeAsIaYtye1rvtLK86dm8flKPOEJs6o+yVlwQAIkwy5c+0ZKpUBQtDwVtOXkLonudWNXwEASBXoXmyOz/Vko7K+mccF/s2t6dl0P/09lxY1MT6bwDHVFEIdwD8ljrIIhIOGnJYy8/Dy7HvhTCJghJ2KSdFOGI6bWggQ+GZYI+Gu7aSIkhPX3ZWlZR+G+LRG+nZAzSbKHPHGsniHAPh6UpVCAQ5NaRO14/fBLEebJ+bFozY7/gBNlE0fHGQTqDTyX9Tuy/01VPIb2WB7eOdOMZBgnhUUZEkMUQmraAvXhKVArI8awXoRA/xe5wVzVbAAIACKsRY+kbVy2fRB/gjI9nH2YPnr2kNA+9CgJLd/4asujyIv28fCSPOvW8adk0A0psxqETdcCiSzvAJsCYOLsQc88S4DFEGaCAKEAK69zYeMh/vRdQjxf0a/eLyQpqrqP9yoFDDwoZuM/LGntN/7n4vdPKu4MAUCSA2KCE0JtmrzGWJQN4QKs23BSvpncWRThvXiTv4ReCTggSZY1hddg//XPv5EZUokuGAHR07hRJJ0EszwHChhOcpoLPVEhCb03m35Wy3G1zc1fXT1v22PgwabMBE3hmRuSVjO/VV1ZsRUxxnY9K0JSA43PHSPQ/hICbEJgNSsAlRfdzaZaghWslFrEaOCwAY0hVDr25Lnaz7K2rABu89VCDegDNvEZAVNzOtB6KZxcRrSu4AzO2mTip5rRgH5lbnARWnL8gADfVENKKIUVI1eFnoOehVySpi58pojYn573I/sspiik6xYKkN4QnaX1guJno4BY8B1igJATFktKg/7cKdp18ZoEH0I5wBZqPetu/Rol6DEFBOA+eAWQixF2pPqrVhzzEuaMUFE9jDPH7krK5odCPm1DgMNohlflZCwJZ42VqEJVi7FBWQGcKnFFSA3ErAYQLNuqrgf2/5k7DAHoIACxoy+kki4GZoAxiSpsTtidFA+9tx73uVu9LWzjfxsRsOdkVWSt9UOBHtn8BuEVzdJTdR3RPLHkYoDUsLKmuN9SEoKJAaGJ1n/+cwKsYaD4wH3nknPbFe+c+3Pk1VnYH1hnhzWbs21GYlajDwoI9VYJ1F4G2s57+OvbXXd/QrCKFEFzSZgHsPOZAyxq2s798dqoFiEgrGyS9U2fEIEVfDEJQyCStAoBqAvtYTPV5NghPDdVFW+EiYt2JDdpW8SjHyKKIEDsxAzeuqbwJWN6W3mgNzFZhN6JAhCKPD7bjLAfHDKyEYX2aKA8MyRew6FX6AAtNRCVWAASAPr865UkoikbFyldcM4SHjqtv8H67WMl+0FfAck1c0DjziusZFYOk7zWsxiAAieOMTDuJDWY2UI1vN7E2HuX6qL3PoE3gewMHbH+N83gEmxnDUifrNp78f5+/aDHZ7FCUkc1rHj0m92sX68A+UGFNa0BLNAtXqz29nvmklRvKVDC6+e4hySaC/ywvSuRURaCyuvBVW7gGQKso8AdfCCSeHY6YcYuBOZvY+v+2PKd/JXERM0ctf1rVamOs6RmGRC37su3LhSQsAMeqO3Cc5TBsBBNkgQ5w7E8m9dBYe5+Kjr2AZLiLlZGnx1poJGw/9SR40Y/iegB5v3fm+Lj1KInwJfVPvpBCpjjc8TdizzLIue8stZvBeFT0YNwyV9QH7A1gcDA9P+ON4zTYXDXbemTcwTRxr/mavWOADcWgaO/2QdPhKUh+sADBIELoA91jReLS3oKIcJGTGE2E+9n7L8mgI4dGKC15IiQ54m4kIESQxT/XZE3Z0RIhirIvwQ8v7yMJwBxQM6h0e2vrd1+7xOPQMIDQuBwzFBxZ4AhM5tzj8656+hZUUvYRmbWQj8nQKzjNQYCde8F6haM4qImtsdla98FJoyz+fkWf+WzCOTfeXuivGfQkKHXXFNF+ie3Np7FFWAAXDrN4TFs4dMdI8IAXd+mcSl7TFisBBtYqLGujDK2EmNzCvnhopScx2cX/bZyehYBffR2zptIV1WJ/3zSTScE91gP5Uo2MUGnQe13qu1zYlOvBV7VNJXPDNDeLKn7DNJekdKzWdF0XNcGBdgWOjhn5dj3Q+iNO7x66KvAAaodV78al466+aJvSdexXiAHZGBf5JK/12i9adumm9o4W1iAA4SQDk+AI3f4n+oDgAGG1sT49Azra13hLgR+1Zs4I0Bpdxe0UXJ2bd9396+ublgRACCzP7wWojQFHH+PH0gNnM0J+qAhzwiZYivE50I80QJNyNerZwiwZIKFASQIQH6PRgQGpX8fHxz/urNwLFG4sh0Olt0vfaJrAqTtsFt3v+UgBFeSVWF2g/BnFMW2LVRVI2V2EobPo4UFPMB8HgdcTdt3/c3G5SiZ2eLmYvquIx+9jBHvNWk7NmtrnhhlmvFx/auvXxJgJ0BAeDZdHKPU3cUhP7misK1oPMklGtICVrRALVrgaQIQx/eCAZqbvb7BCRwdeeilK2p5jIwrhC6b6J+J87b/SgaAKkGAFiLQ9Pf7pwIAdZGbXXUSCUEMW2hVwbV4F8YEsxYgOChlx8/GA0IqjEAgSRa5udc4UQBcXMCMui9DmMSBPlsHDLpqXuvRNStBsgJROz2ovVF6J/Fzcm/ftyAKqFdYzjUoz7GXCxkeVtrvp67zcLDy1VPPEYDwTuf3qy+ScPea1h+RoCcMARqygNlV3r2KoEkO8X5rDq8qnglg6uO3MAv0a+9WykbgSw+IeyiUX7XkfZNJ7UcXp8IdZYTICP3i/QXusLhBvYtQzcmBcJO4ceoq5ypGvhnXiJyFAKowixCUfRD2T4GQIEF7/AbrecdF7+FDC59FgQForQb+Ghmb68LW/HyEkVm9eEv4fOsoq8ChSYgObPHP6oIUMJe1QCcmmrQQ79H1isRAGnC8sA7JdmMOcbFeoLAVKJwvNQNcNeDQdt4PN3ue2aqo7CUR95xFP76qyiEljjxkV9DTSdg4YktYS+3UQzj8X1JjkguBCmxbnidQlLHN0QvYkmki5AcIcONsBBHAVmyumADJiUMIXd+o49a2hQDZUdE7CIje4bFdEkdalZXsKjidnNPkegUvcb/iyBuCv/OWcLrlCwP8lACMAvsOJKWPjxCOhguQSvPTJY4uxW30GpAR8ntYRXLOb5xH8gR4iAwu3qC5HDiMQoAeBAht0wluwXxIjJfdwALX2BRXdULupG/bkySr21skJQOSKHtOB1iWABKqrjjD522kfMUW1ko8uhpb4GOOcWELtHeiknPaLhxw0GmzxAPy9z2F9I4AXpldLxCCdGYBm1zf0V7TTdO9KuCXZqgshFeM2JhXn88QgEAA1kCf14nZMVVRNl1bnkL9SNEGE6hTEkckxf0enQkJdEyA4/TIigDxge+v6Z5MAJ9u15Fz58uHKr1qu1pmgTiLWikjeFNdK+0mBeLykIEuRxj5cG3fbJkRR/hWcCQs45C94SbGruYEDDBQW0iGDo+Wm7OriiACxAGdECDJ9O4yyYoA+B7Fsvz/8m9NAOPzX1X6Hpuk4jg4s0AbaZ1Lkow2ntwCLi5knzDIgImfIsA1ChJwZ1wF5zrjtl7yv7gpqxV8DPNTFaQAIKTMxBETwIvA+eDTsy/jAZ4AjAOzoAFBYQialhveEYwiYMYl+eRUFwRO4C2xDDiRAfuUFZRsCPycmzwG3b0mgZvQDi02YuiEATQ0oJGHjC97HWDdw1WsCPD4W5esOIAJ8Kb1n8pFiQ56kJ1BxKdUZhNapiZ/oQRSuZxYBgheTrAgzxBAUBC5/G7wmGecpqGVejfGu40PA4EB0BNPbHC9JtDrIgIMhFaw+NEdBhQmX2DnBpDUBSXYoDMqTpVoWU26oPJxcDf2EiYxmebqYsQJLywDnQTIuVxjA4UD638vJAY/AKEgwGDFNkB691CfQUSPUSjNNapQBsQA72CAD1JUgAPCAZ4A8HA3Lt/WFxj3rkK3IQAUjIP/AflKZymTQnrp0PHN5vw9ZIA2bfTB0ScIcGYYWDMK0jFaANEDiZbovEglDOsBd1RU6ZXcoioy0IPp21oELBFgd83eIItAO/RD3+8IcFqJABjMvpk/rkrSDIyQSpCcbw+5I2RGzNm1rfmQFDrEdhrYEP5cBLwKgFEVRi8Krnq9ISmGARtR60EQmwCT8d6wkCZrAgBO7j3dqVnc4ZTEdRtAG3ccIBoQKsbfgDXymYy9U+8aCo+AUF1eVMk5ivhyb2AIn1UCEgsiFVAOzEr6I+Y+aIKdsLh0Y/rlic27JeOXkHTSwlkPEkbcEEB4fF7+eKvdKjFC0GL0JODi9wHCvVWCOqE7QP5P+l0AMUso8zwCYTWgCXfVS8yoN0EJXB4DzMm3CUAoYIAKuMMLU1zylcDkVLX0N9LTvQsD0CMJG8R5VSSXy04EOhJ2wgRe/nmwgA2psYRLAvuRKdDx1aMTY2MG5cNZ/k1K5P4ToAA9WB7VKKUrrM7snCIRJQAk8HMCEAoYWF23Imoke2ed58ZYh4y2PrW+akNM0x+SU2TLS48E04AESVgKXK7sWNRrEnBrM06OQgSslZJAMEBt+K3FAxJMiAVOggL8PUgWHDnLoE/hcvjUH2oGTajauHNUJPuxBET0CD1QAEIBvOFd6Q2gUmnKGkL0MSmGi/GPlRKrXrZQmN5yPqvoDeH0fuhKdcWKSWuzN1hjtA6ev4LzC1ylzjMQWgggLPAWEfPoAIZmO8DTCRpinIqLJ+Nz3jeCBJoDDvjulUhZYMkoIGPgwS0dxFxVbLhioY3g+nr2pC06G5S2Z/qBAElCjM7rR+M/CiDrdq6QwUeeLfehEgVIg3yAvzZK0OuZsxczupXyVRFMHy2pSroEOBMSuCEqQlrwpA/N4HfgMHeGAZJILESbtq5b9Ph0vaieGlAz9RIgzuBHMNI7AjBqHOHbFeTDEr/f1ld3I6kABUgRjHdyqVBtFOIBgQCydmK29MIv3yUEesuVvJjqElGqSrJG9VCwFiTtFf2cAKwDI3KFYVzOhud4YMiRjDlI24HFndB4FeEZUDxLL/XiDi8EQPJsuKPBykZcJNtuSICC2Q9UQGDFPDlhD4UZhxNnsLoRzxuGEJ1TCA9z5wQsVGvnRDFXzzoV/xwGNLMO1DwDhhRgxDcpMP/F9WSt02AD4ktVRGb2VvccgHwa4d1S2ZOtu9v+ajk0hvz/MPhax0CAOR4gAIPvcLYVB8q8IUxUDpc9g1y2jFBYC7I/VD6hBNgVpLWRJ5SzrPs5BkUp9aCIVkUBBmNTTAIdlXgRWAdETAw0PKKk2DaP68d1r+DUNVNPKIhF4JEAJdp0C0aDEnwTMSQC2NaRdTKWMJsjBZ1wTOACLFgdE+Ab7jAZgRvjQAeRDwUL19hJiarcm58tZQNVeiosIbEVB3D5yNhecuKErp1FHyMFu1kciDyXQKetCHDFGAZSpASAiNOCsc24W0BLug4+97UZ85gIEKvOY8H6xwSIOayL3KMXdT/ghmAgN3Iz95nYO2m5yOYsAcEb9DiAvQG0upMtDTyP/jlM0VsUIv+e9CDCnY86wMMN0TUu3BtqDoNcxpKARnX3YTCuIWIz8HM7mCAcJkCYFTuKoRn0IDpkyOW9CWF8DICkMsrED5Sw3iICaLUmEzi0pADnAtGmnOP/ZRtqJotME3xhU/hIAO3X7pWtdNZa0YJGKmOmqc1NAMNwluAN/FQJohWuYytINNZX6V3TWc4ZMaCwrmNve7UlQTfFOyvwlrDDBw0YtrtOyXlCQSlaBl0jYoGSOdq2HnmvAw5I8Awk5ogKxNJpYng6BQtD1Y0AQpqrCwFSHNvBW8p28J/K5BcYQNgqIaG9nBOuCpBxiEhK0/euv6HGV0LVfl9cORcWgQB3TwAEBAgCFiaUSGOlBGcyIifKC06heaAtEsBbsLV5UIKMONP0TCpH5bMWFEHkih04q+QxJrM3UI4zEPgRAWqxgs1NXbgOkVxOzMVt2siX6HBC9kpaSTHz25UKoKddOACSjRIiGwqEaVfT2MumRmCzaGfCJK3IwNoZCgFlGBkmeOZvNavi5KQRCsnIh7JiMRAX5LLRn8rATIAW9TZE8juB7VHgZs7xYB8nJL5XemYDPfMrGZGZA5oREnD267wR2MMWl3WDsZEZSiC9ZkhYBphYMxI0qz4jT2YxA3ABKs4TZxHPn4xtYTlUkcxAYHQq+akOAA5COKhhLYN+oBwjcZtmBsK5TEsiFZGGvUk4s5XENiYlIUrQADT2dxf5Lgn2rUjHtndQiGuFs8ijA3TCTkie5yg7genorEl9TsUIEggGN1vsIMhGNrXt2p6Vop79QWKm5CeuMMxgw/Gw5OYTLIkVvwJxLyaAD8ix+isqc06Uh0EJu6D0550PiLgOSc5ZAhwaysnI8jfk+yc68+ax447UYYQPI84QUEEUx4tHmAsV6K5Snjfd4jP4puXDCsgYuDjXkh3h/gH0l/ysRsgDQdsJAXhj0eIcWojD3C9XsVlSejYCiJq6GnVSRAIJikKZWdVIffyFvEPb3G8++lFzuD8ogQvJPinMP14EhmEghzlVki1y3uDkHnIBCJCnknDUlKcLdSVqVZKTpb1LBQrqH0YDjBCg6Hb1936GoCfA+2IFYZzPHCJH/aCsHwRAvy0rs6gJXWJIsfv1d92tOBPx2iAd+W3kqDArQQ6T3dtbfdGeAFmgeBQrQViIWF9QsVLO7WXJKe59buDnBLCeAPfqYFYRaYixmsOVMwFU6C3o76gO6Dg1JgSgZdtg7RE/vYf1d3co9MAdKj+10N2nmQAcL+YAN4sbE4BYnLmN7tlL4UKGICDUUqSwCWcVQiKLM/Bv7jBcASFAH7Kfm0n7RABOFy44KPNsSczBW8/rDwTgQtri7wSoeegeD0iZOYArpRB8YwIkawLoQACNGVs9t5CUHMJ/HQFcX+1awDYE+JghUCBADvPRiQK4ewL0d4iAxzu1EGARAVrBWcTjXpODSSJwFxEYNgTwCpf1jSdAEhX3gbvuMEukQm0thoxgrQsBfioCGwKsponKVyZA/gUBPBP0Kx2gxNbV6kOf3bz+e5sC+AYdEKMBMuQFZgIMMwHyNQcEAsCowLeki+cMvIQA9jbrgHwzUIjndGxEwIIAsjWCw3vZ/5AXcHe4Qrk3g0ioSwvCLAEm8hChQgviQAgezuiwOoqDQ4EbAhgvAr331fzFKCH6GwH+7g5vlGC+LvDgQYUZK8HcK0EbeDO6IABq67a59TMHYN4LLFvsG8Y7UE6nzcBKkm7xgVz5AoS4itAuHDB2rQzPSWYzyPcSwziwFZAzPz5yZG44iJ5+bQW+Q4BkZwY3rW9bHJDNOECFuqSiZhwEArybqB17Hvx086oe6b64akn+yS1+U/G1CD2UwNioDbRBCY4DD6pO4rXFyTY44Jys2vN8m6PgAHYrftwyIARI9zjAB3n3SDAVX0XIQ0/heVycoZqcIcSVmsAClkCVQtkAj14NwnHHwslv4HF5gQCVetOhEjggQesJQHcfgQTXZw3xkA6PBJ8hwMX7AgEKb1uYsuALeAIgUp94H1VokKDNQgggWrCN8jkeRD6NxpgBhWHxyewLdZgQQyoASXdvBWiDs2XoxIYAGQcjyBf42J+xgiD9eOgL/MNILc3eoDhD+VK+N9esB28QmfFz8FGd0nNMsEA8APUBml7fCM+4SAd3EEMhTJIYsu1J/hHWf294YBZgs9FeCY7NMqgvhB68S8gJgHJq1oWGem7P997g4H5KgLU7nO0Oc5LqGJ/ySDbxgNkdPkOJCgGkpYx93Kqb8wCIL2UYtGSrECV15/yd1AWiojsCSEQ2CT5nPscDqulo/oKReMDwXDyg8gGRVj0OckcVPUeE5IHMjAbMOiQmhZIye6Af7u7NJiEm1jX+yAmcpuIZoMaElBGxo6s+IoCYGcME5wyUDk7pfkRNiAhxpUH0BAG4PuYWnZN9HR+XArMBNrN7ynmr9IgAiN1xTKiI3JISwglzdXPrZpJYk+ftKPXhngChRiiOV75QpJkXLmKMSpU9EMDHBMdhan98hCHnRueg6Hq8KHDAhXDSUC7FG6QJEIcpixAVXhNA+cwgEkPryQkChMM3bXGWqDgm8WgdlODCAQupMx8Vpue4SZ5Ob8wAj1kIUeG3HxPA+bB4z2B7V875HpCQOCdLzF4f5AUUdxUg4I8xOLej1NC9ZSUyeth/RAA9RwNXeQHgoGQ7c2OTHv55XmCfGNlBAYmJoY30alk1zYKwEYGQGzQxIlwI8FlEwR/XT448TD9RqeWJkoEAS/tXzNuu1zpQImLXg4MlUDf7VWboXwICwR3UMqJu1R3YxlcMSpWNcb4+5rzJC9yX9HiF9HiNFCip/Q0Juo6g7tmS4aT1j1IH+agEzZwSuUpuEAN7Kp8K0h6q+9S01HURENznBv8lPT4HBVeDfpgAQgkukVJMAPY/EA/jyJTZJEYwdCG+mCyzSHwi5xFxTVDbrZdfgDOwfjxxYTKzEGDOC7wv2bcz+4KXiwBy+9ikzTjI9QwEk58S4AEIzGcKcog+4fqAzCuBq5kT93ovArHytcIIjmPsibVSaCC2AKcQnS0cWkyIreWtZxIBbpmZlnJ5wG2PAryoXWmTpVJTr47F0n7AEaxg/1R9QLCDnTkl+7layHKMwho6CmvPkyS4AxsCFL4hGOfvYcYQk0DwPxzgBEUzVY/6uNa/0yZ7AvjMK7nBcUhAmJUrtLGDAF6oECG/2px/bAe12EEelDRDIT/iQodeCbU8GmoFl/wwOcWBAIBBgz9rlV9gxlxijRCg5hFcJbfOeeef6wRPbksAfQoSkCEhL4mxah4btMEBJG5d5I1A9uNyebGDOzOwDDbQoVLYG8J5h2y8I0DOBFi3gvYEAz9mDjAunKXFrdNSKHneEUCvrS2HBrk1bzqcv5BGnQ+H1J8053+HAKuY0OIPrk5hlMCwDZuDJ4wuWYACoVr8iAA4M6v2InDnxslN+/iI7GgSzOBMgFnHJMhSJaLrx3mg8GqmuBFfUJzhn9cJboqEsseD97hdhDlCGDOTSn4IqSeAnL4AndUfts97AiTtvtf+kQDCAO9cjcMFczLLbhI/ZXf4Yz7rQESMn6sVJi1oUSp72h5jE7P5c2gn4p529AlkJ9keqZdMz+lCgPKhLXZqFiWIYundbx90AFMXrrfx5F5HpfYj0HOu74cO7Mwz4/WNVEq6RQloTwDNQ454mNRSLZ6/QxIuCWuBLQF8rbAH/hwJrVcEaO5cMdQtV7sjgF6pGe8JQgLuHjWtDgQW4bx5HNisy+X/mQAcGb+vcyOeA5LF5bpJxwyKR99ZQt/ZRqWzM8TxAG2L3WXJ4Q8EsPLb9XvsAoWFAGRp4+wNtJ1bRnzblIeJy2l+PjNqBQfmT80S81gQQaH3JRQQq+ziAWfoGxcVJV/Nhev5FwKQ5jzjiqKzvxS9NjMB8quau6qiCP/OZybAGAggFXLCAB4Q4vbtLAEYbT4PDcl8NGQQWK1eowTUMgkvJ/7kb4A32uTjGvttSbieP4kKAkN6EQEcKvFwxdlCAH3wayDBcdEBzkY4giQhFkc8IPQMeYByVYWTBDL0EyqkPAyyR42T3z9nKFuXS+ezT3qTXC0/Q+/hsFTyC0RL/yhBgsiRDo06Pg1yRYDDmUtrDqBVnAUFayOGgCvPfKU0VBCGvZ+NP3NMhYaRRkrJf0wABDalRuC2KlmWTF0WMoRSwoJ+oVQnGhaKp+PtCKD3ZyPqNQHWB9oFQL8lQCKd04iUVdykkly5b9D4FkKEPuKPeNUtICggf651NhckwPXS5yQoPmkFC6HRvvQDtlHBzR30vIzkbG9DUIKfzBJbc8D+LIc5IDI7Q2RqtTahHN2rwETqB32bjV4cAfGEzvpZApTrriFf9X5fhkYJC2ThAVHgKbWSoiG3BNAzlNYLAULibZ47sO4eFwK8+0phFgDfQP+GgUpl8AOKHhyQhMR1MIKt+tDPHbOThKaRRQa0rvvB9wtvWMA39yc+QMOuQv+gA9I0JG+2BHgYoIa/94kRmYdz/UPG9Q2IK3SPt8YzDeuAVnqKEajwEjBJQ88zBJDWyQHVkmQH3vzJqa5M1GUZFTK2MkFG+ibCscBZVGI8EhHA2MwY/M9PUTM8Ss2sRGA1SQ2/kGlqGBfO3pFTKwPHIwr8RK1AOm6bddzLGodmCR8LePbITe2PE5ABCnnIuqjrMtTnzEOUwB3XawGMvprAJgT4vCctEOATIIqq4WFYoV0dYqEyRCQ3CzY5zympOJFC8bnC8KkBCpABnqYNhyiwKA5OSVN/hgfKx29FKlGysgrIDFvEA7KG7vMpMgEKfzZFhpsI/Wi8Rc3IfLd+0QB4jmsIWGCYVBkHCfiSAN85XyC0D1tuHEo3siw2lwfJhVMllDPXEJKow4Cw8ehiZ+gevMFp/Zv5GqU0Yjk7A8N703malpcMLtjQ6xlDd84IkEcZvT1LgDBFpS8jBAXsPLB8lYOAlPRhrIOfFmH4KKL+i2tcEeBPu+scHrYD5XrOJXtpDxHpsTznB4Mp9BlDH4mk/Zw0fXKUVmyWGQrEfuQJ7sfDyiw9k6xChjgedE2ATyZJeSuQbrvHx+HBOS79YBL5/MTYm0+JPoyu5yk6scPHlK8hQFCDPEorOzorQCeuG0PknGcPJa75cjreOiBCOuD9oX1+Ly9DPQ8f9ovsiseD7Ik7o6sFDEYuuk2uXxy39/1jdxMcK8IuYXNb54cum6NHBwAlJQQwGHnYfzFPcZSEz54DxmNlIWdNB5jnsdhUbnLiIU7BUaoy5oRA9TDg84fnDos96woeqJkfDoQB+Ly5P2bO4KxCG75a7HCa3KwEB64rlckCx3PlumIZdV50y3yxXVpYUmI1YkEBqz2vA8IgEdXeTslSirEag5+8F+3oz7piGS0Kh/9WE0Oke9rJP/6aeQKQbi3wM1eEt8kLfu/yAUkSL/MUb14AtN5nxdkGIhRSzyfUP0sA4H1iAUK/6Jay6XrOb3Dh/FDZwJXnbzbnewLk33yYNMyNmMGhTH9fIPS7TJFCJ/6MH588d1hv5ond3sLw88v7LlcsY4X9mPgE/8kVBgeFFzIuiOfi1qiW7Wtl5M3ya85yPl6JJwCP116lA7EBabqc0IsDWG5jvy4ceoYA/iYngKFbwUM17fG4aD9Y2sbfvjwBhlqZv71Vr466LjcDBrfHwpqouyluvx3dK8bqro7X8WcLNB0GK2v9cKihnzz5OFpb688OkLGeA6o4/w4B/E1cN7WXLDk8CpiHKUIDbBjgFcPVzTJWc0N9vZ79pc1Xw+X1yt0VNPPhq+rr+bzeQ8KFnCTPFI6Kmz9a8SDIkqQWJqBCknEpm3nSHV6fsOTnaq6lPxDgyvciU3Bz68OudiZq6+9HqKVFJWW1cKvexw71igAowmqnLqwtVo/nYBEIRJHJqqrkeQLoZUBoRx+PDpjH8yKU1I0TBTAgwKdo9qe/bvYNbSWhqcAHVI4PTV0O6EB3IU71sTv7t/ifDC/JDx7k2Dn/BM+KQKjwkfFX1fB4nNe1aHjjyRi2LAWXdXvJ3laH4+TaUFB/bzZqcDd+cZXwcy28AjbE692ZSzeboUhQibQqnXzZQUvr+eK52cz+19lFla0/d4Io0G8PWfHbEM788K/NerxYtz5wzqfewvrnozJQPo9jVSwQ0aVw55VrbiQ0zqM0fZndKw9Z4W18Q5YsHDFgt4e4uJopYL0U9Mji7Xd8WZQnQDnPXe65CXslKZf3y+5gBa6n7iH/Nk0Tq+upwaTEeDlYLTEpNGApIaRN8fALrICej5mRQyZWMss9DE2buBbTYdNE2WYc6tPhsRl6fdheee9mAuw44PFC0m3EsXto0U8LLgLcfGYkGtCi75hH4K9++xQBrvPWyEFDpAdNe1tnIi+OHNq6LYq2kr8hRDSiGDw5sGeL2rgW7ewX+ZiX/uxsMhwlUHNLII7uLt5U3aRlqbaly47PmBl9g93aBr2AA/xpm6wH02gNBnSG6rZa4bwxlHudTxh31+NkzO3hMekKQqdp4CghQLlLcc/I3usNPmqM1pfYt6trxrpqMUZ1jUhSm9w6y3NKpmaPLJ91hxcUynrQnzU1T3pVztm2wbnDCpmK/HJBMSyJgV3rQsYAcF18cQU4qkFrVT+s4ix6+yUcrAKKAi2Y9OPsmmFs6nZqu2p1wip6p905aUUDmq0d+TkB9OZzEiNVT44RsR+T4ZqWqFGCAm0b5thaPnCR1OIpe1AC8/KSK7HNvb/LGS36k1PJuMu64VM3rYxuxc1VW5VNJRGY4AXXggEPiqZ+LgJ6f0poiYbYtrgWpHCzS6yLGKKJEx7a1tLL2hk/f503rS6UMYe60Kc/DR9Ukz2iIL2cMIZPGsFO/MF/Ts3U5W2rOjlvPYRI+pa7zldFdS8xg1wkrrfnTXVy3hRP70FvWIUBWGNZdZC+oM01IwIuicz1EkJfPDspH+aeoYcHluOz/cwizIyGQvG5p6JtpqrpSQ02U1t4IchVOxQcBnk4elg/5Q7vlXGSxU04cg6jS6raXYgE4yRnGmzOQfBbh1kx2eoA1N0HGqP3/U4z+MHu49jdESd5iPv3Rsa27G+TbVqcvtfKcVJ80BxnQzdZpBcQ4MEeESLuWA1EjAZQ8Yyz4pu2IDRQF+e17KLphxRWzwcv54/niR6cP7dxfLPl7Omz12rXhASfFIJrGjI5jqQP9th6BTCG0nr94mN3482pe+VwR2yEUAG3+Jd1Xbmyq3HIyDXZaJ6cGdgfvR1vD8l49OU3hNH51S//Vs0nF6MujA+4bcjstnXU1pwcyPnEVSnG7YoV6nj1wcsbW9hgqvytyCX414AAvfNhS2TVY5wPj7F3CufI902ZKmXm48f354ilZuGNNNWsXPjw9VtlVWZWi1JZVjUkbG2VEhVuOHT7VAztmXOBQxj/HX8DB3yXAPuduuQRq4Eah6+Txs3z3CZtj94vFy0kt1xBmFzyD5VW7TDJSHqlrdkWSewJkmQ25UYyUn28/HeLvrqlYedyURwUAvxs2r5MctvdizeUWu4soH4NAeJHE82nL+NAcBy+mmuea1libMr8dgtOHauPt0seo0yPd7P3A6l1Tnu6h/4K00nyXEsbXUtvHxoUIeTvaK4o4oUbLxmmFOPw7aJQaJ9rRxeLAmy42Ejr/a497w5vwhPsyAoiZGOoJVObzXFqnIRXgQEqss2odNDcIILJvwSWZezh2RDv2DxDZQQfqOGfklQpVo+pu0SqgqnXkcahP9sE/2VYaq5yPgIZiRBCACbbaqxwpsGzBNjh05AvRsIS6jfj2SW1HBMh0b4ckZumbHjsP/eHKpWW9Y1oMN7buirdYyagwJFpWDxWX174zHrSf/TTiQRs9IcaLsBvqs44pgRdg4wAx86LoH48yf45AizVW6u2YfZjcGvwgMnbe7dqLMtOxKPtiMBA05CNUOdYG1pSXlZNh1zfcEfPJB8nx8fK1XXTypCq8d5UxPrqnWt7nIN0EdauCfRk14UbpVHCfvj1j1IOY/dtE/rZY3fD2vVm/XyQy4gjs8ADGK2siyIvZgBrdHGbxqK48UHAdSdH/yUm/4ONJiK03aoIYqmGuLdNxd20MJn0Ja6muupH1MLUUzhpxQdDUS+ttay/5MPoymMF+CwOOHbmEzmGPVAgwbmXS/gIeqkfKzfe6zIn1q5n5WwsNy+cmN2bpuWmqbZtmwZiUXB3V5b7WINRxdBjxixAJ6rC9Sq4qI16iyP4YX79awS49iWeiwesGvEeKNAsFCAcaNcB4ga72RFmJy0ILREt+ph0nt3MuzfJ0tKU5dZaM4c7C4LSBPsHpIK5QXgTKScTgIYxXn8Yw6qPw09PxAPmHPCeE7ReKODuIRmAJzSOdnSqb30/FK4vu6lzl7AlH8LgVi5uiT4j6JTlRUG8kV3fMbch9qO6yrocb91Qub53/rj3tV/meCYHy/+cK1xlrFdi+0xARO8ZYOGtE1OA8cBtCQTrqKow2sjxGWg3Mk6Fvczz9QgOObtytZJ4Pg/OkMY7u7YpzQKnaI1TxfGfeqqzYnGcECIdcQhFWH++O61bv0YJProoKynQogcID5wLNE8lJmTGUcTtUKpvb1Nj1eUyHzg/jg3JOwTeNdU8JxEjcUro9aSc7m6pfMB8uKmdulpOG16weXbld/OJYrP8L/XWemO49esCIlvoqgMFanUhq0DPY73L2k9OiNBNoML1KulrBO5vKqnbGmWBBNzPoAByDGRHaYHd5OoOlaDhtq5wbd9MOEivxrEupQup+AQ46/zerNe/bJZeO1b6KXdYH0VpQo4vMUwB8oyKMzljpAgyHc5+ccNQlGTUpypmAoShDq0uMCGGcFGEg2RC7XChyNxV96pvmmmO6mOKKUGAvmpdUs2HuyFM4Dqo/wL4fxznooTl9Hr9F3f43+oDNkmtTbKbbEGF7AaC4KQIIAyZvtAKXdFMTQ3WXYdupd+e9pIAUM1nIy2FAoSQcHpsXdWYBxgAly196Iv8zZLAZaTI+z/hjC2of+KvYQpnXetN85x+UUzwKHKht1URJY4QxZEBytbcFv1uXMlIFStstgQghiDfnUSE/LhGz8Nyr6euI1CI6WFkOe3cnfSe1a5EoK2w0LVlydtPxK0j5CiB/7slGf2ZEXxNQER/kuUhCtxEERC6L4GOT6TlrWlu7P+WUsIeckiEa0n3Eb4hY3/5WObSgTMYG9F2F5diXg9xwNQBSVZdhG5rnMXBBXmgNp+uHNavH+swliKOn7vDj3UID4RAyhYUYDEga8C98WlUwP+ry9otKTIMgR4q1EATl7umXoJXZyJMTfxPfk8rWNhbtKi4d9D3RcsnrBJIgmyBU1j8p8b4SY/6ILD0knjAg0jpg0qftB564gG0waNAFjEsg8ElRdXieODZkeeDoawj2W3qph/n8+EJ8zlVRJiwXWNtlU0W+1hUHVGF58QgzDryyMRKqmkrFZsvM5C+ROE5HKAPP38VvzOGVCGLAZriixoJEWXR3INIyFLfqbnR1yKohyyHcwtpfSxgGuERQ69lc4fetcTJpkoz95N7hfgIrN+AWHmefJmAfQEB9PGuI86/SnxDDHDKsmeCFuMBzjnBtWxtSMSFJeBMioAM2lktgXIrztE4EkQonV0XFyQIr+HcAKwbYnaSOQtheOp3rieRYBzrnS7QgQBLZs7Ww4A0H5iADDpC+TwtLdtW8NQRMzGwQGJCOzbsPSxgiTHpko9Zs3F2xsFGRY3iCM6T8ISBap120/rRV3kRAdSntVubyUrkv5c3pDoHnHyJUYI9k2Ad/DQ5bXzdVuQS/CGstK6NS+UIU/p9Vth0x9cZj1wZ++rCAsbaj1ghe4tXBfT7PXpphcin+m/rHxfNwJqgLSM86cAZkSUUzsPZERN0pBxss63iOZM/iKHQOLRmW36Tc0CRc80qR6qJlj9UJ5VfVwEi/cnDveDwdfVJCuPIGgQmGPjohKK+y4sQ4NAxuXUcBmkaxEx1tu3zQBqECPB+WVQsH2xGOqXjkZLVbWLfj7Y/Ng9TQ7Z4Xb+2PuDBGOiD0KPOeNFggl5IUHUjBgSRQswA+/+sop9N2y2TB6VkBJEVF6dBNab+WLduvFVGhJ+3H4o2V+v1eyFQByB4VyLzUwI8ZPFWwalNsewZ2UCGRUIC7J6wASkynWS0pfn73BT3MJtsdg8Sk2ccP2xHzq6qFMuH8EO7ZuYrgVzCRi8qkdHBv9TLEJXPxCHJZc3oiaKFR34L75wZUzimTY5Oz3Kb60cmZpbQJuesOc6PFAZiRMW7z+N3ssMi6s+rEJ4ukNCf44DHPJ/BRK2bJ4E8PgLDxBGSFkIuLdGHJWEJ/bGR3FCKPIokR5iEsnzOMuywj/6yvFq/Ij2uD6o2U7Nohn2iE2dc1Dg+kQRh7Gpmg9jVmCtMRPBjvTTnhXy/LNKLNje+yQITtvox5NGIDwY2/BMDzNz81R7twOqzBRL6y09/jD54ORAS4GTJsBLy9pobqUfE/pew4C43RMrxhj+pZdimLWXzw/JNdvm6mWBfnv28GdR/pfZR4Tpwe4HZUP1MAzNn/jrMOcVRLbvM0K2nZdLaK0+eApIjdm9ilWqyg/vpff/SQR/RkwQ4DofIC8/+elPTH6pbTNkOng1IHYSsKJtBrLfrlza5oedUWenpBF5o7uiWw+ZPHXRBlm1huX6MVs15vE3wOn4uHrC7w47FsGB1UAwp5USi/gINkBXdML+de8IK+2f5sfMJRL/6gSMEuYl3Y431Z5tyoLNf0DBxGGrQj8y2Ke/PDCShuS80GPubJMGiQxVQgjV6v3isfmQFcsr137H4nMQ9qM1/rS+gd6rwq8fi47Ad02DEEQGD9IHOKqASFbBOD/vF896zGcyy5HO752NW24LOByZ4DQH0Sh/sTd+O9Vb6IWFIRzS4QZWvGoMlIbxulmdl4BcvJ5sCO+lV08Uu7bVl/5Vi2Idsno4K6x2D603DxNEjxlIcKU/CNLCYHw0iyCr7dY/00jHNhKDFl5ZXb3Yirj4JAB+op83sy5dGhfVW8Je7Xw8w2GwUuJzMsqHvQz/0w8gEVhFiCs4EiB/iW39RAY/Oid+bF+mAnResPzPDs3u3mZ1E/o1MNUPRC9v97s6KEafodGIFS8fKMSafYYfl9DH42eHUh6TgKwsl1b6q6zBf+IWOYCcvE0eHP3ttBmerQBv/1zbSf73Uz93hf7nWZ3h9dZ5XBDpk+xFvCTlCJonVf3v9pwT45yvi46jZxkXq9/p/6/ouu3/2+/2RV/8nrpfe73+eAL/X7/U1+3/G9v9imv6L1/v7JskvAX6v3+uVrP8vorBnwf+/Xv8S4Pf6vf57/fCdnwVz9V/9/P8YDP+fJ8Dv9b8cD9iz3d/M4GewdP27V7//Jez/P0+A3+v3+juk/C7c/MotPWLX//r9/3ME+P8AyQnCz3/6Jk4AAAAASUVORK5CYII=" alt="灵枢医学标识"><span><span class="brand-name">灵枢医学<i></i>数字教材</span><span class="brand-sub">中国中医药出版社旗下医学教育数字服务平台</span></span></a>
+  <nav class="nav" aria-label="主导航"><a href="#">首页</a><a href="#" class="active">数字教材库</a><a href="#">数字教材出版</a><a href="#">应用场景</a><a href="#">体验数字教材</a><a href="#">联系我们</a></nav>
+  <div class="header-actions"><button class="btn small ghost" data-act="app">APP下载</button><button class="btn small primary" data-act="login">登录</button></div>
+</div></header>
+
+<section class="hero" id="top">
+  <canvas id="fx" aria-hidden="true"></canvas><div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="container">
+    <div class="crumbs"><span>首页</span>›<span>数字教材库</span>›<b>{{title}}</b></div>
+    <div class="hero-grid">
+      <div class="shelf">
+        <div class="book3d">
+          <div class="cover" id="cover">
+            <div class="ct"><small>医学教育 · 数字教材</small><div class="en">MEDICAL EDUCATION · DIGITAL TEXTBOOK</div><h2>{{{coverTitle}}}</h2><div class="line"></div></div>
+            <svg class="lines" viewBox="0 0 300 120" aria-hidden="true"><path d="M0 100 C 60 20, 120 140, 180 60 S 260 10, 300 70" fill="none" stroke="#1c6f66" stroke-width="1"/><path d="M0 80 C 70 40, 110 120, 190 40 S 250 30, 300 90" fill="none" stroke="#1c6f66" stroke-width="1" opacity=".6"/><circle cx="180" cy="60" r="3" fill="#1c6f66"/><circle cx="60" cy="52" r="2.5" fill="#1c6f66"/><circle cx="250" cy="42" r="2.5" fill="#1c6f66"/></svg>
+            <div class="wedge"></div><span class="try">可试读</span><span class="pub">{{publisher}}</span><span class="brandmark">灵枢医学</span>
+          </div>
+        </div>
+        <div class="ground" aria-hidden="true"></div>
+        <div class="cover-actions"><button data-act="shelf">＋ 加入书架</button><button data-act="share">↗ 分享</button><button data-act="sample">样章试读</button></div>
+      </div>
+
+      <div class="hero-main">
+        <div class="hero-tags"><span class="tag glass">AI 数字教材</span><span class="tag glass" id="planTag"></span><span class="tag glass">{{level}} · {{edition}}</span><span class="tag glass">纸数同源</span></div>
+        <h1>{{title}}<small>{{titleEn}} · {{major}}</small></h1>
+        <p class="lead">{{{lead}}}</p>
+        <dl class="meta">
+          <div><dt>主编</dt><dd>{{editors}}</dd></div><div><dt>ISBN</dt><dd class="mono">{{isbn}}</dd></div>
+          <div><dt>版次</dt><dd>{{editionDate}}</dd></div><div><dt>数字版本</dt><dd class="mono" id="verMeta"></dd></div>
+          <div><dt>适用</dt><dd>{{audience}}</dd></div><div><dt>学时</dt><dd>{{hours}}</dd></div>
+        </dl>
+        <form class="ai-ask" id="aiAsk"><span class="orb"><span class="core">AI</span><span class="ring r1"></span><span class="ring r2"></span></span><span class="ai-tag">售前咨询</span><label for="aiInput" class="sr">向灵枢 AI 提问</label><input id="aiInput" type="text" autocomplete="off" placeholder="这本教材适合我的专业吗？"><button class="btn primary small" type="submit">问灵枢 AI</button></form>
+      </div>
+
+      <aside class="offer" aria-label="获取教材">
+        <div class="offer-tabs" role="tablist">
+          <button role="tab" data-role="student" aria-selected="true">学生使用<small>按学期授权</small></button>
+          <button role="tab" data-role="teacher" aria-selected="false">教师教学<small>认证免费</small></button>
+          <button role="tab" data-role="school" aria-selected="false">院校选用<small>批量授权</small></button>
+        </div>
+        <div class="offer-body" data-offer="student">
+          <div class="offer-title">选择使用时长<small>{{planNote}}</small></div>
+          <div class="plans" id="plans"></div>
+          <div class="price-row"><div class="price"><i>¥</i><span id="price">{{price}}</span><small id="priceNote">{{priceNote}}</small></div></div>
+          <div class="offer-actions"><button class="btn primary big" data-act="buy">立即购买</button><button class="btn ghost" data-act="trial">免费试读 24 小时</button></div>
+          <p class="offer-note">有激活码？<button data-act="activate">立即激活</button> · 电脑 / 平板 / 手机同步 · 到期不自动扣费</p>
+          
+        </div>
+        <div class="offer-body" data-offer="teacher" hidden>
+          <div class="offer-title">认证教师免费使用全本<small>1 个工作日审核</small></div>
+          <ul class="checks"><li>全本阅读 + 图谱、题库、案例库与全部资源</li><li>讲师端教学模式：备课包、课堂互动、作业测验</li><li>一键导出教研室选书论证材料与教学计划</li><li>班级码分发，学生扫码激活，教师可见学情</li></ul>
+          <div class="offer-actions"><button class="btn primary big" data-act="teacher">申请教师认证</button><button class="btn ghost" data-act="sample">索取电子样书</button></div>
+          <p class="offer-note">认证材料：工作证或教师资格证、所在院校与课程名称。已认证教师登录后自动开通。</p>
+        </div>
+        <div class="offer-body" data-offer="school" hidden>
+          <div class="offer-title">院校选用与建设支持<small>教务处 · 教材科 · 二级学院</small></div>
+          <ul class="checks"><li>规划教材、获奖与审定材料一键导出，供选用比对</li><li>按专业 / 年级批量授权，统一结算与对账</li><li>使用数据报表，支撑教学评估与教材建设成效</li><li>教材建设经验共享：体例设计、数字化改造、申报辅导</li></ul>
+          <div class="offer-actions"><button class="btn primary big" data-act="school">预约选用咨询</button><button class="btn ghost" data-act="kit">下载选用材料包</button></div>
+          <p class="offer-note">材料包含教材简介、编写团队、规划与获奖证明、样章、课程标准对照、授权与服务方案。</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <button class="motion-toggle" id="motionToggle" aria-pressed="false"><span>‖</span>暂停动效</button>
+</section>
+
+<div class="seam" aria-hidden="true"></div>
+<main class="container" id="main">
+  <div class="strip" id="strip"></div>
+
+  <div class="roles" id="roleCards">
+    <button class="role-card" data-role="student" aria-pressed="true" style="--rc:var(--stu);--rs:#fff3ea"><span class="pill">首选入口</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H4z"/><path d="M8 21h8M12 17v4"/></svg></span><span><b>学生选购</b><span>看学习价值 · 核心问题 · 配套资源</span></span><span class="chk">✓</span></button>
+    <button class="role-card" data-role="teacher" aria-pressed="false" style="--rc:var(--tea);--rs:#e9f6f1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/></svg></span><span><b>教师选用</b><span>判断适配 · 看清应用 · 形成推荐</span></span><span class="chk">✓</span></button>
+    <button class="role-card" data-role="school" aria-pressed="false" style="--rc:var(--sch);--rs:#eaf1fd"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></span><span><b>院校审选</b><span>审核资质 · 汇总依据 · 形成结论</span></span><span class="chk">✓</span></button>
+  </div>
+  
+
+  <nav class="tabbar" aria-label="教材详情栏目"><div class="inner" id="tabbar" role="tablist"></div><div class="tab-cta" id="tabCta" hidden></div></nav>
+
+  <div class="page">
+    <div class="page-head" id="pageHead"></div>
+    <nav class="subnav" id="subnav" aria-label="本页内容"></nav>
+    <div class="content" id="content"></div>
+  </div>
+
+  <section class="getit" id="getit"><div><div class="eyebrow">获取这本教材</div><h2>先看懂教材，再决定获取方式</h2><p>同一本数字教材，三种身份三种方式；内容与修订全部同步。</p></div>
+    <div class="way"><b>学生 · 按学期授权</b><span>一学期起，最长 3 学年或终身</span><button class="btn small primary" data-act="buy">选择授权</button></div>
+    <div class="way"><b>教师 · 认证免费</b><span>1 个工作日开通全本与讲师端</span><button class="btn small ghost" data-act="teacher">申请认证</button></div>
+    <div class="way"><b>院校 · 批量授权</b><span>选用材料包 + 建设支持</span><button class="btn small ghost" data-act="school">预约咨询</button></div>
+  </section>
+</main>
+
+<footer><div class="container footer-top">
+  <div><div class="footer-brand"><img src="data:image/png;base64,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" alt=""><span><span class="brand-name">灵枢医学<i></i>数字教材</span><span class="brand-sub">中国中医药出版社旗下医学教育数字服务平台</span></span></div><p>承岐黄之志，启成医之路。</p></div>
+  <div><h4>教材与出版</h4><a href="#">数字教材库</a><a href="#">数字教材出版</a><a href="#">体验数字教材</a></div>
+  <div><h4>教学与学习</h4><a href="#">申请教师试用</a><a href="#">我的教材</a><a href="#">教材激活</a></div>
+  <div><h4>院校服务</h4><a href="#">批量采购</a><a href="#">定制建设</a><a href="#">咨询服务</a></div>
+  <div><h4>服务支持</h4><a href="#">使用帮助</a><a href="#">APP下载</a><a href="#">隐私与信息安全</a></div>
+</div><div class="container footer-bottom"><span>灵枢医学 · 数字教材</span><span>© 中国中医药出版社 · 京ICP备XXXXXXXX号</span></div></footer>
+<button class="totop" aria-label="回到顶部" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===================== 教材数据：由构建脚本注入（见 build_page.py） ===================== */
+/*__DATA__*/
+const BOOK=D.projects;
+const META=D.meta;
+const LIVE=D.live;
+const PAL=['#4f7df3','#35b37e','#8b6cf0','#ef5e9c','#f29a3a','#2bb5c9'];
+const PC=i=>PAL[i%PAL.length];
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const empty=(t,d,act)=>`<div class="empty"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v12H4zM4 7l2-3h12l2 3"/><path d="M10 13h4"/></svg></i><b>${t}</b><span>${d}</span>${act?`<button class="btn small ghost" data-act="${act[1]}">${act[0]}</button>`:''}</div>`;
+const CN=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六'];
+let toastT;const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200)};
+const NT=BOOK.reduce((a,p)=>a+p.tasks.length,0);
+const STAT=Object.assign({projects:BOOK.length,tasks:NT},D.stat);
+const ABIL=D.abilities;
+const JOBS=D.jobs;
+const QMAP=D.questions;
+const SZ=D.ideologyLines;
+const POL=D.policies;
+const TEAM=D.team;
+
+/* ===================== 角色与一级菜单 ===================== */
+const ROLES={
+ student:{label:'学生选购',color:'var(--stu)',soft:'var(--stu-soft)',desc:'先看学习价值，再决定是否购买',menu:[
+  {id:'guide',t:'教材导读',subs:['教材简介','适用对象','学习目标','使用方法','版本信息']},
+  {id:'data',t:'核心数据',subs:['体系总览','资源构成','项目分布']},
+  {id:'toc',t:'内容导航',subs:['目录全景','项目任务','重点难点']},
+  {id:'kg',t:'知识图谱',subs:['知识网络','支撑技能','学习路径']},
+  {id:'ability',t:'能力图谱',subs:['五级结构','能力进阶','岗课赛证']},
+  {id:'question',t:'问题图谱',subs:['问题三层','问题链条']},
+  {id:'sz',t:'思政图谱',subs:['思政主线','项目映射']},
+  {id:'task',t:'任务体验',subs:['任务体例','任务样例','成果要求']},
+  {id:'cert',t:'赛证直通',subs:['融通矩阵','对接证书','对接赛项','覆盖明细']},
+  {id:'res',t:'配套资源',subs:['资源总览','媒体资源','题库资源']},
+  {id:'ai',t:'数智学习',ai:1,subs:['AI 提问语','AI 场景','四种模式']},
+  {id:'eval',t:'学习评价',subs:['评价标准','评价方式','掌握度']}]},
+ teacher:{label:'教师选用',color:'var(--tea)',soft:'var(--tea-soft)',desc:'先判断是否适配，再形成选用建议',menu:[
+  {id:'tsel',t:'选书总览',subs:['选用摘要','教材规模','核心优势','推荐理由']},
+  {id:'tfit',t:'课程适配',subs:['适用专业','课程定位','课程标准','学时建议']},
+  {id:'team',t:'编研团队',subs:['主编主审','编写团队','单位分布']},
+  {id:'gksz',t:'岗课赛证',subs:['融通矩阵','岗位画像','证书赛项','课程标准']},
+  {id:'kg',t:'知识图谱',subs:['知识网络','支撑技能','教学路径']},
+  {id:'ability',t:'能力图谱',subs:['五级结构','能力进阶','岗课赛证']},
+  {id:'question',t:'问题图谱',subs:['问题三层','问题链条']},
+  {id:'sz',t:'思政图谱',subs:['思政主线','项目映射']},
+  {id:'tapp',t:'教学应用',subs:['教学计划','教学建议','课堂样例','纸数融合']},
+  {id:'res',t:'教学资源',subs:['资源总览','媒体资源','题库资源']},
+  {id:'ai',t:'数智教学',ai:1,subs:['AI 提问语','AI 场景','四种模式']},
+  {id:'tbasis',t:'选用依据',subs:['政策依据','适配结论','报审材料']}]},
+ school:{label:'院校审选',color:'var(--sch)',soft:'var(--sch-soft)',desc:'审资质、审质量，再看应用与成果',menu:[
+  {id:'ssum',t:'审选总览',subs:['审选摘要','基本条件','建设规模','审选结论']},
+  {id:'spub',t:'出版资质',subs:['出版身份','ISBN 版次','数字版本','更新记录']},
+  {id:'sedit',t:'编审机制',subs:['编写流程','审校流程','数字内容审核']},
+  {id:'team',t:'编研团队',subs:['主编主审','编写团队','单位分布']},
+  {id:'sstd',t:'标准适配',subs:['专业标准','职业标准','技术标准','适配结论']},
+  {id:'squal',t:'内容质量',subs:['质量六性','图谱体系']},
+  {id:'gksz',t:'岗课赛证',subs:['融通矩阵','岗位画像','证书赛项','课程标准']},
+  {id:'res',t:'资源建设',subs:['资源总览','媒体资源','题库资源']},
+  {id:'sevid',t:'应用证据',subs:['使用规模','学期趋势','教学数据','反馈']},
+  {id:'sout',t:'成果价值',subs:['规划与奖项','建设借鉴','成果材料']},
+  {id:'stech',t:'技术规范',subs:['格式兼容','数据安全','AI 边界']},
+  {id:'sbasis',t:'审选依据',subs:['审选清单','政策依据','审选结论']}]}
+};
+
+/* ===================== 可视化组件 ===================== */
+const ICONS={book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h7a3 3 0 013 3v13a2 2 0 00-2-2H4zM20 4h-7a3 3 0 00-3 3v13a2 2 0 012-2h8z"/></svg>',target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>',q:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/><path d="M10 9a2 2 0 113 1.8c-.7.4-1 .8-1 1.4M12 14.5v.1"/></svg>',res:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3zM8 21h8"/></svg>'};
+const shortName=(t,n)=>{let x=t;(D.text.stripWords||[]).forEach(w=>{x=x.split(w).join('')});return n?x.slice(0,n):x};
+function stripHtml(){const sys=[['知识体系',STAT.kp,ICONS.book,'#eef3ff','#4f7df3'],['能力体系',STAT.skill,ICONS.target,'#eaf8f1','#35b37e'],['问题体系',QMAP.global.length+BOOK.length+NT,ICONS.q,'#fdeef5','#ef5e9c'],['教学资源',STAT.video+STAT.ppt+STAT.doc+STAT.img,ICONS.res,'#f1edff','#8b6cf0']].map(([n,v,ic,bg,c])=>`<div class="sys" style="--tb:${bg};--tc:${c}"><i style="color:${c}">${ic}</i><div><b class="num" data-n="${v}">0</b><span>${n}</span></div></div>`).join('');
+ const cur=META.versions[META.versions.length-1];
+ const use=LIVE?[['授权学生',LIVE.students],['选用院校',LIVE.schools],['认证教师',LIVE.teachers]].map(([n,v])=>`<div class="use"><b class="num" data-n="${v}">0</b><span>${n}</span></div>`).join('')
+  :`<div class="use fresh"><b>新书上线</b><span>首批选用院校招募中 · 教师可免费申请</span></div>`;
+ return `<div class="ver"><b>数字版 ${cur.v} · 运行中</b>更新 ${cur.date}${META.next?' · 下次修订 '+META.next:''}</div>${sys}<div class="sep"></div>${use}`}
+function countUp(){$$('[data-n]').forEach(el=>{const to=+el.dataset.n,t0=performance.now();if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=to.toLocaleString();return}(function f(t){const k=Math.min(1,(t-t0)/1300),v=Math.round(to*(1-Math.pow(1-k,3)));el.textContent=v.toLocaleString();if(k<1)requestAnimationFrame(f)})(t0)})}
+function animateIn(){requestAnimationFrame(()=>{$$('.ringc').forEach(e=>e.setAttribute('stroke-dasharray',e.dataset.d));$$('.bar i[data-w],.aud-bar i[data-w]').forEach(e=>e.style.width=e.dataset.w)})}
+
+function kpiBlock(){const tiles=[[D.terms.unit1,STAT.projects,'c1'],[D.terms.unit2Full,NT,'c2'],['知识模块',STAT.modules,'c3'],['知识节点',STAT.nodes,'c4'],['视频',STAT.video,'c1'],['课件',STAT.ppt,'c2'],['文档',STAT.doc,'c3'],[D.text.imageLabel,STAT.img,'c4'],['试题',STAT.quiz,'c5'],['案例情境',STAT.cases,'c6'],['思政点',STAT.sz,'c4'],['赛证对接点',STAT.cert,'c5']];
+ return `<div class="kpi"><div class="big"><b class="num">${STAT.kp}</b><span>知识点 · 全部节点化</span></div>${tiles.map(([n,v,c])=>`<div class="tile ${c}"><span>${n}</span><b class="num">${v.toLocaleString()}</b></div>`).join('')}</div>`}
+
+function donut(parts,size=200){const tot=parts.reduce((a,p)=>a+p[1],0);let a0=-Math.PI/2,s='';const r=78,cx=size/2,cy=size/2;parts.forEach((p,i)=>{const a1=a0+p[1]/tot*2*Math.PI;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);s+=`<path d="M${x0} ${y0}A${r} ${r} 0 ${a1-a0>Math.PI?1:0} 1 ${x1} ${y1}" fill="none" stroke="${PC(i)}" stroke-width="26" stroke-linecap="butt"/>`;a0=a1});
+ return `<svg viewBox="0 0 ${size} ${size}" style="max-width:${size}px;margin:auto"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#edf2f8" stroke-width="26"/>${s}<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="26" font-weight="800" fill="#142c4a">${tot.toLocaleString()}</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="12" fill="#607185">资源总数</text></svg>`}
+function resourceBlock(){const parts=[['视频',STAT.video],['课件',STAT.ppt],['文档',STAT.doc],['图像',STAT.img],['案例',STAT.cases],['虚仿',STAT.vr]];
+ return `<div class="detail"><div class="viz">${donut(parts)}</div><div class="grid" style="align-content:center">${parts.map((p,i)=>`<div style="display:grid;grid-template-columns:70px 1fr 50px;gap:10px;align-items:center;font-size:13px"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${PC(i)};margin-right:6px"></i>${p[0]}</span><div class="bar"><i data-w="${p[1]/STAT.video*100}%" style="width:0;background:${PC(i)}"></i></div><b class="num" style="text-align:right">${p[1]}</b></div>`).join('')}<p style="font-size:12px;color:var(--muted);margin-top:6px">另有试题 ${STAT.quiz.toLocaleString()} 道（按知识点、认知层级、赛证考点三重标注），知识图卡 ${STAT.cards} 张。</p></div></div>`}
+function projectBars(){const W=1000,H=250,pad=40,bw=(W-pad*2)/BOOK.length;let s=`<svg viewBox="0 0 ${W} ${H}">`;
+ BOOK.forEach((p,i)=>{const t=p.tasks.length,kp=p.kp??t*6,x=pad+i*bw+6,h1=kp*1.6,h2=t*9;s+=`<rect x="${x}" y="${H-50-h1}" width="${bw-18}" height="${h1}" rx="5" fill="${PC(i%2?0:0)}" opacity=".85"/><rect x="${x+(bw-18)/2+2}" y="${H-50-h2}" width="${(bw-18)/2-2}" height="${h2}" rx="4" fill="#35b37e"/><text x="${x+(bw-18)/2}" y="${H-50-h1-6}" text-anchor="middle" font-size="11" fill="#142c4a" font-weight="600">${kp}</text><text x="${x+(bw-18)/2}" y="${H-32}" text-anchor="middle" font-size="11" fill="#607185">P${i+1}</text><text x="${x+(bw-18)/2}" y="${H-16}" text-anchor="middle" font-size="10" fill="#8a9bb0">${shortName(p.t,6)}</text>`});
+ return `<div class="viz">${s}</svg><div class="legend"><span><i style="background:#4f7df3"></i>知识点数</span><span><i style="background:#35b37e"></i>任务数</span><span style="margin-left:auto">项目 ${[...BOOK].sort((a,b)=>(b.kp??0)-(a.kp??0)).slice(0,3).map(p=>p.n).sort((a,b)=>a-b).join('、')} 知识点最多，建议安排 ${D.text.denseHours} 学时</span></div></div>`}
+
+function ringSvg(pct,color){const r=26,c=2*Math.PI*r;return `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="#edf2f8" stroke-width="8"/><circle class="ringc" cx="32" cy="32" r="${r}" fill="none" stroke="${color}" stroke-width="8" data-d="${c*pct/100} ${c}" stroke-dasharray="0 ${c}" stroke-linecap="round" transform="rotate(-90 32 32)"/><text x="32" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#142c4a">${pct}%</text></svg>`}
+function jobsBlock(){return `<div class="grid g3">${JOBS.map((j,i)=>`<div class="cell white"><div class="ring">${ringSvg(j[1],PC(i))}<div><b>${j[0]}</b><span>${j[2]} · 赛证直通点名对接</span></div></div></div>`).join('')}<div class="cell c5"><h4>赛证直通</h4><p>比例按全书 ${NT} 个任务中【赛证直通】点名对接的任务数统计；逐任务明细见能力图谱「岗课赛证」的对接明细表。</p></div></div>`}
+
+/* 问题图谱：三列 + 连线 */
+function questionMap(){const W=1000,colW=280,gap=80,x1=0,x2=colW+gap,x3=2*(colW+gap),rh=[92,70,52];
+ const cols=[QMAP.global,QMAP.proj,QMAP.task];const H=Math.max(...cols.map((c,i)=>c.length*(rh[i]+10)))+40;let s='';
+ const pos=(ci,i)=>40+i*(rh[ci]+10)+rh[ci]/2;
+ // links global->proj
+ QMAP.proj.forEach((q,i)=>{const gi=i%3;const y0=pos(0,gi),y1=pos(1,i);s+=`<path d="M${x1+colW} ${y0} C ${x1+colW+60} ${y0}, ${x2-60} ${y1}, ${x2} ${y1}" fill="none" stroke="${PC(3)}" stroke-width="2" opacity=".35"/>`});
+ QMAP.task.forEach((q,i)=>{const y0=pos(1,0),y1=pos(2,i);s+=`<path d="M${x2+colW} ${y0} C ${x2+colW+60} ${y0}, ${x3-60} ${y1}, ${x3} ${y1}" fill="none" stroke="${PC(0)}" stroke-width="2" opacity=".35"/>`});
+ const card=(x,y,w,h,c,txt,tag)=>{const tw=String(tag).length>2?34:22;return `<g><rect x="${x}" y="${y-h/2}" width="${w}" height="${h}" rx="12" fill="${c}"/><circle cx="${x+w-12}" cy="${y-h/2+10}" r="3" fill="#fff" opacity=".8"/>${wrap(txt,x+14,y,w-64,13).map((l,k,arr)=>`<text x="${x+14}" y="${y-(arr.length-1)*8+k*16}" font-size="12.5" fill="#fff">${esc(l)}</text>`).join('')}<rect x="${x+w-tw-8}" y="${y-9}" width="${tw}" height="18" rx="9" fill="#fff" opacity=".92"/><text x="${x+w-tw/2-8}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="700" fill="${c}">${tag}</text></g>`};
+ QMAP.global.forEach((q,i)=>s+=card(x1,pos(0,i),colW,rh[0],PC(3),q[0],q[1]));
+ QMAP.proj.forEach((q,i)=>s+=card(x2,pos(1,i),colW,rh[1],PC(0),q[0],'P'+q[1]));
+ QMAP.task.forEach((q,i)=>s+=card(x3,pos(2,i),colW,rh[2],PC(1),q[0],q[1]));
+ const head=(x,t,sub)=>`<text x="${x}" y="14" font-size="13" font-weight="700" fill="#142c4a">${t}</text><text x="${x}" y="28" font-size="11" fill="#607185">${sub}</text>`;
+ return `<div class="viz dots" style="padding:16px 12px"><div style="overflow-x:auto"><svg viewBox="0 0 ${W} ${H}" style="min-width:760px">${head(x1,'全局层问题（'+QMAP.global.length+'）','与教材培养目标对应')}${head(x2,D.terms.unit1+'层问题（'+BOOK.length+' · 显示 '+QMAP.proj.length+'）',D.text.questionProjSub)}${head(x3,D.terms.unit2+'层问题（'+NT+' · 以'+D.text.sampleTaskLabel+' 为例）','从操作与情境分解')}${s}</svg></div></div>`}
+function wrap(t,x,y,w,fs){const n=Math.max(8,Math.floor(w/fs));const out=[];for(let i=0;i<t.length;i+=n)out.push(t.slice(i,i+n));return out.slice(0,3)}
+function chainBlock(){const C=D.text.questionChain;
+ return `<div class="grid g4">${C.map((c,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><span class="k">${['问题 1','问题 2','问题 3','问题 4'][i]} · ${c[0]}</span><h4 style="font-family:var(--serif);font-size:15.5px;margin-top:4px">${c[1]}</h4><p style="margin-top:6px">${c[2]}</p><p style="font-size:11.5px;color:var(--muted);margin-top:6px">↳ ${c[3]}</p></div>`).join('')}</div><p style="font-size:12.5px;color:var(--muted);margin-top:8px">每条问题链对应一组知识节点与一道「综合运用」题；全书问题链 ${NT} 条，覆盖全部${D.terms.unit2}。</p>`}
+
+/* 思政图谱 */
+function szBlock(){return `<div class="grid g4">${SZ.map(s=>`<div class="cell white" style="padding:0;overflow:hidden"><div style="height:92px;background:linear-gradient(135deg,${s[1]},${s[1]}cc);display:flex;align-items:flex-end;padding:12px 14px;color:#fff;font-weight:700;font-size:16px">${s[0]}</div><div style="padding:12px 14px"><p>${s[2]}</p><p style="font-size:12px;color:var(--muted);margin-top:6px">${s[3]}</p><div class="chips" style="margin-top:8px">${s[4].map(n=>`<span>P${n}</span>`).join('')}</div></div></div>`).join('')}</div>`}
+function szTable(){return `<div class="tbl"><table><thead><tr><th>项目</th><th>思政园地（摘）</th><th>主线</th><th>呈现形式</th></tr></thead><tbody>${BOOK.filter(p=>p.sz).slice(0,8).map((p,i)=>`<tr><td style="white-space:nowrap">P${p.n} ${esc(SHORT[p.n-1]||p.t)}</td><td>${esc(p.sz)}…</td><td><span class="lvl ${['a','b','c','a'][i%4]}">${SZ[i%4][0].split(' · ')[0]}</span></td><td>情境案例 + 讨论题</td></tr>`).join('')}</tbody></table></div><p style="font-size:12px;color:var(--muted);margin-top:8px">全书 ${BOOK.length} 个${D.terms.unit1} ${STAT.sz} 处思政园地，均嵌入任务流程而非独立章节；教师端可一键导出课程思政映射表。</p>`}
+
+/* 任务体验 */
+function taskFlow(){const F=D.text.taskFlow;return `<div style="overflow-x:auto"><div class="flow" style="grid-template-columns:repeat(${F.length},1fr);min-width:860px">${F.map((f,i)=>`<div class="${D.text.taskFlowMain.includes(i)?'on':''}"><b>${String(i+1).padStart(2,'0')}</b>${f}</div>`).join('')}</div></div><p style="font-size:12.5px;color:var(--muted);margin-top:8px">每个${D.terms.unit2}固定 ${F.length} 个环节，高亮的 ${D.text.taskFlowMain.length} 个是课堂主线。</p>`}
+function taskSample(){const T=D.text.sampleTask,p=BOOK[T.project-1];return `<div class="detail"><div><span class="k" style="font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:600">${D.terms.unit1}${CN[T.project-1]} · ${D.terms.unit2} ${T.task}</span><h4 style="font-size:18px;margin:4px 0 10px">${esc(p.tasks[T.task-1])}</h4><div class="quote"><b>${D.terms.unit2}情境：</b>${esc(T.scene)}</div><div style="display:flex;gap:8px;margin:10px 0 2px;flex-wrap:wrap;align-items:center"><button class="btn small primary" data-act="trial">免费试读本${D.terms.unit2}</button><span class="tag teal">试读开放 · 含视频与量表</span></div><div class="step-list" style="margin-top:8px">${T.steps.map((st,i)=>`<div><b class="n">${i+1}</b><div><h4>${esc(st[0])}</h4><p>${esc(st[1])}</p></div></div>`).join('')}</div></div><div class="grid"><div class="ai-box"><span class="k"><i></i>AI 提问语（教材原文）</span><p style="margin-top:6px">${esc(p.ai)}……</p><p style="font-size:12px;color:var(--muted);margin-top:6px">学生把提问语粘贴到灵枢 AI，即可进入与本${D.terms.unit2}绑定的「辨析式」辅导：AI 先反问，再给依据节点。</p></div><div class="cell c5"><span class="k">赛证直通</span><p style="margin-top:4px">${esc(p.cert)}</p></div><div class="cell c4"><span class="k">思政园地</span><p style="margin-top:4px">${esc(p.sz)}…</p></div></div></div>`}
+function outcomes(){const O=D.text.outcomes;return `<div class="grid g3">${O.map((o,i)=>`<div class="cell ${['c1','c2','c3'][i%3]}"><h4>${esc(o[0])}</h4><ul>${o[1].map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div>`}
+
+/* 岗课赛证 */
+function gkJobs(){return `<div class="grid g3">${D.text.jobProfiles.map(j=>`<div class="cell tint" style="--tc:${j[2]}"><div class="ring">${ringSvg(j[3],j[2])}<div><b>${j[0]}</b><span>能力画像覆盖</span></div></div><p style="margin-top:8px">${j[1]}</p></div>`).join('')}</div>`}
+function gkStd(){return `<div class="grid g2">${D.text.courseStandard.map(c=>`<div class="cell white"><h4>${esc(c[0])}</h4><p>${esc(c[1])}</p></div>`).join('')}</div>`}
+const PAGES_GK=r=>[blk(0,'融通矩阵',capBox('cert')),blk(1,'岗位画像',gkJobs()),blk(2,'证书赛项',certBlock()+'<div style="height:12px"></div>'+certTable()),blk(3,'课程标准',gkStd())];
+/* 赛证直通 */
+function certBlock(){return `<div class="badge-row">${D.text.certBadges.map(b=>`<div class="badge"><i style="background:${b[2]}">${b[0].slice(0,2)}</i><div><b>${b[0]}</b><span>${b[1]}</span></div></div>`).join('')}</div>`}
+function certTable(){return `<div class="tbl"><table><thead><tr><th>项目</th><th>赛证直通（教材原文摘）</th><th>证书</th><th>赛项模块</th></tr></thead><tbody>${BOOK.filter(p=>p.cert).slice(0,10).map(p=>`<tr><td style="white-space:nowrap">P${p.n} ${esc(SHORT[p.n-1]||p.t)}</td><td>${esc(p.cert)}</td><td><span class="lvl c">${esc(D.text.certTableCert)}</span></td><td><span class="lvl b">${esc(D.text.certTableModule)}</span></td></tr>`).join('')}</tbody></table></div><p style="font-size:12px;color:var(--muted);margin-top:8px">${STAT.cert} 个${D.terms.unit2}全部标注赛证对接点；备考模式按证书等级生成考点清单与典型题。</p>`}
+
+/* 资源 */
+function resGrid(){const R=[['视频',STAT.video,'操作示范 · 讲解'],['课件',STAT.ppt,'每任务 1 套 · 可编辑'],['文档',STAT.doc,'量规 · 记录表 · 指南摘编'],['图像',STAT.img,'操作图谱 · 评估量表'],['试题',STAT.quiz,'三重标注'],['案例',STAT.cases,'真实脱敏情境'],['图卡',STAT.cards,'知识图卡'],['问题链',NT,'综合运用题'],['AI 场景',D.text.aiScenes.length,'限定教材范围'],['虚仿',STAT.vr,D.text.vrNote]];
+ return `<div class="grid g5">${R.map((r,i)=>`<div class="cell white" style="position:relative"><span class="k">${r[0]}</span><div class="num" style="font-size:26px;font-weight:800;color:${PC(i)};line-height:1.2">${r[1].toLocaleString()}</div><p style="font-size:12px;color:var(--muted)">${r[2]}</p>${i<3?'<span class="tag teal" style="position:absolute;right:10px;top:10px;font-size:10px;padding:1px 7px">试读开放</span>':''}</div>`).join('')}</div><p class="note">试读 24 小时内可查看${D.terms.unit1}一全部资源与各${D.terms.unit1}首个${D.terms.unit2}的视频、量表；购买或激活后开放全部。</p>`}
+function mediaBlock(){return `<div class="grid g3">${D.text.media.map((m,i)=>`<div class="cell ${['c1','c2','c3'][i%3]}"><h4>${esc(m[0])} · ${STAT[m[1]]??m[1]}</h4><p>${esc(m[2])}</p></div>`).join('')}</div>`}
+function quizBlock(){return `<div class="detail"><div class="cell white"><h4>三重标注</h4><ul><li>知识点：每题至少挂载 1 个节点</li><li>认知层级：记忆 / 理解 / 应用 / 分析</li><li>赛证：证书等级与赛项模块考核点</li></ul></div><div class="cell white"><h4>题型与数量</h4><table><tbody>${D.text.quizTypes.map(q=>`<tr><td>${esc(q[0])}</td><td class="num" style="text-align:right">${q[1]}</td></tr>`).join('')}</tbody></table></div></div>`}
+
+/* 数智 */
+function aiPromptBlock(){const p=BOOK[D.text.aiPromptProject-1];return `<div class="detail"><div class="ai-box"><span class="k"><i></i>教材内置 AI 提问语 · ${D.terms.unit1}${CN[D.text.aiPromptProject-1]} ${D.terms.unit2} 1</span><p style="margin-top:6px">${esc(p.ai)}……</p></div><div class="grid"><div class="cell c6"><h4>为什么是"提问语"而不是聊天框</h4><p>每个任务的提问语把专业、任务、小组分工和学习目标一次性交给 AI，AI 的回答被限定在本教材审定内容范围内并标注依据节点，不做开放问答。</p></div><div class="cell c1"><h4>辨析式辅导</h4><p>AI 先反问（"${esc(D.text.aiCounterQuestion)}"），再给依据；另设独立的开放提问模式。</p></div></div></div>`}
+function aiScenes(role){const S=D.text.aiScenes;
+ return `<div class="grid g3">${S.map((s,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join('')}</div>`}
+function modesBlock(){const M=D.text.modes;return `<div class="grid g4">${M.map(m=>`<div class="cell tint" style="--tc:${m[2]}"><h4>${m[0]}</h4><p>${m[1]}</p></div>`).join('')}</div>`}
+
+/* 评价 */
+function rubric(){return `<div class="grid g3">${D.text.rubric.map((r,i)=>`<div class="cell white"><span class="k">${r[0]}</span><h4>${r[1]}</h4><p>${r[2]}</p><div class="bar" style="margin-top:10px"><i data-w="${r[3]}%" style="width:0;background:${PC(i)}"></i></div></div>`).join('')}</div><p class="note">权重为教材建议值；评价以过程性评价为主、结果性评价为辅，并记录能力增值；教师可在讲师端按本校课程方案调整。</p>`}
+function evalWays(){return `<div class="grid g3">${D.text.evalWays.map((e,i)=>`<div class="cell ${['c1','c2','c3'][i%3]}"><h4>${esc(e[0])}</h4><p>${esc(e[1])}</p></div>`).join('')}</div>`}
+function masteryBlock(){return `<div class="detail"><div class="viz">${heat()}</div><div class="cell"><h4>掌握度怎么看</h4><p>学生端「自学模式」把 ${BOOK.length} ${D.terms.unit1} × 4 层节点铺成网格，颜色即掌握度；教师端按班级汇总成热力图，定位需要补讲的任务。</p><p style="font-size:12px;color:var(--muted);margin-top:6px">左图为示例班级第 9 周的项目 × 能力维度掌握热力图。</p></div></div>`}
+function heat(demo){const rows=['知识','技能','素质'],W=760,H=150;let s=`<svg viewBox="0 0 ${W} ${H}"${demo?' style="opacity:.45"':''}>`;for(let r=0;r<3;r++){s+=`<text x="0" y="${30+r*36+16}" font-size="12" fill="#607185">${rows[r]}</text>`;for(let c=0;c<BOOK.length;c++){const v=c<BOOK.length/2?.55+((c*7+r*3)%10)/22:c<BOOK.length*3/4?.3+((c*5+r)%10)/25:.08+((c*3)%10)/40;s+=`<rect x="${40+c*44}" y="${30+r*36}" width="40" height="30" rx="6" fill="#165bd4" opacity="${v.toFixed(2)}"/>`}}for(let c=0;c<BOOK.length;c++)s+=`<text x="${60+c*44}" y="16" text-anchor="middle" font-size="11" fill="#607185">${D.terms.abbr}${c+1}</text>`;return s+'</svg>'}
+
+/* 目录 */
+function tocBlock(){return `<div class="toc"><div class="toc-list" id="tocList">${BOOK.map((p,i)=>`<button role="tab" aria-selected="${i===2}" data-i="${i}"><b>${String(i+1).padStart(2,'0')}</b>${esc(p.t)}</button>`).join('')}</div><div class="toc-detail" id="tocDetail"></div></div>`}
+function tocDetail(i){const p=BOOK[i];$$('#tocList button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));$('#tocDetail').innerHTML=`<span class="k" style="font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:600">项目${CN[i]} · ${p.tasks.length} 个任务 · ${p.kp??p.tasks.length*6} 知识点 · 建议 ${p.hours??D.text.unitHours} 学时</span><h4>${esc(p.t)}</h4><p style="margin-top:6px;font-size:13px">${esc(p.intro)}</p><div class="tasks">${p.tasks.map((t,j)=>`<div><b class="mono" style="font-size:11px;color:var(--muted)">${i+1}.${j+1}</b><span>${esc(t)}</span><span>视频 · 课件 · 练习</span></div>`).join('')}</div><div class="chips">${(p.obj['知识目标']||[]).slice(0,2).map(x=>`<span>${esc(x.slice(0,16))}…</span>`).join('')}<span class="sz">思政园地</span><span class="ct">赛证直通</span><span class="ai">AI 提问语</span></div>`}
+function hardBlock(){const H=D.text.hard;return `<div class="grid g3"><div class="cell c1"><h4>重点</h4><ul>${H.key.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="cell c5"><h4>难点</h4><ul>${H.hard.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="cell c6"><h4>难点如何被数字化解决</h4><p>${esc(H.digital)}</p></div></div>`}
+
+/* 通用：团队、政策、版本 */
+function teamBlock(){return `<div class="people">${TEAM.map(t=>`<div class="person"><i>${t[1][0]}</i><div><b>${t[1]} <span class="tag" style="padding:1px 7px;font-size:11px">${t[0]}</span></b><span>${t[2]}</span><span style="color:var(--text);margin-top:4px">${t[3]}</span></div></div>`).join('')}</div>`}
+function orgBlock(){return `<div class="grid g4">${D.text.orgs.map(o=>`<div class="cell white"><div class="num" style="font-size:26px;font-weight:800;color:var(--ink)">${o[1]}</div><p>${o[0]}</p></div>`).join('')}</div>`}
+function policyBlock(){return `<div class="policy">${POL.map(p=>`<a href="${p[3]}" target="_blank" rel="noopener"><span>${esc(p[0])}<small>${esc(p[1])}</small></span><b>${esc(p[2])}</b></a>`).join('')}</div>`}
+function versionBlock(){return `<div class="tbl"><table><thead><tr><th>版本</th><th>载体</th><th>标识</th><th>发布</th><th>说明</th></tr></thead><tbody><tr><td>纸质版 ${META.paper.edition}</td><td>纸书</td><td class="mono">ISBN ${META.isbn}</td><td class="mono">${META.paper.date}</td><td>${META.plan?META.plan+'，':''}与数字版同源</td></tr>${[...META.versions].reverse().map((v,i)=>`<tr><td>数字版 ${v.v}</td><td>数字教材</td><td class="mono">${v.v}</td><td class="mono">${v.date}</td><td>${i===0?'当前版本：':''}${v.note}</td></tr>`).join('')}</tbody></table></div>`}
+function semesterCharts(){const sem=LIVE.semesters.map(x=>x[0]),stu=LIVE.semesters.map(x=>x[1]),sch=LIVE.semesters.map(x=>x[2]);const W=520,H=220;let s=`<svg viewBox="0 0 ${W} ${H}">`;const mx=Math.max(...stu);stu.forEach((v,i)=>{const x=50+i*95,h=v/mx*140;s+=`<rect x="${x}" y="${180-h}" width="56" height="${h}" rx="8" fill="${i===stu.length-1?'#2bb5c9':'#4f7df3'}"/><text x="${x+28}" y="${172-h}" text-anchor="middle" font-size="12" font-weight="700" fill="#142c4a">${v.toLocaleString()}</text><text x="${x+28}" y="${202}" text-anchor="middle" font-size="12" fill="#607185">${sem[i]}</text>`});s+='</svg>';
+ let l=`<svg viewBox="0 0 ${W} ${H}">`;const mxs=Math.max(...sch)*1.05;const pts=sch.map((v,i)=>[78+i*95,180-v/mxs*140]);l+=`<path d="M${pts.map(p=>p.join(' ')).join(' L')} L${pts[pts.length-1][0]} 180 L${pts[0][0]} 180Z" fill="#8b6cf0" opacity=".12"/><path d="M${pts.map(p=>p.join(' ')).join(' L')}" fill="none" stroke="#8b6cf0" stroke-width="2.5"/>`;pts.forEach((p,i)=>l+=`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="#fff" stroke="#8b6cf0" stroke-width="2"/><text x="${p[0]}" y="${p[1]-10}" text-anchor="middle" font-size="12" font-weight="700" fill="#142c4a">${sch[i]}</text><text x="${p[0]}" y="202" text-anchor="middle" font-size="12" fill="#607185">${sem[i]}</text>`);l+='</svg>';
+ return `<div class="detail"><div class="viz"><div style="font-weight:700;color:var(--ink);margin-bottom:4px">授权学生数（本学期进行中）</div>${s}</div><div class="viz"><div style="font-weight:700;color:var(--ink);margin-bottom:4px">选用院校数（累计）</div>${l}</div></div>`}
+
+/* ===================== 教材导读：可视化 ===================== */
+const SHORT=D.short;
+const STAGES=D.stages;
+const stageOf=n=>STAGES.find(s=>s[1].includes(n));
+function projectRing(){const cx=280,cy=270,R=176,w=34,gap=.018;let s='';const tot=BOOK.length;const per=(2*Math.PI)/tot;
+ BOOK.forEach((p,i)=>{const a0=-Math.PI/2+i*per+gap,a1=-Math.PI/2+(i+1)*per-gap,st=stageOf(p.n),c=st[2];const r=R,x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);const L=r*(a1-a0);
+  s+=`<path class="arc" d="M${x0} ${y0}A${r} ${r} 0 0 1 ${x1} ${y1}" fill="none" stroke="${c}" stroke-width="${w}" stroke-dasharray="${L}" stroke-dashoffset="${L}" style="animation:drawArc .9s ${i*60}ms cubic-bezier(.2,.8,.2,1) forwards" data-i="${i}"><title>${esc(p.t)} · ${p.tasks.length} 任务</title></path>`;
+  const am=(a0+a1)/2,lx=cx+(r+30)*Math.cos(am),ly=cy+(r+30)*Math.sin(am),cs=Math.cos(am);
+  s+=`<text x="${lx}" y="${ly}" font-size="11.5" fill="#344b64" text-anchor="${Math.abs(cs)<.25?'middle':cs>0?'start':'end'}" dominant-baseline="middle">${esc(SHORT[i]||p.t)}</text>`;
+  const tx=cx+(r-w/2-2)*Math.cos(am),ty=cy+(r-w/2-2)*Math.sin(am);s+=`<text x="${cx+r*Math.cos(am)}" y="${cy+r*Math.sin(am)}" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="middle">${p.n}</text>`});
+ // inner stage ring
+ let a=-Math.PI/2;STAGES.forEach(st=>{const n=st[1].length,a1=a+n*per;const r=R-w/2-14,x0=cx+r*Math.cos(a+gap),y0=cy+r*Math.sin(a+gap),x1=cx+r*Math.cos(a1-gap),y1=cy+r*Math.sin(a1-gap);s+=`<path d="M${x0} ${y0}A${r} ${r} 0 ${n*per>Math.PI?1:0} 1 ${x1} ${y1}" fill="none" stroke="${st[2]}" stroke-width="6" opacity=".35"/>`;const am=(a+a1)/2;s+=`<text x="${cx+(r-16)*Math.cos(am)}" y="${cy+(r-16)*Math.sin(am)}" font-size="11" fill="${st[2]}" font-weight="700" text-anchor="middle" dominant-baseline="middle">${st[0]}</text>`;a=a1});
+ s+=`<circle cx="${cx}" cy="${cy}" r="78" fill="#fff" stroke="#e3e9f3"/><text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="34" font-weight="800" fill="#142c4a">${BOOK.length}</text><text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="12" fill="#607185">${D.terms.ring}</text><text x="${cx}" y="${cy+30}" text-anchor="middle" font-size="13" font-weight="700" fill="#165bd4">${NT} 个${D.terms.unit2Full}</text>`;
+ return `<svg viewBox="0 0 560 540" style="max-width:520px;margin:auto">${s}</svg>`}
+function guideHero(){return `<div class="gh"><div class="gh-ring viz dots">${projectRing()}<span class="hint">悬停查看项目</span></div><div class="gh-side">
+ <div class="gh-lead"><h4>${esc(D.text.guideTitle)}</h4><p>${esc(D.text.guideLead)}</p></div>
+ <div class="gh-stages">${STAGES.map((st,i)=>`<div class="gh-stage" style="--tc:${st[2]}"><b>${st[0]}</b><span>${D.terms.abbr}${st[1][0]}${st[1].length>1?'–'+st[1][st[1].length-1]:''} · ${st[1].reduce((a,n)=>a+BOOK[n-1].tasks.length,0)} 任务</span></div>`).join('')}</div>
+ <div class="gh-feats">${D.text.features.map(f=>`<div class="gh-feat" style="--tc:${f[2]}"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div>
+</div></div>`}
+function audienceViz(){const A=D.text.audienceRows;
+ return `<div class="aud">${A.map(a=>`<div class="aud-row" style="--tc:${a[3]}"><div class="aud-name"><b>${a[0]}</b><span>${a[1]}</span></div><div class="aud-bar"><i data-w="${a[2]}%" style="width:0"></i></div><em>${a[2]===100?'完整路径':a[2]>=60?'精简路径':'选学路径'}</em></div>`).join('')}</div><div class="aud-jobs">${D.text.audienceJobs.map((j,i)=>`<span class="tag" style="background:color-mix(in srgb,${PC(i)} 12%,#fff);color:${PC(i)};border-color:transparent">${j}</span>`).join('')}</div>`}
+function objRings(){const G=[['知识目标',ABIL[0].items.length,BOOK.reduce((a,p)=>a+(p.obj['知识目标']||[]).length,0),PAL[1]],['技能目标',ABIL[1].items.length,BOOK.reduce((a,p)=>a+(p.obj['技能目标']||[]).length,0),PAL[0]],['素质目标',ABIL[2].items.length,BOOK.reduce((a,p)=>a+(p.obj['素质目标']||[]).length,0),PAL[2]]];const tot=G.reduce((a,g)=>a+g[2],0);
+ let s='';G.forEach((g,i)=>{const r=120-i*26,c=2*Math.PI*r,pct=g[2]/tot;s+=`<circle cx="150" cy="150" r="${r}" fill="none" stroke="#edf2f8" stroke-width="18"/><circle class="ringc" cx="150" cy="150" r="${r}" fill="none" stroke="${g[3]}" stroke-width="18" stroke-linecap="round" data-d="${c*pct} ${c}" stroke-dasharray="0 ${c}" transform="rotate(-90 150 150)"/>`});
+ s+=`<text x="150" y="144" text-anchor="middle" font-size="30" font-weight="800" fill="#142c4a">${tot}</text><text x="150" y="166" text-anchor="middle" font-size="12" fill="#607185">条学习目标</text>`;
+ return `<div class="detail"><div class="viz"><svg viewBox="0 0 300 300" style="max-width:300px;margin:auto">${s}</svg></div><div class="grid">${G.map(g=>`<div class="cell tint" style="--tc:${g[3]}"><h4>${g[0]} <small style="font-weight:400;color:var(--muted)">${g[1]} 个能力项 · ${g[2]} 条目标</small></h4><p>${esc(D.text.objectiveSummary[g[0]]||'')}</p></div>`).join('')}</div></div>`}
+function modesViz(){const M=D.text.modesViz;
+ return `<div class="modes4">${M.map(m=>`<div class="mode" style="--tc:${m[2]}"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${m[3]}</svg></i><b>${m[0]}</b><span>${m[1]}</span></div>`).join('')}</div>`}
+function versionTimeline(){const V=[['纸质版 '+META.paper.edition,META.paper.date,'ISBN '+META.isbn,PAL[4]],...META.versions.map((v,i)=>['数字版 '+v.v,v.date,v.note,i===META.versions.length-1?PAL[5]:PAL[0]])];if(META.next)V.push(['下次修订',META.next,'季度滚动修订，授权期内免费',PAL[2]]);
+ const single=META.versions.length===1;
+ return `<div class="vtl" style="grid-template-columns:repeat(${V.length},1fr)">${V.map((v,i)=>`<div class="vt" style="--tc:${v[3]}"><i></i><b>${v[0]}</b><em>${v[1]}</em><span>${v[2]}</span></div>`).join('')}</div>${single?`<p class="note">首个数字版本。内容按季度滚动修订，修订记录随版本公开，授权期内免费升级。</p>`:''}`}
+/* ===================== 页面渲染 ===================== */
+const H3=(i,t)=>`<h3><i class="hchip" style="background:${PC(i)}"></i>${t}</h3>`;
+const SRC={manual:['适用对象','版本信息','出版身份','ISBN 版次','规划与奖项','主编主审','编写团队','单位分布','政策依据','课程标准','对接证书','对接赛项','评价标准','报审材料','成果材料','审选清单','格式兼容','数据安全','AI 边界','适用专业','学时建议','教学计划','基本条件','证书赛项'],
+ parse:['五级结构','能力进阶','岗课赛证','知识网络','支撑技能','图谱体系','体系总览','资源构成','项目分布','目录全景','项目任务','三维目标','任务体例','任务样例','成果要求','项目映射','覆盖明细','AI 提问语','资源总览','媒体资源','题库资源','教材规模','建设规模','项目章节','融通矩阵','体例设计'],
+ live:['使用规模','学期趋势','教学数据','反馈','掌握度','数字版本','更新记录']};
+const SRCL={manual:'人工录入',parse:'稿件解析',ai:'AI 生成 · 已审核',live:'平台数据'};
+const srcOf=t=>Object.keys(SRC).find(k=>SRC[k].includes(t))||'ai';
+const blk=(i,t,body)=>{const s=srcOf(t);return `<section class="block" id="a${i}" data-src="${s}">${H3(i,t)}${body}</section>`};
+/* 教材能力结构数据（D.capability）：由稿件按“项目—任务—流程—技能点—知识点”抽取；为 null 时图谱栏目显示占位。certPending = 赛证对接说明为补写、待作者确认；support / related 为预生成关系，待编辑审核。 */
+const CAP=D.capability;
+/* ===================== 能力结构（V27）：五级结构 · 能力进阶 · 岗课赛证 · 知识网络 · 支撑技能 · 路径 · 图谱自查 =====================
+ * 数据 CAP 由教材稿件（二稿修订版）结构化导入，与 Vue 工程 src/api/bookCapability.js 同源。
+ * 交互状态集中在 CS；各内容块渲染为 <div data-cap="…"> 挂载点，setTab 后由 capRender() 填充，状态变化时整体重绘挂载点。 */
+const CS={n:3,fl:{ti:0,view:'map'},ks:{ti:0,ki:null},kn:{sel:null}};
+const QUAL=/素养|人文|职业|团队|协作|沟通|态度|伦理/;
+const DIMC=['#f29a3a','#4f7df3','#35b37e','#2bb5c9','#8b6cf0','#ef5e9c','#c9a227'];
+const LV5=[['一级','项目','完整工作成果','#4f7df3'],['二级','任务','典型工作任务','#2bb5c9'],['三级','流程','标准作业步骤','#35b37e'],['四级','技能点','可观测 · 可考核','#f29a3a'],['五级','知识点','按需供给 · 够用即止','#8b6cf0']];
+const capStage=n=>{const i=STAGES.findIndex(s=>s[1].includes(n));return i<0?{i:-1,name:'',color:PC(n-1)}:{i,name:STAGES[i][0],color:STAGES[i][2]}};
+const fmtN=v=>Number(v).toLocaleString('zh-CN');
+const capProj=()=>CAP.projects[CS.n-1];
+const kkey=(p,t,k)=>`${p}-${t}-${k}`;
+
+/* 共用：项目选择条 */
+function capPicker(){return `<div class="pp" role="tablist" aria-label="选择项目">${STAGES.map(s=>`<div class="pp-g"><span class="pp-st">${s[0]}</span>${s[1].map(n=>`<button type="button" role="tab" aria-selected="${n===CS.n}" style="--sc:${s[2]}" title="${esc(BOOK[n-1].t)}" data-cx="n:${n}"><b>P${n}</b>${SHORT[n-1]}</button>`).join('')}</div>`).join('')}</div>`}
+
+/* 五级结构规模 */
+function capScale(){const s=CAP.stats,v=[CAP.projects.length,s.tasks,s.steps,s.skills,s.know],L=[['一级','项目','完整工作成果','#4f7df3'],['二级','任务','典型工作任务','#2bb5c9'],['三级','流程','标准作业步骤','#35b37e'],['四级','技能点','可考核单项技能','#f29a3a'],['五级','知识点','按需供给的理论','#8b6cf0']];
+ return `<div class="cs">${L.map((l,i)=>`<div class="cs-i" style="--lc:${l[3]}"><span class="cs-lv">${l[0]}</span><b class="num">${fmtN(v[i])}</b><span class="cs-n">${l[1]}</span><small>${l[2]}</small></div>`).join('')}</div>`}
+
+/* 能力图谱 · 五级结构（图谱 / 表格） */
+function capFive(){const n=CS.n,p=capProj(),ti=Math.min(CS.fl.ti,p.tasks.length-1),t=p.tasks[ti],st=capStage(n);
+ const cnt=[p.tasks.length,p.tasks.reduce((a,x)=>a+x.steps.length,0),p.tasks.reduce((a,x)=>a+x.skills.reduce((b,g)=>b+g.i.length,0),0),p.tasks.reduce((a,x)=>a+x.know.length,0)];
+ const sum=t.skills.reduce((a,g)=>a+(g.v||0),0),q=t.skills.filter(g=>QUAL.test(g.d));
+ const lv=i=>`<div class="fl-lv"><span>${LV5[i][0]}</span><b>${LV5[i][1]}</b><small>${LV5[i][2]}</small></div>`;
+ const bar=`<div class="fl-bar"><div class="fl-tasks" role="tablist" aria-label="选择任务">${p.tasks.map((x,i)=>`<button type="button" role="tab" aria-selected="${i===ti}" data-cx="flti:${i}"><b>任务${i+1}</b>${esc(x.title)}</button>`).join('')}</div><div class="fl-view" role="group" aria-label="显示方式"><button type="button" aria-pressed="${CS.fl.view==='map'}" data-cx="flview:map">图谱</button><button type="button" aria-pressed="${CS.fl.view==='table'}" data-cx="flview:table">表格</button></div></div>`;
+ let body;
+ if(CS.fl.view==='map'){
+  body=`<div class="fl">
+<div class="fl-row" style="--lc:${LV5[0][3]}">${lv(0)}<div class="fl-body fl-proj"><div><span class="fl-st" style="background:${st.color}">${st.name||'项目'}</span><h4>项目${CN[n-1]}　${esc(p.title)}</h4></div><p>${cnt[0]} 个任务 · ${cnt[1]} 个流程步骤 · ${cnt[2]} 个技能点 · ${cnt[3]} 个知识点</p></div></div>
+<div class="fl-row" style="--lc:${LV5[1][3]}">${lv(1)}<div class="fl-body"><ol class="fl-seq">${p.tasks.map((x,i)=>`<li class="${i===ti?'on':''}" data-cx="flti:${i}"><b>${n}.${i+1}</b>${esc(x.title)}</li>`).join('')}</ol></div></div>
+<div class="fl-row" style="--lc:${LV5[2][3]}">${lv(2)}<div class="fl-body">${t.steps.length?`<ol class="fl-steps">${t.steps.map((s,i)=>`<li><i>${i+1}</i><b>${esc(s.t)}</b>${s.a.slice(0,4).map(a=>`<span>${esc(a)}</span>`).join('')}${s.a.length>4?`<em>+${s.a.length-4} 项操作要点</em>`:''}</li>`).join('')}</ol>`:'<p class="fl-none">本任务以分析与方案制订为主，稿件未列分步操作。</p>'}</div></div>
+<div class="fl-row" style="--lc:${LV5[3][3]}">${lv(3)}<div class="fl-body">${sum?`<div class="fl-score" aria-label="评价表共 ${sum} 分">${t.skills.map((g,i)=>`<i style="flex:${g.v||1};background:${DIMC[i%DIMC.length]}" title="${esc(g.d)} ${g.v||''} 分"><span>${esc(g.d)} ${g.v??''}</span></i>`).join('')}</div>`:''}<div class="fl-skills">${t.skills.map((g,i)=>`<div class="fl-dim" style="--dc:${DIMC[i%DIMC.length]}"><h5>${esc(g.d)}${g.v?`<small>${g.v} 分</small>`:''}${QUAL.test(g.d)?'<em>素养</em>':''}</h5><ul>${g.i.map(it=>`<li>${esc(it[0])}${it[1]?`<small>${it[1]}</small>`:''}</li>`).join('')}</ul></div>`).join('')}</div></div></div>
+<div class="fl-row" style="--lc:${LV5[4][3]}">${lv(4)}<div class="fl-body">${t.know.length?`<div class="fl-know">${t.know.map(k=>`<div><b>${esc(k.t)}</b>${k.s.slice(0,5).map(s=>`<span>${esc(s)}</span>`).join('')}</div>`).join('')}</div>`:'<p class="fl-none">本任务的知识准备以表格与案例呈现，未单列知识点标题。</p>'}</div></div>
+<div class="fl-foot"><div class="fl-cell fl-q"><span class="k">素养点 · 渗透在流程与评价中</span>${t.ideology?`<p>${esc(t.ideology)}</p>`:''}<div class="chips">${q.map(g=>`<span class="sz">${esc(g.d)}${g.v?' '+g.v+' 分':''}</span>`).join('')||'<span class="sz">思政园地</span>'}</div></div>
+<div class="fl-cell fl-c"><span class="k">岗课赛证 · 赛证直通</span><p>${esc(t.cert||(t.certQuiz?'本任务的赛证直通以赛证练习题呈现，未写明对接的赛项或标准。':'本任务未设赛证直通。'))}</p>${t.certTags.length||t.certPending?`<div class="chips">${t.certPending?'<span class="fl-pd">修订稿补写 · 待作者确认</span>':''}${t.certTags.map(c=>`<span class="ct">${c}</span>`).join('')}</div>`:''}</div></div></div>`;
+ }else{
+  body=`<div class="tbl fl-table"><table><thead><tr><th>典型工作任务</th><th>标准工作流程</th><th>可考核技能点（评价维度 · 分值）</th><th>支撑知识点</th><th>素养点</th><th>对接赛证</th></tr></thead><tbody>${p.tasks.map((x,i)=>`<tr class="${i===ti?'on':''}"><td><b class="mono">${n}.${i+1}</b> ${esc(x.title)}</td><td><ol>${x.steps.map(s=>`<li>${esc(s.t)}</li>`).join('')}</ol></td><td><ul>${x.skills.map(g=>`<li>${esc(g.d)}${g.v?`<small> · ${g.v}</small>`:''}<span class="fl-tn">${g.i.length} 条</span></li>`).join('')}</ul></td><td><ul>${x.know.map(k=>`<li>${esc(k.t)}</li>`).join('')}</ul></td><td>${x.skills.filter(g=>QUAL.test(g.d)).map(g=>esc(g.d)).join('、')||'思政园地'}</td><td>${x.certTags.join('、')||'—'}</td></tr>`).join('')}</tbody></table></div>`;
+ }
+ return `<div class="fl-wrap">${bar}${body}<p class="note">数据由教材稿件（二稿修订版）结构化导入：流程取自【任务实施】分步，技能点取自【任务评价】评价表，知识点取自【任务准备】知识准备。${CS.fl.view==='table'?'表格形式即 1 号文认可的能力图谱核心成果，可导出用于课程标准与选用论证。':'教师构建自下而上（知识点 → 技能点 → 流程 → 任务 → 项目），学生学习自上而下。'}</p></div>`}
+
+/* 能力图谱 · 能力进阶矩阵 */
+function capLadder(){const n=CS.n,p=capProj(),O=[['认知层','基础能力','#2bb5c9'],['实践层','核心能力','#35b37e'],['拓展层','提升能力','#8b6cf0']];
+ const cols=O.map(([layer,desc,c])=>({layer,desc,c,items:p.ladder.filter(r=>r.layer===layer)}));const other=p.ladder.filter(r=>!O.some(o=>o[0]===r.layer));if(other.length)cols.push({layer:'其他',desc:'',c:'#607185',items:other});
+ const cs=cols.filter(c=>c.items.length);if(!cs.length)return '<div class="capst">本项目稿件未附能力进阶表。</div>';
+ const sc=s=>(s||'').split(/[、，,；;]/).map(x=>x.trim()).filter(Boolean).slice(0,4);
+ return `<div class="ld"><p class="ld-head">项目${CN[n-1]} ${esc(p.title)}：${cs.map(c=>`<b style="color:${c.c}">${c.layer} ${c.items.length}</b>`).join('<span> → </span>')} 个能力模块</p><div class="ld-grid" style="--n:${cs.length}">${cs.map(c=>`<div class="ld-col" style="--lc:${c.c}"><div class="ld-cap"><b>${c.layer}</b><span>${c.desc}</span></div>${c.items.map(m=>`<div class="ld-m"><h5>${esc(m.m)}</h5><ul>${m.p.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${m.std?`<p class="ld-std"><b>达成标准</b>${esc(m.std)}</p>`:''}${sc(m.scene).length?`<div class="ld-sc">${sc(m.scene).map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`).join('')}</div><p class="note">来自教材稿件各项目末尾的【能力图谱】表，共 ${CAP.stats.ladder} 个能力模块。能力进阶矩阵是 1 号文认可的图谱可视化形式之一，用来看清学生从“会认知”到“能实践”再到“可拓展”的成长路径。</p></div>`}
+
+/* 岗课赛证对接明细 */
+function capCert(){const C=D.text.certColumns,s=CAP.stats,T=s.tasks;
+ const tot=C.map(c=>s.certCoverConfirmed?.[c[0]]??s.certCover[c[0]]??0),pend=C.map((c,i)=>(s.certCover[c[0]]||0)-tot[i]);
+ const tip=(p,i)=>{const t=p.tasks[i];return esc(`${p.n}.${i+1} ${t.title}：${t.certPending?'【修订稿补写，待作者确认】':''}${t.cert||(t.certQuiz?'赛证直通以练习题呈现，未写明对接对象':'未设赛证直通')}`)};
+ return `<div class="cc tbl"><table><thead><tr><th>项目</th>${C.map(c=>`<th><span class="cc-k" style="background:${c[2]}">${c[1]}</span>${c[0]}</th>`).join('')}</tr></thead><tbody>${CAP.projects.map(p=>`<tr><td><i class="cc-st" style="background:${capStage(p.n).color}"></i>P${p.n} ${SHORT[p.n-1]}</td>${C.map(c=>`<td><span class="cc-dots">${p.tasks.map((t,i)=>{const on=t.certTags.includes(c[0])?(t.certPending?'pend':'on'):'';return `<i class="${on}" style="--cc:${c[2]}" title="${tip(p,i)}"></i>`}).join('')}</span></td>`).join('')}</tr>`).join('')}</tbody><tfoot><tr><td>全书 ${T} 个任务</td>${tot.map((v,i)=>`<td><b>${v}</b> / ${T}${pend[i]?`<small class="cc-pd">+${pend[i]} 待确认</small>`:''}<span class="bar"><i data-w="${v/T*100}%" style="width:${v/T*100}%;background:${C[i][2]}"></i></span></td>`).join('')}</tr></tfoot></table></div><p class="note">每个圆点是一个任务：实心为作者已写明的对接；虚线圈为修订稿补写的对接说明（${s.certPending||0} 个任务），待作者确认后计入统计。悬停可看原文。</p>`}
+
+/* 知识图谱 · 知识网络 */
+const KN={W:1100,H:760,cx:550,cy:380,RH:196,RK:[262,290],RL:330};
+let KNL=null;
+function knLayout(){if(KNL)return KNL;const P=CAP.projects,NP=P.length,{cx,cy}=KN,ang=i=>-Math.PI/2+(i+.5)*(2*Math.PI/NP),hubs=[],dots=new Map();
+ P.forEach((p,i)=>{const a=ang(i),c=capStage(p.n).color,flat=[];p.tasks.forEach((t,ti)=>t.know.forEach((k,ki)=>flat.push({ti,ki,k})));const K=flat.length,span=(2*Math.PI/NP)*.86;
+  flat.forEach((f,j)=>{const r=KN.RK[j%2],aa=a+(K>1?(j/(K-1)-.5)*span:0);dots.set(kkey(p.n,f.ti,f.ki),{p:p.n,t:f.ti,k:f.ki,x:cx+r*Math.cos(aa),y:cy+r*Math.sin(aa),c,title:f.k.t})});
+  const cs=Math.cos(a);hubs.push({n:p.n,c,x:cx+KN.RH*Math.cos(a),y:cy+KN.RH*Math.sin(a),lx:cx+KN.RL*Math.cos(a),ly:cy+KN.RL*Math.sin(a),anchor:Math.abs(cs)<.3?'middle':cs>0?'start':'end',label:SHORT[p.n-1]})});
+ const links=CAP.related.map(([a,b,term],i)=>{const A=dots.get(kkey(...a)),B=dots.get(kkey(...b));if(!A||!B)return null;const qx=cx+((A.x+B.x)/2-cx)*.18,qy=cy+((A.y+B.y)/2-cy)*.18;return {i,a:kkey(...a),b:kkey(...b),pa:a[0],pb:b[0],term,d:`M${A.x.toFixed(1)} ${A.y.toFixed(1)}Q${qx.toFixed(1)} ${qy.toFixed(1)} ${B.x.toFixed(1)} ${B.y.toFixed(1)}`}}).filter(Boolean);
+ const rel=new Map();links.forEach(l=>{if(!rel.has(l.a))rel.set(l.a,[]);if(!rel.has(l.b))rel.set(l.b,[]);rel.get(l.a).push({to:l.b,term:l.term});rel.get(l.b).push({to:l.a,term:l.term})});
+ const per=2*Math.PI/NP,R=150;const arcs=STAGES.map(s=>{const idx=s[1].map(n=>n-1),a0=-Math.PI/2+Math.min(...idx)*per+.03,a1=-Math.PI/2+(Math.max(...idx)+1)*per-.03,am=(a0+a1)/2;return {name:s[0],c:s[2],d:`M${cx+R*Math.cos(a0)} ${cy+R*Math.sin(a0)}A${R} ${R} 0 ${a1-a0>Math.PI?1:0} 1 ${cx+R*Math.cos(a1)} ${cy+R*Math.sin(a1)}`,tx:cx+122*Math.cos(am),ty:cy+122*Math.sin(am)}});
+ return KNL={hubs,dots,links,rel,arcs}}
+function knFirst(n){const L=knLayout(),p=CAP.projects[n-1];let best=null,bc=-1;p.tasks.forEach((t,ti)=>t.know.forEach((k,ki)=>{const c=(L.rel.get(kkey(n,ti,ki))||[]).length;if(c>bc){bc=c;best=kkey(n,ti,ki)}}));return best}
+function capNet(){const L=knLayout(),n=CS.n,{W,H,cx,cy}=KN,s=CAP.stats;if(!CS.kn.sel||+CS.kn.sel.split('-')[0]!==n)CS.kn.sel=knFirst(n);const sel=CS.kn.sel;
+ const hot=new Set();if(sel){hot.add(sel);(L.rel.get(sel)||[]).forEach(r=>hot.add(r.to))}
+ const sd=sel?L.dots.get(sel):null,p=capProj(),rc=(pn,ti,ki)=>(L.rel.get(kkey(pn,ti,ki))||[]).length;
+ let g=`<g>${L.arcs.map(a=>`<path d="${a.d}" fill="none" stroke="${a.c}" stroke-width="6" stroke-linecap="round" opacity=".35"/><text x="${a.tx}" y="${a.ty}" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="700" fill="${a.c}">${a.name}</text>`).join('')}</g>`;
+ g+=`<g class="kn-links">${L.links.map(l=>`<path d="${l.d}" fill="none" class="${sel&&(l.a===sel||l.b===sel)?'hot':(l.pa===n||l.pb===n)?'near':''}"/>`).join('')}</g>`;
+ g+=L.hubs.map(h=>{const on=h.n===n;let x=`<g class="kn-hub${on?' on':''}" data-cx="n:${h.n}">`;L.dots.forEach(d=>{if(d.p===h.n)x+=`<line x1="${h.x}" y1="${h.y}" x2="${d.x}" y2="${d.y}" stroke="${h.c}" stroke-width=".8" opacity="${on?.5:.16}"/>`});
+  return x+`<circle cx="${h.x}" cy="${h.y}" r="${on?17:13}" fill="${h.c}"/><text x="${h.x}" y="${h.y}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="700" fill="#fff">${h.n}</text><text x="${h.lx}" y="${h.ly}" text-anchor="${h.anchor}" dominant-baseline="middle" font-size="12.5" font-weight="${on?700:500}" fill="${on?'#142c4a':'#4b6078'}">${h.label}</text></g>`}).join('');
+ g+=`<g class="kn-dots">${[...L.dots].map(([k,d])=>`<circle cx="${d.x}" cy="${d.y}" r="${k===sel?7:hot.has(k)?5.5:3.6}" fill="${d.c}" stroke="${k===sel?'#142c4a':'#fff'}" stroke-width="${k===sel?2:1}" opacity="${!sel||hot.has(k)||d.p===n?1:.45}" data-cx="kn:${k}"><title>P${d.p}.${d.t+1} ${esc(d.title)}</title></circle>`).join('')}</g>`;
+ g+=`<circle cx="${cx}" cy="${cy}" r="78" fill="#fff" stroke="#e3e9f3"/><text x="${cx}" y="${cy-12}" text-anchor="middle" font-size="30" font-weight="800" fill="#142c4a">${s.know}</text><text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="12" fill="#607185">个知识点</text><text x="${cx}" y="${cy+32}" text-anchor="middle" font-size="11.5" font-weight="600" fill="#8b6cf0">网状 · 可多路径跳转</text>`;
+ if(sd)g+=`<text x="${sd.x}" y="${sd.y-13}" text-anchor="middle" font-size="12" font-weight="700" fill="#142c4a" class="kn-tag">${esc(sd.title.length>14?sd.title.slice(0,14)+'…':sd.title)}</text>`;
+ let info='';if(sel){const [pn,ti,ki]=sel.split('-').map(Number),t=CAP.projects[pn-1].tasks[ti],k=t.know[ki];
+  const sk=t.support.filter(x=>x[0]===ki).map(x=>({text:t.skills[x[1]].i[x[2]][0],dim:t.skills[x[1]].d,term:x[3]}));
+  const rl=(L.rel.get(sel)||[]).map(r=>{const [a,b,c]=r.to.split('-').map(Number);return {key:r.to,n:a,title:CAP.projects[a-1].tasks[b].know[c].t,term:r.term}});
+  info=`<div class="kn-info"><span class="k">知识点 · P${pn}.${ti+1} ${esc(t.title)}</span><h4>${esc(k.t)}</h4>${k.s.length?`<div class="chips">${k.s.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}<h5>它支撑哪些技能点</h5>${sk.length?`<ul class="kn-list">${sk.map(x=>`<li><em>${esc(x.dim)}</em>${esc(x.text)}<small>关键词：${esc(x.term)}</small></li>`).join('')}</ul>`:'<p class="kn-none">与本任务技能点的对应尚待编辑补充（同一任务内的知识点均按需支撑该任务的技能点）。</p>'}<h5>在其他项目中的关联</h5>${rl.length?`<ul class="kn-list">${rl.map(r=>`<li class="kn-go" data-cx="kn:${r.key}"><em style="background:${capStage(r.n).color}">P${r.n}</em>${esc(r.title)}<small>共同：${esc(r.term)}</small></li>`).join('')}</ul>`:'<p class="kn-none">本知识点只在本项目出现。</p>'}</div>`}
+ return `<div class="kn"><div class="kn-stats"><span><b>${s.know}</b>知识点</span><span><b>${s.knowSub}</b>知识细目</span><span><b>${L.links.length}</b>跨项目关联</span><span><b>${s.support}</b>知识 → 技能支撑</span><em>关联与支撑为 AI 预生成，待编辑审核</em></div>
+<div class="viz dots kn-viz"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${CAP.projects.length} 个项目的知识网络">${g}</svg><span class="hint">点项目或知识点查看关联</span></div>
+<div class="legend"><span><i style="background:#cfd9e6"></i>项目 → 知识点：包含（稿件结构）</span><span><i style="background:#8b6cf0"></i>弧线：跨${D.terms.unit1}关联（${esc(D.text.relatedNote)}）</span></div>
+<div class="kn-panel"><div class="kn-tree"><span class="k">项目${CN[n-1]} · ${esc(p.title)}</span>${p.tasks.map((t,ti)=>`<div class="kn-task"><b>任务${ti+1} ${esc(t.title)}</b><div class="kn-ks">${t.know.map((k,ki)=>`<button type="button" aria-pressed="${sel===kkey(n,ti,ki)}" data-cx="kn:${kkey(n,ti,ki)}">${esc(k.t)}${rc(n,ti,ki)?`<i>↔${rc(n,ti,ki)}</i>`:''}</button>`).join('')||'<span class="kn-none">未单列知识点标题</span>'}</div></div>`).join('')}</div>${info}</div></div>`}
+
+/* 知识图谱 · 支撑技能 */
+function ksFix(){const t=capProj().tasks[Math.min(CS.ks.ti,capProj().tasks.length-1)];const f=t.support[0];CS.ks.ki=f?f[0]:(t.know.length?0:null)}
+function capSupport(){const p=capProj(),ti=Math.min(CS.ks.ti,p.tasks.length-1),t=p.tasks[ti];if(CS.ks.ki==null||CS.ks.ki>=t.know.length)ksFix();const ki=CS.ks.ki;
+ const lit=new Map();t.support.filter(s=>s[0]===ki).forEach(s=>lit.set(`${s[1]}-${s[2]}`,s[3]));
+ const lc=k=>t.support.filter(s=>s[0]===k).length,bc=(g,i)=>t.support.filter(s=>s[1]===g&&s[2]===i).length,cov=new Set(t.support.map(s=>s[0])).size;
+ return `<div class="ks"><div class="ks-tasks" role="tablist" aria-label="选择任务">${p.tasks.map((x,i)=>`<button type="button" role="tab" aria-selected="${i===ti}" data-cx="ksti:${i}"><b>任务${i+1}</b>${esc(x.title)}</button>`).join('')}</div>
+<div class="ks-grid"><div class="ks-col"><h5><i style="background:#8b6cf0"></i>知识点 <small>${t.know.length} 个 · ${cov} 个已标出支撑关系</small></h5>${t.know.map((k,i)=>`<button type="button" class="ks-k" aria-pressed="${i===ki}" data-cx="kski:${i}"><b>${esc(k.t)}</b>${k.s.length?`<span>${esc(k.s.slice(0,4).join(' · '))}</span>`:''}<i>${lc(i)?'支撑 '+lc(i)+' 条':'待标注'}</i></button>`).join('')}${t.know.length?'':'<p class="kn-none">本任务稿件未单列知识点标题。</p>'}</div>
+<div class="ks-mid" aria-hidden="true"><span>按需供给</span></div>
+<div class="ks-col"><h5><i style="background:#f29a3a"></i>技能点 <small>${t.skills.reduce((a,g)=>a+g.i.length,0)} 条评价标准</small></h5>${t.skills.map((g,gi)=>`<div class="ks-g"><b>${esc(g.d)}${g.v?`<small> · ${g.v} 分</small>`:''}</b>${g.i.map((it,ii)=>{const k=`${gi}-${ii}`;return `<p class="${lit.has(k)?'lit':''}">${esc(it[0])}${lit.has(k)?`<em>${esc(lit.get(k))}</em>`:bc(gi,ii)?`<small>依赖 ${bc(gi,ii)} 个知识点</small>`:''}</p>`}).join('')}</div>`).join('')}</div></div>
+<p class="note">知识点挂在它所属的任务下，只为该任务的技能服务（1 号文“按需供给、够用即止”）。具体到哪一条技能点，目前按共有关键词预生成，编辑审核后锁定；“待标注”表示尚未找到明确对应，需人工补充。</p></div>`}
+
+/* 学习 / 教学路径 */
+function capPaths(role){const p=CAP.projects[2]||CAP.projects[0],t=p.tasks[0],step=t.steps[1]||t.steps[0],g=t.skills[0],item=g?(g.i[2]||g.i[0]):null;
+ const ex=[['项目',`项目${CN[p.n-1]} ${p.title}`,'#4f7df3'],['任务',`任务1 ${t.title}`,'#2bb5c9'],['流程',step?`第${CN[t.steps.indexOf(step)]}步 ${step.t}`:'—','#35b37e'],['技能点',item?item[0]:'—','#f29a3a'],['知识点',t.know[0]?t.know[0].t:'—','#8b6cf0']];
+ const LEARN=[['看项目目标','明白学完能交付什么'],['进入任务情境',D.text.learnRole],['按流程动手','一步步完成操作'],['对照技能点自评','评价表逐条打分'],['卡住时回查知识点','沿知识图谱补短板']];
+ const TEACH=[['任务导入','【任务导入】情境与任务单'],['技能实操','【任务实施】分步操作'],['问题解决','【任务筹划】【操作提示】'],['知识讲解','【任务准备】知识准备，随用随讲'],['巩固提升','【任务评价】【拓展训练】']];
+ const DIFF=[['回答的问题','学完能做什么','知识在哪里、彼此怎么关联'],['锚点','岗位真实工作任务','知识点与概念'],['结构','五级线性，按工作顺序，不可颠倒','网状，可多路径跳转'],['在本教材中','项目 → 任务 → 流程 → 技能点 → 知识点','知识点按项目聚类，跨项目关联，按需支撑技能点']];
+ const T=role==='teacher';
+ return `<div class="blp"><div class="blp-main"><div class="blp-side blp-up"><b>编者构建</b><span>自下而上</span><small>先定岗位要的技能点，再配知识、串流程、成任务、组项目</small></div><ol class="blp-chain">${ex.map((l,i)=>`<li style="--lc:${l[2]}"><i>${i+1}</i><b>${l[0]}</b><span>${esc(l[1])}</span></li>`).join('')}</ol><div class="blp-side blp-down"><b>${T?'课堂实施':'学生学习'}</b><span>自上而下</span><small>${T?'以项目目标统领教学，任务驱动，先做后讲，知识随技能讲解':'先看到完整的项目目标，再拆成任务去做，卡住时回到知识点'}</small></div></div>
+<div class="blp-flow-h">${T?'一次课怎么上：先做后讲，知识随技能讲解':'一个任务怎么学'}</div><ol class="blp-flow">${(T?TEACH:LEARN).map((s,i)=>`<li><i>${i+1}</i><b>${s[0]}</b><span>${s[1]}</span></li>`).join('')}</ol>
+<div class="tbl blp-diff"><table><thead><tr><th></th><th>能力图谱</th><th>知识图谱</th></tr></thead><tbody>${DIFF.map(d=>`<tr><td>${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td></tr>`).join('')}</tbody></table></div>
+<p class="note">能力图谱是“总指挥”，定方向和路线；知识图谱是“后勤弹药库”，需要哪块知识就调哪块。两者互补，不能互相替代。</p></div>`}
+
+/* 院校审选 · 图谱体系自查 */
+function capCompliance(){const c=CAP,s=c.stats,T=s.tasks,tasks=c.projects.flatMap(p=>p.tasks);
+ const full=tasks.filter(t=>t.steps.length&&t.skills.length&&t.know.length).length,scored=tasks.filter(t=>t.skills.some(g=>g.v)).length,ladderP=c.projects.filter(p=>p.ladder.length).length,quality=tasks.filter(t=>t.skills.some(g=>QUAL.test(g.d))).length,vers=META.versions.length;
+ const ck=[[full===T?'ok':'part','五级结构完整',`${full} / ${T} 个任务同时具备流程、技能点、知识点`,full===T?'项目—任务—流程—技能点—知识点逐级可查，见能力图谱「五级结构」':`其余 ${T-full} 个任务缺少分步流程或知识点标题，建议在修订中补齐`],
+  ['ok','流程按工作顺序',`${s.steps} 个流程步骤，平均每任务 ${(s.steps/T).toFixed(1)} 步`,D.text.stepsNote],
+  ['ok','技能点可考核',`${s.skills} 条评价标准，${scored} / ${T} 个任务的评价表含分值`,'取自【任务评价】评价表，多数任务采用自评、组评、师评多元评价'],
+  ['ok','知识点按需供给',`${s.know} 个知识点全部挂在任务下`,'没有脱离任务的学科章节；知识点为技能服务'],
+  [quality===T?'ok':'part','素养点融入',`${quality} / ${T} 个任务设素养类评价维度；${s.ideology} 个任务设思政园地`,'素养渗透在流程与评价中，不单列一层'],
+  [s.certPending?'part':'ok','岗课赛证对接',`${s.certAny} / ${T} 个任务设赛证直通，${T-(s.certPending||0)} 个由作者写明对接对象`,s.certPending?`其余 ${s.certPending} 个任务的对接说明为补写，待作者确认；已确认的：${D.text.certColumns.slice(0,2).map(c=>c[0]+' '+(s.certCoverConfirmed[c[0]]||0)+' 个任务').join('、')}`:`点名对接：${D.text.certColumns.slice(0,2).map(c=>c[0]+' '+(s.certCover[c[0]]||0)+' 个任务').join('、')}`],
+  [ladderP===c.projects.length?'ok':'part','能力进阶清晰',`${ladderP} / ${c.projects.length} 个项目附能力图谱表，共 ${s.ladder} 个能力模块`,'认知层 → 实践层 → 拓展层，含达成标准与实践要求'],
+  ['ok','知识图谱与能力图谱分设','能力图谱为五级线性结构，知识图谱为网状结构','避免“用知识图谱充当能力图谱”的否决项'],
+  ['part','动态更新',`数字版已有 ${vers} 个版本记录`,'年度校企联合复盘机制与修订纪要：待出版社补充'],
+  ['todo','企业深度参与佐证','稿件中未体现','需补充：企业调研与跟岗记录、典型工作任务工作坊纪要、企业专家签字确认']];
+ const ST={ok:['✓','已具备'],part:['◐','部分具备'],todo:['!','待补充']},r={ok:0,part:0,todo:0};ck.forEach(x=>r[x[0]]++);
+ return `<div class="gc">${capScale()}<div class="gc-sum"><span class="ok">已具备 ${r.ok}</span><span class="part">部分具备 ${r.part}</span><span class="todo">待补充 ${r.todo}</span><em>对照教职成〔2026〕1 号文课程能力图谱要求自查</em></div><div class="gc-list">${ck.map(x=>`<div class="gc-i ${x[0]}"><i aria-label="${ST[x[0]][1]}">${ST[x[0]][0]}</i><div><b>${x[1]}</b><span>${x[2]}</span></div><p>${x[3]}</p></div>`).join('')}</div><p class="note">按二稿修订版统计（体例修订已计入，补写内容待作者确认的单列）。“已具备”项由教材稿件自动统计；“待补充”项需出版社提供佐证材料后更新，审选时请以佐证原件为准。</p></div>`}
+
+const CAPW={pp:capPicker,scale:capScale,five:capFive,ladder:capLadder,cert:capCert,net:capNet,support:capSupport,paths:()=>capPaths(role),gc:capCompliance};
+const capBox=k=>`<div data-cap="${k}"></div>`;
+function capRender(first){$$('#content [data-cap]').forEach(el=>{if(!CAP){el.innerHTML=el.parentElement.querySelector('[data-cap]')===el?'<div class="capst">本教材的能力结构尚未从稿件导入，导入后在此显示五级结构与知识关联。</div>':'';return}const v=el.querySelector('.kn-viz'),sl=v?v.scrollLeft:null;el.innerHTML=CAPW[el.dataset.cap]();const nv=el.querySelector('.kn-viz');if(nv&&nv.scrollWidth>nv.clientWidth)nv.scrollLeft=first||sl==null?(nv.scrollWidth-nv.clientWidth)/2:sl})}
+function capSetN(n){if(n===CS.n)return;CS.n=n;CS.fl.ti=0;CS.ks.ti=0;CS.ks.ki=null}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-cx]');if(!b||!b.closest('#content'))return;const v=b.getAttribute('data-cx'),i=v.indexOf(':'),k=v.slice(0,i),x=v.slice(i+1);
+ if(k==='n')capSetN(+x);else if(k==='flti')CS.fl.ti=+x;else if(k==='flview')CS.fl.view=x;else if(k==='ksti'){CS.ks.ti=+x;CS.ks.ki=null}else if(k==='kski')CS.ks.ki=+x;else if(k==='kn'){CS.kn.sel=x;capSetN(+x.split('-')[0]);CS.kn.sel=x}
+ capRender(false)});
+
+const PAGES={
+ guide:r=>[blk(0,'教材简介',guideHero()),blk(1,'适用对象',audienceViz()),blk(2,'学习目标',objRings()),blk(3,'使用方法',modesViz()),blk(4,'版本信息',versionTimeline())],
+ data:r=>[blk(0,'体系总览',kpiBlock()),blk(1,'资源构成',resourceBlock()),blk(2,'项目分布',projectBars())],
+ toc:r=>[blk(0,'目录全景',tocBlock()),blk(1,'项目任务',`<div class="tbl"><table><thead><tr><th>项目</th><th>任务数</th><th>知识点</th><th>学时</th><th>任务（节选）</th></tr></thead><tbody>${BOOK.map(p=>`<tr><td style="white-space:nowrap">P${p.n} ${esc(p.t)}</td><td class="num">${p.tasks.length}</td><td class="num">${p.kp??p.tasks.length*6}</td><td class="num">${p.hours??(p.tasks.length>=4?4:p.tasks.length>=3?3:2)}</td><td style="color:var(--muted)">${esc(p.tasks.slice(0,2).join(' · '))}</td></tr>`).join('')}</tbody></table></div>`),blk(2,'重点难点',hardBlock())],
+ kg:r=>[blk(0,'知识网络',capBox('net')),blk(1,'支撑技能',capBox('pp')+capBox('support')),blk(2,r==='teacher'?'教学路径':'学习路径',capBox('paths'))],
+ ability:r=>[blk(0,'五级结构',capBox('scale')+'<div style="height:12px"></div>'+capBox('pp')+capBox('five')),blk(1,'能力进阶',capBox('ladder')),blk(2,'岗课赛证',jobsBlock()+'<div style="height:12px"></div>'+capBox('cert'))],
+ question:r=>[blk(0,'问题三层',questionMap()),blk(1,'问题链条',chainBlock())],
+ sz:r=>[blk(0,'思政主线',szBlock()),blk(1,'项目映射',szTable())],
+ task:r=>[blk(0,'任务体例',taskFlow()),blk(1,'任务样例',taskSample()),blk(2,'成果要求',outcomes())],
+ gksz:PAGES_GK,
+ cert:r=>[blk(0,'融通矩阵',capBox('cert')),blk(1,'对接证书',certBlock()),blk(2,'对接赛项',`<div class="grid g3">${D.text.certModules.map((m,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${m[0]} 模块</h4><p>${m[1]}</p><p style="font-size:12px;color:var(--muted);margin-top:4px">${m[2]}</p></div>`).join('')}</div>`),blk(3,'覆盖明细',certTable())],
+ res:r=>[blk(0,'资源总览',resGrid()),blk(1,'媒体资源',mediaBlock()),blk(2,'题库资源',quizBlock())],
+ ai:r=>[blk(0,'AI 提问语',aiPromptBlock()),blk(1,'AI 场景',aiScenes(r)),blk(2,'四种模式',modesBlock())],
+ eval:r=>[blk(0,'评价标准',rubric()),blk(1,'评价方式',evalWays()),blk(2,'掌握度',LIVE?masteryBlock():`<div class="detail"><div class="viz">${heat(true)}</div><div class="cell"><h4>掌握度怎么看</h4><p>学生端「自学模式」把 ${BOOK.length} ${D.terms.unit1} × 4 层节点铺成网格，颜色即掌握度；教师端按班级汇总成热力图，定位需要补讲的任务。</p><p class="note">左图为示意，开课后显示真实数据。</p></div></div>`)],
+ /* 教师 */
+ tsel:r=>[blk(0,'选用摘要',`<div class="grid g4">${D.text.teacherSummary.map((c,i)=>`<div class="cell ${['c2','c1','c3','c5'][i]}"><span class="k">${c[0]}</span><h4 style="margin-top:2px">${c[1]}</h4><p>${c[2]}</p></div>`).join('')}</div>`),blk(1,'教材规模',kpiBlock()),blk(2,'核心优势',`<div class="grid g3">${D.text.advantages.map((c,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div>`),blk(3,'推荐理由',`<div class="prose"><p>${esc(D.text.recommendation)}</p></div>`)],
+ tfit:r=>[blk(0,'适用专业',`<div class="tbl"><table><thead><tr><th>专业</th><th>课程性质</th><th>建议学期</th><th>学时</th><th>适配度</th></tr></thead><tbody>${D.text.majorsTable.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td><td class="num">${x[3]}</td><td><span class="lvl ${x[4]}">${{a:'高度适配',b:'适配',c:'部分适配'}[x[4]]}</span></td></tr>`).join('')}</tbody></table></div>`),blk(1,'课程定位',`<div class="grid g2">${D.text.coursePosition.map(c=>`<div class="cell white"><h4>${esc(c[0])}</h4><p>${esc(c[1])}</p></div>`).join('')}</div>`),blk(2,'课程标准',policyBlock()),blk(3,'学时建议',`<div style="overflow-x:auto"><div class="flow" style="grid-template-columns:repeat(${BOOK.length},1fr);min-width:900px">${BOOK.map((p,i)=>`<div class="${D.text.examWeeks.includes(i+1)?'on':''}" title="${esc(p.t)}"><b>W${i+1}</b>${esc(shortName(p.t,4))}</div>`).join('')}</div></div><p style="font-size:12.5px;color:var(--muted);margin-top:8px">${BOOK.length} 周 · ${esc(D.text.hoursPlan)}，第 ${D.text.examWeeks.join('、')} 周为阶段考核；讲师端可按本校学时拖拽调整并同步生成学生路径。</p>`)],
+ team:r=>[blk(0,'主编主审',teamBlock()),blk(1,'编写团队',`<div class="tbl"><table><thead><tr><th>角色</th><th>姓名</th><th>单位</th><th>负责${D.terms.unit1}</th></tr></thead><tbody>${D.text.members.map(x=>`<tr>${x.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`),blk(2,'单位分布',orgBlock())],
+ tstruct:r=>[blk(0,'体例设计',taskFlow()),blk(1,'项目章节',tocBlock()),blk(2,'内容逻辑',`<div class="grid g2">${D.text.contentLogic.map(c=>`<div class="cell white"><h4>${esc(c[0])}</h4><p>${esc(c[1])}</p></div>`).join('')}</div>`)],
+ tapp:r=>[blk(0,'教学计划',`<div style="overflow-x:auto"><div class="flow" style="grid-template-columns:repeat(${BOOK.length},1fr);min-width:900px">${BOOK.map((p,i)=>`<div class="${D.text.examWeeks.includes(i+1)?'on':''}"><b>W${i+1}</b>${esc(shortName(p.t,4))}</div>`).join('')}</div></div><div class="grid g3" style="margin-top:12px">${D.text.teachingPhases.map((c,i)=>`<div class="cell ${['c1','c2','c3'][i%3]}"><h4>${esc(c[0])}</h4><p>${esc(c[1])}</p></div>`).join('')}</div>`),blk(1,'教学建议',`<div class="grid g3">${D.text.teachingTips.map(c=>`<div class="cell tint" style="--tc:${c[2]}"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div><div style="height:12px"></div><div class="grid g3">${D.text.teacherTools.map((c,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div>`),blk(2,'课堂样例',taskSample()),blk(3,'纸数融合',`<div class="grid g2"><div class="cell white"><h4>纸书 + 数字版怎么用</h4><ul><li>纸书扫码直达对应任务的视频、量表与练习</li><li>数字版页码与纸书一致，课堂可互相引用</li><li>已购纸书学生凭书内码享数字版优惠</li></ul></div><div class="cell white"><h4>只用数字版可以吗</h4><p>可以。数字版包含全部审定正文，阅读模式提供与纸书同等的排版与批注体验，并额外提供图谱、题库与 AI 场景。</p></div></div>`)],
+ tbasis:r=>[blk(0,'政策依据',policyBlock()),blk(1,'适配结论',`<div class="grid g4">${D.text.teacherFit.map((c,i)=>`<div class="cell ${['c2','c1','c5','c4'][i]}"><span class="k">${c[0]}</span><h4 style="margin-top:2px">${c[1]}</h4><p>${c[2]}</p></div>`).join('')}</div>`),blk(2,'报审材料',`<div class="grid g3">${D.text.reviewDocs.map((m,i)=>`<div class="cell white" style="display:flex;justify-content:space-between;align-items:center"><span>${m}</span><button class="btn small ghost" data-act="kit">导出</button></div>`).join('')}</div>`)],
+ /* 院校 */
+ ssum:r=>[blk(0,'审选摘要',`<div class="grid g4">${[['审选结论',D.text.schoolVerdict[0],D.text.schoolVerdict[1]],['出版资质','正规出版',META.plan?'ISBN · '+META.plan:'ISBN · 新书'],['标准适配','逐条对标','专业 / 职业 / 技术标准'],['应用证据',LIVE?LIVE.schools+' 所院校':'新书上线',LIVE?LIVE.students.toLocaleString()+' 名学生在用':'首批选用院校招募中']].map((c,i)=>`<div class="cell ${['c2','c1','c3','c5'][i]}"><span class="k">${c[0]}</span><h4 style="margin-top:2px">${c[1]}</h4><p>${c[2]}</p></div>`).join('')}</div>`),blk(1,'基本条件',`<div class="tbl"><table><thead><tr><th>审核项</th><th>情况</th><th>状态</th></tr></thead><tbody>${[['出版单位资质',D.text.publisherNote,'a'],['规划教材 / 奖项',META.plan?META.plan+'；'+(META.planNote||''):'新书，申报中','b'],['主编资质',D.text.editorNote,'a'],['思政融入',STAT.sz+' 处思政园地嵌入'+D.terms.unit2,'a'],['数字内容审核','出版社数字教材审核委员会三审','a'],['数据与安全','符合网络安全与数据安全法规','a']].map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><span class="lvl ${x[2]}">${x[2]==='a'?'符合':'进行中'}</span></td></tr>`).join('')}</tbody></table></div>`),blk(2,'建设规模',kpiBlock()),blk(3,'审选结论',`<div class="prose"><p>${esc(D.text.schoolConclusion)}${LIVE?'已有 '+LIVE.schools+' 所院校使用并形成教学数据':'已完成出版审核与标准对照'}。建议纳入本校教材选用目录，并作为校级规划教材建设的参考样例。</p></div>`)],
+ spub:r=>[blk(0,'出版身份',`<div class="grid g3"><div class="cell c1"><h4>出版单位</h4><p>${esc(D.text.publisherFull)}</p></div><div class="cell c2"><h4>规划教材</h4><p>${META.plan?META.plan+'；'+(META.planNote||''):'新书，待首个使用周期后申报规划教材'}</p></div><div class="cell c3"><h4>版权</h4><p>纸书与数字版版权均归出版社；数字版通过灵枢医学平台授权分发</p></div></div>`),blk(1,'ISBN 版次',versionBlock()),blk(2,'数字版本',`<div class="grid g3">${[...META.versions].reverse().map((v,i)=>`<div class="cell white"><h4>${v.v}${i===0?' · 当前':''}</h4><p>${v.date}：${v.note}</p></div>`).join('')}</div>`),blk(3,'更新记录',META.versions.length>1?`<div class="prose"><p>内容按季度滚动修订，修订记录随版本公开；重大修订（新版）在授权期内免费升级。读者纠错由编委会按季度处理并公示。</p></div>`:empty('首个版本，暂无修订记录','内容按季度滚动修订，首次修订计划 '+(META.next||'待定')+'；读者纠错由编委会按季度处理并公示。'))],
+ sedit:r=>[blk(0,'编写流程',`<div class="flow" style="grid-template-columns:repeat(6,1fr)">${['课程调研','体例设计','分项目编写','行业审读','主审审定','出版审核'].map((f,i)=>`<div class="${i===4?'on':''}"><b>${String(i+1).padStart(2,'0')}</b>${f}</div>`).join('')}</div>`),blk(1,'审校流程',`<div class="grid g3">${D.text.reviewProcess.map((c,i)=>`<div class="cell ${['c1','c2','c3'][i%3]}"><h4>${esc(c[0])}</h4><p>${esc(c[1])}</p></div>`).join('')}</div>`),blk(2,'数字内容审核',`<div class="grid g3"><div class="cell white"><h4>图谱与题库</h4><p>数字教材审核委员会逐节点审核，审核记录随版本公开。</p></div><div class="cell white"><h4>AI 回答</h4><p>AI 场景回答限定在审定内容范围并标注依据节点；抽样审核，不一致回答进入复核队列。</p></div><div class="cell white"><h4>纠错机制</h4><p>任意节点可提交纠错，季度处理并公示。</p></div></div>`)],
+ sstd:r=>[blk(0,'专业标准',`<div class="tbl"><table><thead><tr><th>${esc(D.text.standardHead)}</th><th>本书对应</th><th>覆盖</th></tr></thead><tbody>${D.text.standardItems.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><span class="lvl ${x[2]}">${x[2]==='a'?'完全覆盖':'覆盖'}</span></td></tr>`).join('')}</tbody></table></div>`),blk(1,'职业标准',jobsBlock()),blk(2,'技术标准',`<div class="grid g3"><div class="cell c1"><h4>数字教材标准</h4><p>内容结构、元数据、资源封装按职业教育数字教材出版标准体系（征求意见稿）与高等教育数字教材团体标准组织。</p></div><div class="cell c2"><h4>格式与终端</h4><p>Web / 平板 / 手机，离线缓存与进度同步；课件可编辑导出。</p></div><div class="cell c3"><h4>数据安全</h4><p>学生个人数据最小化采集，院校仅见汇总数据；符合网络安全法、数据安全法与个人信息保护法。</p></div></div>`),blk(3,'适配结论',`<div class="prose"><p>${esc(D.text.standardConclusion)}</p></div>`)],
+ squal:r=>[blk(0,'质量六性',`<div class="grid g3">${D.text.qualitySix.map((c,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div>`),blk(1,'图谱体系',capBox('gc'))],
+ sevid:r=>[blk(0,'使用规模',LIVE?`<div class="grid g4">${[['选用院校',LIVE.schools+' 所','覆盖 '+LIVE.provinces+' 个省份'],['授权学生',LIVE.students.toLocaleString(),'本学期 '+LIVE.termStudents.toLocaleString()],['认证教师',LIVE.teachers,'开课班级 '+LIVE.classes],['资源使用',LIVE.completion+'%','视频完播率']].map((c,i)=>`<div class="cell ${['c1','c2','c3','c5'][i]}"><span class="k">${c[0]}</span><h4 class="num" style="font-size:26px;margin-top:2px">${c[1]}</h4><p>${c[2]}</p></div>`).join('')}</div>`:empty('新书上线，使用数据积累中','首个学期结束后展示选用院校、授权学生、认证教师与资源使用率；首批选用院校可获得建设支持。',['预约选用咨询','school'])),blk(1,'学期趋势',LIVE?semesterCharts():empty('暂无学期数据','开课一个学期后，这里展示授权学生数与选用院校数的逐学期变化。')),blk(2,'教学数据',LIVE?masteryBlock():empty('暂无教学数据','班级使用后生成项目 × 能力维度掌握热力图，供教学评估引用。')),blk(3,'反馈',LIVE?`<div class="grid g3">${D.text.feedback.map(f=>`<div class="cell white"><span class="k">${f[0]}</span><p style="font-family:var(--serif);font-size:14.5px;margin-top:4px">${f[1]}</p><p style="font-size:12px;color:var(--muted);margin-top:6px">${f[2]}</p></div>`).join('')}</div>`:empty('暂无院校反馈','首批选用院校的教师、学生与机构反馈将在此展示。'))],
+ sout:r=>[blk(0,'规划与奖项',`<div class="grid g3">${META.plan?`<div class="cell c5"><span class="k">规划教材</span><h4>${META.plan}</h4><p>${META.planNote||''}</p></div>`:`<div class="cell white"><span class="k">规划教材</span><h4>新书 · 申报中</h4><p>按"十四五"职业教育国家规划教材遴选要求建设，待首个使用周期后申报。</p></div>`}${(META.awards||[]).map(a=>`<div class="cell c1"><span class="k">奖项</span><h4>${a.title}</h4><p>${a.note}</p></div>`).join('')}<div class="cell c1"><span class="k">教学成果</span><h4>${esc(D.text.achievement[0])}</h4><p>${esc(D.text.achievement[1])}</p></div><div class="cell c3"><span class="k">标准符合</span><h4>数字教材标准</h4><p>按职业教育数字教材出版标准体系组织</p></div></div>`),blk(1,'建设借鉴',`<div class="prose"><p>出版社向选用院校开放本书的<b>体例设计方法、知识节点化规范与数字化改造流程</b>，提供教材建设研讨、申报材料辅导与联合开发机会，帮助院校形成自己的规划教材与获奖教材。</p></div><div class="grid g3" style="margin-top:12px">${[['体例模板','11 环节任务体例与三维目标撰写指南'],['节点化规范','知识点拆分、关系标注与图谱生成规范'],['申报辅导','规划教材与教材奖申报材料结构与案例']].map((c,i)=>`<div class="cell tint" style="--tc:${PC(i)}"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div>`),blk(2,'成果材料',`<div class="grid g3">${['规划教材证明','审定意见书','课程标准对照表','课程思政映射表','使用数据报告','建设经验手册'].map(m=>`<div class="cell white" style="display:flex;justify-content:space-between;align-items:center"><span>${m}</span><button class="btn small ghost" data-act="kit">导出</button></div>`).join('')}</div>`)],
+ stech:r=>[blk(0,'格式兼容',`<div class="grid g3"><div class="cell c1"><h4>终端</h4><p>Web / 平板 / 手机，支持课堂投屏与离线缓存。</p></div><div class="cell c2"><h4>导出</h4><p>课件、量表、教学计划可编辑导出；报表导出 Excel / PDF。</p></div><div class="cell c3"><h4>对接</h4><p>支持与校级教务系统、智慧教室按标准接口对接。</p></div></div>`),blk(1,'数据安全',`<div class="prose"><p>学生个人数据最小化采集，院校仅见汇总数据；平台通过等保备案，符合网络安全法、数据安全法与个人信息保护法。</p></div>`),blk(2,'AI 边界',`<div class="prose"><p>AI 场景回答限定在本教材审定内容范围内并标注依据节点；AI 输出属学习或教学辅助结果，不等同于教材正文、标准答案或出版审核结论。</p></div>`)],
+ sbasis:r=>[blk(0,'审选清单',`<div class="tbl"><table><thead><tr><th>审核项</th><th>材料</th><th>可导出</th></tr></thead><tbody>${[['出版资质','ISBN、版权页、规划教材证明'],['编审机制','编写流程、审定意见书、数字审核记录'],['标准适配','专业 / 职业 / 技术标准对照表'],['内容质量','质量六性说明、样章'],['资源建设','资源统计与清单'],['应用证据','使用数据报告、院校反馈'],['成果价值','建设经验手册、申报辅导方案']].map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><button class="btn small ghost" data-act="kit">导出</button></td></tr>`).join('')}</tbody></table></div>`),blk(1,'政策依据',policyBlock()),blk(2,'审选结论',`<div class="prose"><p>建议纳入选用目录；可作为校级规划教材建设参考样例。联系区域经理获取批量授权与建设支持方案。</p><div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap"><button class="btn primary" data-act="school">预约选用咨询</button><button class="btn ghost" data-act="kit">下载选用材料包</button></div></div>`)]
+};
+
+/* ===================== 状态与渲染 ===================== */
+let role='student',tab=null,plan=null;
+const PLANS=D.plans;
+function renderPlans(){plan=plan||PLANS[1];$('#plans').innerHTML=PLANS.map(p=>`<button class="plan" aria-pressed="${p.id===plan.id}" data-id="${p.id}"><b>${p.n}</b><span>${p.s}</span><em>¥${p.p}</em>${p.best?'<span class="best">推荐</span>':''}</button>`).join('');$('#price').textContent=plan.p;$('#priceNote').textContent=`${plan.n} · 含 AI 与图谱`;if($('#tabCta'))tabCta();}
+function tabCta(){const c=$('#tabCta');c.innerHTML=role==='student'?`<span>¥<b>${plan.p}</b> ${plan.n}</span><button class="btn small primary" data-act="buy">立即购买</button>`:role==='teacher'?`<span>认证教师免费</span><button class="btn small primary" data-act="teacher">申请认证</button>`:`<span>院校选用支持</span><button class="btn small primary" data-act="school">预约咨询</button>`}
+function setRole(r,keepTab){role=r;const R=ROLES[r];tabCta();
+ $$('#roleCards .role-card').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===r));
+ $$('.offer-tabs [role=tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.role===r));$$('.offer-body').forEach(b=>b.hidden=b.dataset.offer!==r);
+ 
+ $('#tabbar').innerHTML=R.menu.map((m,i)=>`<button role="tab" data-id="${m.id}" aria-selected="false" aria-controls="content" tabindex="${i?-1:0}">${m.t}${m.ai?'<sup>AI</sup>':''}</button>`).join('');
+ 
+ setTab(keepTab&&R.menu.find(m=>m.id===keepTab)?keepTab:R.menu[0].id,false)}
+const PAGE_CACHE={};
+function setTab(id,scroll){tab=id;const R=ROLES[role],m=R.menu.find(x=>x.id===id),idx=R.menu.indexOf(m);
+ $$('#tabbar button').forEach(b=>{const on=b.dataset.id===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});const on=$('#tabbar button[aria-selected=true]');if(on){const w=on.parentElement;w.scrollTo({left:on.offsetLeft-w.clientWidth/2+on.offsetWidth/2,behavior:'smooth'})}
+ const ck=role+':'+id;const blocks=PAGE_CACHE[ck]||(PAGE_CACHE[ck]=(PAGES[id]||(()=>[]))(role));
+ $('#pageHead').innerHTML=`<div><h2><b>${String(idx+1).padStart(2,'0')} / 12</b>${m.t}</h2><p>${PAGE_DESC[id]||''}</p></div><span class="tag" style="background:#fff">${R.label} · ${R.desc}</span>`;
+ $('#subnav').innerHTML=m.subs.map((s,i)=>`<a href="#a${i}" data-i="${i}" class="${i===0?'on':''}"><b>${String(i+1).padStart(2,'0')}</b>${s}</a>`).join('');
+ $('#content').innerHTML=blocks.join('');capRender(true);
+ 
+ animateIn();
+ if($('#tocList'))tocDetail(2);
+ spy();
+ if(scroll){const y=$('.tabbar').getBoundingClientRect().top+scrollY-80;if(scrollY>y)scrollTo({top:y,behavior:'smooth'})}
+ try{location.hash=id}catch(e){}}
+const PAGE_DESC={gksz:'岗位任务、课程标准、技能赛项、证书考点四者如何在每个项目里对应起来。',guide:'先了解教材定位、对象、目标、使用方法和版本。',data:'一屏看清教材的知识、能力、问题、资源四个体系的规模。',toc:BOOK.length+' 个'+D.terms.unit1+'、'+NT+' 个'+D.terms.unit2+'的目录全景与重点难点。',kg:'知识图谱回答“知识在哪里”：知识点按项目聚类、跨项目关联，按需支撑技能点。',ability:'能力图谱回答“学完能做什么”：按项目—任务—流程—技能点—知识点五级结构，从岗位任务倒推。',question:'把教材翻译成岗位上真正会遇到的问题：全局、项目、任务三层。',sz:'课程思政不是附录，'+STAT.sz+' 处思政园地嵌入'+D.terms.unit2+'流程。',task:'一个'+D.terms.unit2+'的 '+D.text.taskFlow.length+' 个环节怎样展开，以'+D.text.sampleTaskLabel+' 为例。',cert:'岗课赛证融通：每个任务对接的岗位、证书等级与赛项模块。',res:'资源按任务挂载，每一条资源都知道自己服务于哪个知识点。',ai:'教材原生的 AI 学习入口：提问语、六个场景与四种模式。',eval:'学生怎样被评价、掌握度怎样被看见。',tsel:'用一屏信息完成教材选用的初步判断。',tfit:'核对教材与专业、课程标准、教学对象和学时的适配程度。',team:'谁来写、谁来审，决定教材的权威性。',tstruct:'体例、章节与内容逻辑。',tapp:'教学计划、讲师端教学模式、课堂样例与纸数融合。',tbasis:'政策依据、适配结论与可直接导出的报审材料。',ssum:'快速判断教材是否具备进入正式审核的基本条件。',spub:'核验出版身份、ISBN 版次、数字版本与更新记录。',sedit:'编写、审校与数字内容审核机制。',sstd:'与专业标准、职业标准、技术标准的逐项对照。',squal:'科学性、先进性、系统性、职业性、实践性、育人性。',sevid:'使用院校、学生规模、学期趋势与教学数据。',sout:'规划与奖项，以及对本校教材建设的借鉴价值。',stech:'格式兼容、数据安全与 AI 边界。',sbasis:'审选清单、政策依据与审选结论。'};
+let spyIO;function spy(){spyIO&&spyIO.disconnect();spyIO=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const i=en.target.id.slice(1);$$('#subnav a').forEach(a=>a.classList.toggle('on',a.dataset.i===i))}})},{rootMargin:'-30% 0px -60% 0px'});$$('.content .block').forEach(b=>spyIO.observe(b))}
+
+/* 事件 */
+(function(){const cur=META.versions[META.versions.length-1];$('#verMeta').textContent=`${cur.v} · ${cur.date.slice(0,7)}`;const pt=$('#planTag');if(META.plan)pt.textContent=META.plan;else pt.remove()})();
+$('#strip').innerHTML=stripHtml();countUp();renderPlans();
+$$('#roleCards .role-card').forEach(b=>b.addEventListener('click',()=>setRole(b.dataset.role,tab)));
+$$('.offer-tabs [role=tab]').forEach(b=>b.addEventListener('click',()=>setRole(b.dataset.role,tab)));
+const ACT={ai:()=>toast('打开灵枢 AI 导读（原型）：只回答本教材范围内的问题'),buy:()=>toast(`已选择 ${plan.n} · ¥${plan.p}，进入支付（原型）`),trial:()=>toast('试读需登录，24 小时内可阅读全本（原型）'),activate:()=>toast('请输入老师分发的激活码（原型）'),teacher:()=>toast('打开教师认证表单（原型）'),sample:()=>toast('已申请电子样书 / 样章（原型）'),school:()=>toast('打开院校选用咨询预约（原型）'),kit:()=>toast('材料将在登录后导出（原型）'),login:()=>toast('打开登录（原型）'),app:()=>toast('APP 下载（原型）'),shelf:()=>toast('已加入书架（原型）'),share:()=>toast('链接已复制（原型）')};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&ACT[b.dataset.act]){ACT[b.dataset.act]();return}
+ const tb=e.target.closest('#tabbar button');if(tb){setTab(tb.dataset.id,true);return}
+ const sa=e.target.closest('#subnav a');if(sa){e.preventDefault();const t=$('#'+sa.getAttribute('href').slice(1));t&&t.scrollIntoView({behavior:'smooth',block:'start'});return}
+ const pl=e.target.closest('#plans .plan');if(pl){plan=PLANS.find(p=>p.id===pl.dataset.id);renderPlans();return}
+ const tl=e.target.closest('#tocList button');if(tl){tocDetail(+tl.dataset.i);return}
+ const kg=e.target.closest('#kgSvg .node-pill');if(kg){kgSelect(+kg.dataset.p)}});
+$('#tabbar').addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;const bs=$$('#tabbar button'),i=bs.findIndex(b=>b.getAttribute('aria-selected')==='true');const n=bs[(i+(e.key==='ArrowRight'?1:bs.length-1))%bs.length];n.focus();setTab(n.dataset.id,true)});
+
+/* 首屏动效：星点 + 光带（装饰，无数据采集） */
+(function(){const cv=$('#fx'),ctx=cv.getContext('2d'),hero=$('.hero'),tg=$('#motionToggle');let W,H,dpr=1,t=0,paused=matchMedia('(prefers-reduced-motion:reduce)').matches,stars=[],raf;
+ function size(){dpr=Math.min(2,devicePixelRatio||1);W=cv.width=hero.clientWidth*dpr;H=cv.height=hero.clientHeight*dpr;stars=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),r:(.6+Math.random()*1.3)*dpr,p:Math.random()*6.28,a:.2+Math.random()*.5}))}
+ function glow(x,y,r,c,a){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(.5,`rgba(${c},${a*.35})`);g.addColorStop(1,`rgba(${c},0)`);ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2)}
+ function ribbon(y0,amp,freq,speed,c,n,alpha){for(let k=0;k<n;k++){ctx.beginPath();for(let x=0;x<=W;x+=8*dpr){const y=y0+Math.sin(x/W*freq*6.28+t*speed+k*.35)*amp+k*9*dpr*Math.cos(x/W*3+t*.3);x?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle=`rgba(${c},${alpha*(1-k/n)})`;ctx.lineWidth=(k===0?1.4:.7)*dpr;ctx.stroke()}}
+ let vis=true;
+ function frame(){if(!vis||document.hidden)return;ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='screen';
+  glow(W*.12,H*.5,W*.22,'30,91,213',.5);glow(W*.78,H*.25,W*.2,'80,83,214',.4);glow(W*.55,H*1.05,W*.3,'34,132,216',.35);
+  stars.forEach(s=>{const a=s.a*(.75+.25*Math.sin(t*.9+s.p));ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,6.283);ctx.fillStyle=`rgba(170,210,255,${a})`;ctx.fill()});
+  ribbon(H*.62,H*.09,1.1,.35,'79,209,255',14,.22);ribbon(H*.78,H*.06,1.6,-.25,'145,135,254',10,.18);ribbon(H*.3,H*.05,.9,.2,'100,180,255',8,.12);
+  ctx.globalCompositeOperation='source-over';t+=.016;if(!paused)raf=requestAnimationFrame(frame)}
+ function run(){if(!paused&&vis&&!document.hidden){cancelAnimationFrame(raf);frame()}}
+ size();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{size();run()},120)});new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis)run();else cancelAnimationFrame(raf)}).observe(hero);document.addEventListener('visibilitychange',()=>document.hidden?cancelAnimationFrame(raf):run());frame();
+ tg.addEventListener('click',()=>{paused=!paused;tg.setAttribute('aria-pressed',paused);tg.innerHTML=paused?'<span>▶</span>播放动效':'<span>‖</span>暂停动效';if(paused){cancelAnimationFrame(raf);frame.call(null)}else run()});
+})();
+(function(){const Q=D.text.presalesQuestions;let i=0,el=$('#aiInput');if(!el)return;$('#aiAsk').addEventListener('submit',e=>{e.preventDefault();toast('灵枢 AI 售前咨询：'+(el.value||el.placeholder)+'（原型，仅回答授权、试读、适用专业等售前问题）')});if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ function type(){if(document.activeElement===el||el.value){setTimeout(type,2000);return}const t=Q[i=(i+1)%Q.length];let k=0;el.placeholder='';const iv=setInterval(()=>{el.placeholder=t.slice(0,++k);if(k>=t.length){clearInterval(iv);setTimeout(type,2600)}},55)}setTimeout(type,2800)})();
+new IntersectionObserver(es=>{$('#tabCta').hidden=es[0].isIntersecting},{threshold:0}).observe($('.offer'));
+const h=(location.hash||'').slice(1);const initRole=['student','teacher','school'].find(r=>ROLES[r].menu.some(m=>m.id===h))||'student';setRole(initRole,h||null);
+</script>
+
+</body>
+</html>

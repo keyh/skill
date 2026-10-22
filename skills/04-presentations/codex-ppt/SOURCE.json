@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "codex-ppt",
+  "repository": "ningzimu/codex-ppt-skill",
+  "commit": "941dcafe2f23ea4ae61de99e9b22fb0ef3d9e06c",
+  "source_path": "skills/codex-ppt",
+  "source_archive_sha256": "eb1a17f9b25cc23712e0046e359072fae70c89e929b26d2d9b25029ecc5b0727",
+  "original_name": "codex-ppt",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/ningzimu/codex-ppt-skill",
+  "original_skill_sha256": "bbba58db7e83a512de548a6d89bb9efefec09f129bbaeb0e1c849527517601ef"
+}

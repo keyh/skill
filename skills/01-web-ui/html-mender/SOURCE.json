@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "html-mender",
+  "repository": "wuhaoyupku/html-mender",
+  "commit": "4358bfa278e69da0da8e14e9d65988e9dce70c2b",
+  "source_path": "skills/html-slide-mender",
+  "source_archive_sha256": "a3e75707bf53b2a35c1821f718fdec3e76eab980f1cc3dd473df624c15d348de",
+  "original_name": "html-mender",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True",
+    "moved non-Codex frontmatter fields into metadata: version"
+  ],
+  "upstream_url": "https://github.com/wuhaoyupku/html-mender",
+  "original_skill_sha256": "c870b909cf09f0e9f709d18989283a014b81e041717bafb1ce741f4a2e3f8bc7"
+}

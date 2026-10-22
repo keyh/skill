@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/levelplay-unity-integration",
+  "original_skill_sha256": "54a3548b9a6463790ca80fa37779fe48d45261a1d0432d9519268f18d74f6294"
+}

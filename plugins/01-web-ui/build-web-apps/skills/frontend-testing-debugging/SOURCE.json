@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/frontend-testing-debugging",
+  "original_skill_sha256": "03724620cf7e7de425b607a5492f572d867b1cf5d9c92c74bf50d057d7415e0b"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "template-creator",
+  "version": "26.1011.51657",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/template-creator",
+  "original_skill_sha256": "f1d14fd2847a2e879611a8b8f872f5dc4676a0607958d015274d2dc61e812deb"
+}

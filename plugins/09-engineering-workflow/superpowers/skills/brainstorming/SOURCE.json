@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/brainstorming",
+  "original_skill_sha256": "a32d2255354775aa124855aa7100cf276bea096fff4ebb3a0edf57be216e6c72"
+}

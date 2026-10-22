@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/presentation-time-fitting",
+  "original_skill_sha256": "37f13c6322be6062b3cd98934cffcfe65cff70e6698560b8a7243583ec7a454c"
+}

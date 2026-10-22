@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-swiftui",
+  "original_skill_sha256": "868c4defe2c0854f5a3e27594d3fa0f20347c86a9b15d103483b7488bfa8affe"
+}

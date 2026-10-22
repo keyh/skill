@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/sprite-segment-3x3grid",
+  "original_skill_sha256": "bf234ec20bb3d72a9850d2bcd78daadff3dd88ae90c95b514278bcd517095b7d"
+}

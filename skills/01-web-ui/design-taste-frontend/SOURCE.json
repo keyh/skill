@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "design-taste-frontend",
+  "repository": "Leonxlnx/taste-skill",
+  "commit": "f624f37a8c650b9cc550253104925efe4c8de246",
+  "source_path": "skills/taste-skill",
+  "source_archive_sha256": "735d7c893bf5d91095e2a2bdb55d96798b7402261a0a4b0a784f8508198c92f2",
+  "original_name": "design-taste-frontend",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/Leonxlnx/taste-skill",
+  "original_skill_sha256": "1e52f7a95359af7ad4d8b5899405ec2c57eeb071c32a30f99c4c0b0099931553"
+}

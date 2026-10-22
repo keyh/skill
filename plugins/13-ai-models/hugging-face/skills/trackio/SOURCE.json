@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/trackio",
+  "original_skill_sha256": "893ac9695f8677db4c4f0c15795e789346946f6142305c89d7ee57774e22ffb1"
+}

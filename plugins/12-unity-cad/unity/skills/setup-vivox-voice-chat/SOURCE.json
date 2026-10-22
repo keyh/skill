@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/setup-vivox-voice-chat",
+  "original_skill_sha256": "c68cc852b7bb8a5ad97cfe8fd8857d2d1c9366c7f367e1047b3d17d074141e06"
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "humanize-ppt",
+  "repository": "LearnPrompt/humanize-ppt",
+  "commit": "2c36a8e30606bab7ea9c637614b569d87b34f23b",
+  "source_path": ".",
+  "source_archive_sha256": "d9f6ed623eb36dda9a65b91e0fccad1954fee791fabff018ac35a91ae4e6c400",
+  "original_name": "humanize-ppt",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: author,requires-skills,version"
+  ],
+  "upstream_url": "https://github.com/LearnPrompt/humanize-ppt",
+  "original_skill_sha256": "6a336b011e173b385657f3d33fa75cd59533bf4550d99779e99e467f53ea6cae"
+}

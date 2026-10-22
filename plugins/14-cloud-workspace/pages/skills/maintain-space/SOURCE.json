@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "pages",
+  "version": "0.1.23",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/maintain-space",
+  "original_skill_sha256": "53570e6cb8663d370dce15ed0d67208876c3b13015832c352daa759213e7378e"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "notion",
+  "version": "3.0.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/notion-spec-to-implementation",
+  "original_skill_sha256": "0fe3e0e040193836de1898216388e8edf1e02df81ff47d31968190116c051096"
+}

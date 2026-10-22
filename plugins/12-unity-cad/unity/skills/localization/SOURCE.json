@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/localization",
+  "original_skill_sha256": "7d3a139446aee1d88185ab560512de1b2bc9359595e876e804003b1480ef8da6"
+}

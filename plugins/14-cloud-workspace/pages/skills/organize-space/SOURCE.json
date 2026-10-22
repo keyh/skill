@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "pages",
+  "version": "0.1.23",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/organize-space",
+  "original_skill_sha256": "dfa8bfae86785a98e43b1ca0af67a9c89b90c658eee7fc7ad4ccfe8cc84a267b"
+}

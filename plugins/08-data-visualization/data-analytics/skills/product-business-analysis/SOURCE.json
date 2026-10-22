@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/product-business-analysis",
+  "original_skill_sha256": "036b89f9cc9c982fad224cd17e3d93339e5eef8080bbe3d8d2b28731a0a62113"
+}

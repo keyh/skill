@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/bulk-create",
+  "original_skill_sha256": "65deda62b60ce9e748c7a90b3e41e91dadc38f6deee3ba4aca799fd7502eb8b4"
+}

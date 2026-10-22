@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "product-design",
+  "version": "0.1.56",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/url-to-code",
+  "original_skill_sha256": "2624d0e2ec5f14ba2a4bf74fe05aaa23520b4fb76ca57973c9dadd54fd4b09d2"
+}

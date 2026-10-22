@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/design-translation",
+  "original_skill_sha256": "c10b609033f5727c53d3c05dddd61c4e3d0de9a314b78420b2109dc6629192eb"
+}

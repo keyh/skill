@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ios-debugger-agent",
+  "original_skill_sha256": "bb8ad932ec473cee097c9c8d106051134e9ab6cf9dc85d6a8e62ce80ad24c385"
+}

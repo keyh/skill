@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "openspec-propose",
+  "repository": "Fission-AI/OpenSpec",
+  "commit": "c794978f4f8845ce59693373c9dd882ee776588c",
+  "source_path": "skills/openspec-propose",
+  "source_archive_sha256": "df0c2be216100550034bea1178befe81f741068e812df2f6026e307d5b51f06d",
+  "original_name": "openspec-propose",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: compatibility"
+  ],
+  "upstream_url": "https://github.com/Fission-AI/OpenSpec",
+  "original_skill_sha256": "aaabb5bfde97a4fcce9272f2394a842da307209e477815b67e1679604b9249d4"
+}

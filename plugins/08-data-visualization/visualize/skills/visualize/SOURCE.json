@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "visualize",
+  "version": "1.0.50",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/visualize",
+  "original_skill_sha256": "766f4e5ee250af9d3c68353d0b8609e40e0ce5926a625d7ca88e073525360d25"
+}

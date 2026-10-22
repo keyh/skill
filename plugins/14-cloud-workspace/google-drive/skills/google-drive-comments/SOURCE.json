@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "google-drive",
+  "version": "0.1.22",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/google-drive-comments",
+  "original_skill_sha256": "a3077375a8f7558b9e052c98047747b8a4a1a90a9a90b552009c28fcdadfe94a"
+}

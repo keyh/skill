@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftpm-macos",
+  "original_skill_sha256": "4bd2a889a2f96569773b8d408710326df715f5cfa7c4b3e942be4f895e2b382a"
+}

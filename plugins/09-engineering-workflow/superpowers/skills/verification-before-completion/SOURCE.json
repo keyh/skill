@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/verification-before-completion",
+  "original_skill_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+}

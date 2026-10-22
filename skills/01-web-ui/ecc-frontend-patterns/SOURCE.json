@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "ecc-frontend-patterns",
+  "repository": "affaan-m/ECC",
+  "commit": "76aaa77df6adc5b889e689007bf99b9a4f74af34",
+  "source_path": ".agents/skills/frontend-patterns",
+  "source_archive_sha256": "a9b2ece734d936fb23368d694dde910e0ee48bae1516b0c6dc79faf11153129c",
+  "original_name": "frontend-patterns",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/affaan-m/ECC",
+  "original_skill_sha256": "1fede817c9dff03c335cb8262261cc713e27274b665d1aed745347807fa41d5c"
+}

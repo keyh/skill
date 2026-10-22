@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/frontend-app-builder",
+  "original_skill_sha256": "9273de02827b29534be28fb2b37154c1571ac38b4e20d3ef5482b7e22af67394"
+}

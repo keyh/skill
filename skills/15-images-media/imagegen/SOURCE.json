@@ -1,0 +1,7 @@
+{
+  "kind": "system",
+  "source_root": "codex-system",
+  "source_relative_path": "imagegen",
+  "original_skill_sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba",
+  "upstream_url": "https://github.com/openai/skills"
+}

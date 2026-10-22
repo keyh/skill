@@ -1,0 +1,10 @@
+{
+  "web-design": {"title": "网页设计与改版", "skills": ["frontend-design", "web-design-engineer", "ui-interaction-brief", "web-motion-reference"]},
+  "presentations": {"title": "PPT与网页演示", "skills": ["ppt-master", "html-ppt", "humanize-ppt"]},
+  "writing": {"title": "文章与内容写作", "skills": ["beautiful-article", "ecc-article-writing", "ecc-brand-voice"]},
+  "research": {"title": "网页研究与资料采集", "skills": ["firecrawl", "firecrawl-search", "firecrawl-scrape", "firecrawl-map", "ecc-market-research"]},
+  "knowledge": {"title": "知识库与学习", "skills": ["kb-retriever", "llm-wiki", "cangjie-skill", "prerequisite-learning-path"]},
+  "engineering": {"title": "开发规范与质量", "skills": ["planning-with-files", "ecc-change-impact", "ecc-coding-standards", "ecc-security-review", "ecc-verification-loop"]},
+  "animation": {"title": "网页动画", "skills": ["gsap-core", "gsap-timeline", "gsap-scrolltrigger", "gsap-performance"]},
+  "gorden-ppt": {"title": "Gorden可编辑PPT完整组合", "skills": ["gordenimagepptgen", "gordenimage2pptx", "gordensuperpptskill"]}
+}

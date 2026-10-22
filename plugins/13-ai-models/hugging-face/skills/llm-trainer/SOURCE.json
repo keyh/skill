@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/llm-trainer",
+  "original_skill_sha256": "6628c305a8ae8de81fea38d05c4712b54a97fed4e19e776b1edc18e392d98f48"
+}

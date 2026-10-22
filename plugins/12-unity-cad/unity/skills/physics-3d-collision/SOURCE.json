@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/physics-3d-collision",
+  "original_skill_sha256": "3754e3b4579f67dfe0a571740143c534e226ac2c5e80a1bc112a60db01f15b03"
+}

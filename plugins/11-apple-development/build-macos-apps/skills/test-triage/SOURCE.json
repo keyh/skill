@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/test-triage",
+  "original_skill_sha256": "e6ed34d34d2b4f62a262f3ab9076ab02bfb75d7661491383493bee78545b7851"
+}

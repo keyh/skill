@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/create-data-context",
+  "original_skill_sha256": "dd46e2acf43bf3fd0e7290ddee9ed4f4b97eea23c27a7f031af225a1c71c88e8"
+}

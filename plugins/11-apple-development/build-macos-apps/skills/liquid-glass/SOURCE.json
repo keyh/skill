@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/liquid-glass",
+  "original_skill_sha256": "b2bbb5ea8a62523931d89d9db47cfecf6745406f17722cbe7a6f1c06026472c3"
+}

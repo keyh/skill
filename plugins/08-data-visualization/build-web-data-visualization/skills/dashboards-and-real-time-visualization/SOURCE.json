@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-data-visualization",
+  "version": "0.1.21",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/dashboards-and-real-time-visualization",
+  "original_skill_sha256": "564c20838617d3fa2e7fb93419af553035e7683f4f7350f7ecdafb4fb4fd0ab1"
+}

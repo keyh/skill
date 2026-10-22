@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "app-69312da8e4dc81919370cb86fd172b6c",
+  "version": "10.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/adobe-create-mockups",
+  "original_skill_sha256": "65a8fd58c8495210296eb1da51d0846d1ad9a7cf80a286ea4220874c0f4e56f2"
+}

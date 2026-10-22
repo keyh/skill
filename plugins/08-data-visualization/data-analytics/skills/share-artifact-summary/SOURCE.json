@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/share-artifact-summary",
+  "original_skill_sha256": "793e661b277a0bea0a4c3a6d147b33db3a14a8794f09f9d156d12444a84d5317"
+}

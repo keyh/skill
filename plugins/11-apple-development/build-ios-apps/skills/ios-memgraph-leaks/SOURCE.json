@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ios-memgraph-leaks",
+  "original_skill_sha256": "f09a1e78c00b342196035f6570723f16e40e34a800d353c7c885d1dab4dc8781"
+}

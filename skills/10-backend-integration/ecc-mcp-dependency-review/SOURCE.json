@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "ecc-mcp-dependency-review",
+  "repository": "affaan-m/ECC",
+  "commit": "76aaa77df6adc5b889e689007bf99b9a4f74af34",
+  "source_path": ".agents/skills/mcp-dependency-review",
+  "source_archive_sha256": "a9b2ece734d936fb23368d694dde910e0ee48bae1516b0c6dc79faf11153129c",
+  "original_name": "mcp-dependency-review",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/affaan-m/ECC",
+  "original_skill_sha256": "6ba687f2d0c5306f61415f2e9c328095a0b94b4e6e7beeeea5c51eac9ede6016"
+}

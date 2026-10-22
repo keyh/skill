@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-generate-design",
+  "original_skill_sha256": "f4f05f29f69a5b4628d4574359910fea926735af78c5e264a1c4cd16f69315b0"
+}

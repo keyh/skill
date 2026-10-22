@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "web-design-engineer",
+  "repository": "ConardLi/garden-skills",
+  "commit": "7a6d5a72e4f44bb4cc0c23c01b3d97205c723b68",
+  "source_path": "skills/web-design-engineer",
+  "source_archive_sha256": "24d4919a2152ff45b18b1ff328e2aabef69d3fda0c3d48a003b1a23b9d200d2c",
+  "original_name": "web-design-engineer",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/ConardLi/garden-skills",
+  "original_skill_sha256": "a9a02094f3f511854f4cfca82e76aa307ae65bf7403bf09800ee2f17f0a265d1"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "google-drive",
+  "version": "0.1.22",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/google-docs",
+  "original_skill_sha256": "1c4f8e6477a61d45370731143fd926d2b8917594982f9cb39677909d645625c1"
+}

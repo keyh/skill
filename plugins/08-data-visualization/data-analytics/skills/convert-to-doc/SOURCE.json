@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/convert-to-doc",
+  "original_skill_sha256": "71a4616d6e111c4e8e570b0c986ad62631fb39aff26ba08837961eedff4fe2a2"
+}

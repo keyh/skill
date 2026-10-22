@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "app-69312da8e4dc81919370cb86fd172b6c",
+  "version": "10.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/adobe-retouch-portraits",
+  "original_skill_sha256": "3b3d098547f0e8c6b885dda0d32acaf1a9450660c6c803c2950b02a2acd30a5a"
+}

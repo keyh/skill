@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/2d-pixel-perfect",
+  "original_skill_sha256": "0201ff45eee3e755f3dd0f80d4f15df9e46e838cab8141b5c1c0a99dca00b549"
+}

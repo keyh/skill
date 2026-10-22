@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/unity-cli",
+  "original_skill_sha256": "38586a60d146101b0bc47e8a8deed9cc54bdb05f6afc006d991583da44fc52ac"
+}

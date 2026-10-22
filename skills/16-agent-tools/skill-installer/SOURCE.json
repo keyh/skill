@@ -1,0 +1,7 @@
+{
+  "kind": "system",
+  "source_root": "codex-system",
+  "source_relative_path": "skill-installer",
+  "original_skill_sha256": "d68b77e5bbb34dedab89d134da52855f140fc4b4299b80104f534e3b9e98f8ee",
+  "upstream_url": "https://github.com/openai/skills"
+}

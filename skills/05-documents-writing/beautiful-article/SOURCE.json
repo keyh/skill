@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "beautiful-article",
+  "repository": "ConardLi/garden-skills",
+  "commit": "7a6d5a72e4f44bb4cc0c23c01b3d97205c723b68",
+  "source_path": "skills/beautiful-article",
+  "source_archive_sha256": "24d4919a2152ff45b18b1ff328e2aabef69d3fda0c3d48a003b1a23b9d200d2c",
+  "original_name": "beautiful-article",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "removed --no-sandbox: scripts/html-to-pdf.sh"
+  ],
+  "upstream_url": "https://github.com/ConardLi/garden-skills",
+  "original_skill_sha256": "0bc15b088526a6824122f74814f13cc581ff0bfd220f2eae12c54578f6d44a14"
+}

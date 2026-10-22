@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/visualize-data",
+  "original_skill_sha256": "91868fdcc816e487ad65f188c4911ce98f400692cd5024157e7ddcb37cc1912b"
+}

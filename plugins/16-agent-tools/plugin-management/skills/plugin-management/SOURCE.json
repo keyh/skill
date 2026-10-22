@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "plugin-management",
+  "version": "0.1.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/plugin-management",
+  "original_skill_sha256": "653841cc21205269f08b0ce135891e1518dac616a766bcfb0b57d788d3f68b10"
+}

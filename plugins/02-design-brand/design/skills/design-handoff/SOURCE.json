@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "design",
+  "version": "1.2.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/design-handoff",
+  "original_skill_sha256": "38f1efc807928030654218443ad07f6a37ac82de6b4d627a03113a3568d787b7"
+}

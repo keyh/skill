@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/edit-design",
+  "original_skill_sha256": "842eeec8f89bfcfb3490ca92092f4ef441577ff7f9b7bae979aad99cc92ceaa8"
+}

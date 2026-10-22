@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "kb-retriever",
+  "repository": "ConardLi/garden-skills",
+  "commit": "7a6d5a72e4f44bb4cc0c23c01b3d97205c723b68",
+  "source_path": "skills/kb-retriever",
+  "source_archive_sha256": "24d4919a2152ff45b18b1ff328e2aabef69d3fda0c3d48a003b1a23b9d200d2c",
+  "original_name": "kb-retriever",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/ConardLi/garden-skills",
+  "original_skill_sha256": "14481d2b9d6632fd7835d946c2b2bfca76f630a07b3fdf6fee98516486545807"
+}

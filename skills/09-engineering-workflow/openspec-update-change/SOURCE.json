@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "openspec-update-change",
+  "repository": "Fission-AI/OpenSpec",
+  "commit": "c794978f4f8845ce59693373c9dd882ee776588c",
+  "source_path": "skills/openspec-update-change",
+  "source_archive_sha256": "df0c2be216100550034bea1178befe81f741068e812df2f6026e307d5b51f06d",
+  "original_name": "openspec-update-change",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: compatibility"
+  ],
+  "upstream_url": "https://github.com/Fission-AI/OpenSpec",
+  "original_skill_sha256": "4d339b1d11b5c8e65a4789761bcb6cb2f5358477fc609384bcc1093c740d7b6b"
+}

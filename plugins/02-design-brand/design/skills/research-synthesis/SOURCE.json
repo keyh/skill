@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "design",
+  "version": "1.2.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/research-synthesis",
+  "original_skill_sha256": "40048615dc81fc8b9b06104769498214d61a35ae4518a0995a12bbbd0ab945a1"
+}

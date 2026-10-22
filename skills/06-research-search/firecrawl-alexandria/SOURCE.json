@@ -1,0 +1,8 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "firecrawl-alexandria",
+  "original_skill_sha256": "f8e6bc212383fe51c436d87c5968a3ce17c2fac612caee54f3f97444be11d761",
+  "upstream_url": "https://github.com/firecrawl/skills",
+  "source_note": "来源项目；本次未从安装记录确认提交号"
+}

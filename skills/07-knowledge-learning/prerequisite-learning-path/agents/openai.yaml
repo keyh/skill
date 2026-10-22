@@ -1,0 +1,3 @@
+interface:
+  display_name: "前置知识学习路径"
+  short_description: "根据有来源的知识依赖和掌握情况规划学习顺序、缺口与可验证练习"

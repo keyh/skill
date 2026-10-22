@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/optimize-audio",
+  "original_skill_sha256": "2988fae3479eec09889572383fe1653baecf4c983cd13229b2f953abacb91afe"
+}

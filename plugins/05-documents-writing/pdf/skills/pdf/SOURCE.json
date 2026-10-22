@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "pdf",
+  "version": "26.1011.51657",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/pdf",
+  "original_skill_sha256": "a6e20f4ae66364a06d577dd51e0ce66ee2ef955be129cbe195e0a27f403daaf8"
+}

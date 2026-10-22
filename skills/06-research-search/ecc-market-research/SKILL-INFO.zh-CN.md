@@ -1,0 +1,17 @@
+# 市场与行业研究
+
+市场与行业研究。适用于网页检索、站点采集、文献研究和竞争分析相关任务；具体输入、步骤和输出见原始技能说明。
+
+- 仓库唯一编号：`ecc-market-research`
+- 原始技能名：`ecc-market-research`
+- 分类：搜索与研究
+- 兼容性：文本工作流
+- 依赖：按 SKILL.md 安装和配置所需运行环境；本仓库安装器只复制文件，不执行技能脚本或启用后台功能。
+- 许可：MIT
+- 来源：https://github.com/affaan-m/ECC
+
+## 原始说明
+
+Conduct market research, competitive analysis, investor due diligence, and industry intelligence with source attribution and decision-oriented summaries. Use when the user wants market sizing, competitor comparisons, fund research, technology scans, or research that informs business decisions.
+
+[阅读 SKILL.md](SKILL.md) · [完整技能清单](../../../CATALOG.md)

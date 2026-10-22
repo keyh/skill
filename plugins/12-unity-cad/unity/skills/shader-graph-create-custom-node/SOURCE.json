@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/shader-graph-create-custom-node",
+  "original_skill_sha256": "8167bd4bf4b5a1ce220a03128060df85633c18b907d1e6d102b623f5e8687ec7"
+}

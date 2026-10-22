@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/using-git-worktrees",
+  "original_skill_sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/community-evals",
+  "original_skill_sha256": "a97f1c703f55b72427453a76af858237e6392a447fcafa9eeb85f7ac67f0155d"
+}

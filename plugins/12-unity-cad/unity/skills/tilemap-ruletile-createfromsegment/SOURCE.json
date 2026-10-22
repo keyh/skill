@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/tilemap-ruletile-createfromsegment",
+  "original_skill_sha256": "b5784c45b60651e2ca994f37e221843e39116ec43a167792a056bc4e1f9c5005"
+}

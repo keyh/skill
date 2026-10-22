@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/get-design-feedback",
+  "original_skill_sha256": "e18303be61308ad6dc8e05c4735b7254873f42ab9c6bc6c37b9cec339119be7b"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/view-refactor",
+  "original_skill_sha256": "924b1a3a6f894443d26987346bc21fa8bf0815d463d2f741cb58a3e4321dc854"
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "second-brain-query",
+  "repository": "NicholasSpisak/second-brain",
+  "commit": "3e429c7ccd0a41617d0d3d782f681b7333f7ee0b",
+  "source_path": "skills/second-brain-query",
+  "source_archive_sha256": "f1770b6117ab6a940b13eecbdb5daa9e0d5faa10f83a2b846b52e5ed243551f1",
+  "original_name": "second-brain-query",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/NicholasSpisak/second-brain",
+  "original_skill_sha256": "152755de7562f2c59e252bd9eb9cbafc2682e8a1913b96b75224dcafbc5f6795"
+}

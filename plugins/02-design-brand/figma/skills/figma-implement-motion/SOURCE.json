@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-implement-motion",
+  "original_skill_sha256": "2e26e67284d47c6a74aedf9dca7543f4c8817dafc59a11abb156d4f7feedb2c2"
+}

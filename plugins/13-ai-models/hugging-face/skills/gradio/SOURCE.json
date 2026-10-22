@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/gradio",
+  "original_skill_sha256": "e2f4c232c38682bccfc73115ca7d0a5427f7d625e6fd56b32515fe4c0900f997"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "spreadsheets",
+  "version": "26.1011.51657",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/spreadsheets",
+  "original_skill_sha256": "dd22f4bae5bf3f76457c80eb1f079ba7a47b87db52b144edeb1e5f4585dc8f34"
+}

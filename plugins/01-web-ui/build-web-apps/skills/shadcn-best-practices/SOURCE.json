@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/shadcn-best-practices",
+  "original_skill_sha256": "7678f5168d4ee6f3ae3ce4d3d41c654f0aebc7b88cbc392a9504822dec0dff28"
+}

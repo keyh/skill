@@ -1,0 +1,122 @@
+[
+  {
+    "id": "openai-templates--artifact-template-analytics-dashboard",
+    "version": "0.1.1",
+    "name": "artifact-template-analytics-dashboard",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-business-review",
+    "version": "0.1.1",
+    "name": "artifact-template-business-review",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-design-report",
+    "version": "0.1.1",
+    "name": "artifact-template-design-report",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-experiment-analysis",
+    "version": "0.1.1",
+    "name": "artifact-template-experiment-analysis",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-financial-budget",
+    "version": "0.1.1",
+    "name": "artifact-template-financial-budget",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-investment-committee-memo",
+    "version": "0.1.1",
+    "name": "artifact-template-investment-committee-memo",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-legal-memorandum",
+    "version": "0.1.1",
+    "name": "artifact-template-legal-memorandum",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-market-trends-report",
+    "version": "0.1.1",
+    "name": "artifact-template-market-trends-report",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-minimal-letterhead",
+    "version": "0.1.1",
+    "name": "artifact-template-minimal-letterhead",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-operating-calendar",
+    "version": "0.1.1",
+    "name": "artifact-template-operating-calendar",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-operating-review",
+    "version": "0.1.1",
+    "name": "artifact-template-operating-review",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-project-kickoff",
+    "version": "0.1.1",
+    "name": "artifact-template-project-kickoff",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-project-tracker",
+    "version": "0.1.1",
+    "name": "artifact-template-project-tracker",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-sales-pipeline",
+    "version": "0.1.1",
+    "name": "artifact-template-sales-pipeline",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-simple-dark-mode",
+    "version": "0.1.1",
+    "name": "artifact-template-simple-dark-mode",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-simple-light-mode",
+    "version": "0.1.1",
+    "name": "artifact-template-simple-light-mode",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-strategy-memorandum",
+    "version": "0.1.1",
+    "name": "artifact-template-strategy-memorandum",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-system-design",
+    "version": "0.1.1",
+    "name": "artifact-template-system-design",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-team-alignment",
+    "version": "0.1.1",
+    "name": "artifact-template-team-alignment",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  },
+  {
+    "id": "openai-templates--artifact-template-three-statement-forecast",
+    "version": "0.1.1",
+    "name": "artifact-template-three-statement-forecast",
+    "reason": "仅检测到缓存，本次会话未列为可用插件；不计入已安装技能，不复制正文"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-generate-library",
+  "original_skill_sha256": "b5277050191d1985f59e162e0acc82523a0a39a8cf614069a3d63753d5990f27"
+}

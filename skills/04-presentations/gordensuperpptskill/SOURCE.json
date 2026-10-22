@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "gordensuperpptskill",
+  "repository": "GordenSun/GordenSuperPPTSkills",
+  "commit": "8c05583dab8334182b71738e8dfbbec5c56a1951",
+  "source_path": "GordenSuperPPTSkill",
+  "source_archive_sha256": "adc2ef5e2c040ca4c55f1e6caa1383e73706af1706c63f2b761dc137f61cec2b",
+  "original_name": "GordenSuperPPTSkill",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/GordenSun/GordenSuperPPTSkills",
+  "original_skill_sha256": "34f0af54079bc46c8d9a523cd95cb71773373de6cab2fd4d6e9fbb779b0b0230"
+}

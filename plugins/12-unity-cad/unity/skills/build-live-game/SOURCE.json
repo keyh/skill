@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/build-live-game",
+  "original_skill_sha256": "2fada31f70a5845449f60e26ffdaa5034055eca090503cacbc8a3963e5bc87ea"
+}

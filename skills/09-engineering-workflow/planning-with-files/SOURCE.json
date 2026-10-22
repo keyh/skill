@@ -1,0 +1,17 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "planning-with-files",
+  "repository": "OthmanAdi/planning-with-files",
+  "commit": "6b30f32d83a8bdc8ef983385348d0d3f5d6bef49",
+  "source_path": ".codex/skills/planning-with-files",
+  "source_archive_sha256": "49f011fa90d90327e2847ea07eca98d7d254af93a11a31d1f83dc8aaff28881e",
+  "original_name": "planning-with-files",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "removed all hook frontmatter; no automatic session history access",
+    "removed session catchup instructions and hook claims from entry"
+  ],
+  "upstream_url": "https://github.com/OthmanAdi/planning-with-files",
+  "original_skill_sha256": "9b4b051addbf38cd38350fc3cbb410d8c666d23c378a4e57431ac178c84e1938"
+}

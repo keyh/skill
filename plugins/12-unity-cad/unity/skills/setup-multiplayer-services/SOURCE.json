@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/setup-multiplayer-services",
+  "original_skill_sha256": "f962df5fe0e08af3baeaf0862f8c1cd12c4bdf86b851a09e165d3f357611432b"
+}

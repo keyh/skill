@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-shaders",
+  "original_skill_sha256": "c7e34c5a4eb316cfe84768cb419fe71b3ce840b29561ecd0f90eb402a72e1adf"
+}

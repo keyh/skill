@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "pages",
+  "version": "0.1.23",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/write-page",
+  "original_skill_sha256": "7a997ccee8cc3214cb1e9af4a5569bddb74499796aff808e94561109e148a658"
+}

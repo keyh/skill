@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-data-visualization",
+  "version": "0.1.21",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/react-and-nextjs-data-visualization",
+  "original_skill_sha256": "95326e7c73c15919e60615314805197b52613fff167eecabecdba191230db7f8"
+}

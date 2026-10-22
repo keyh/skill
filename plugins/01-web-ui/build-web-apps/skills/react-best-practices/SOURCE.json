@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/react-best-practices",
+  "original_skill_sha256": "cc7d03309817f392c419a203e1bc1f1759ef94831f7dbedf39d91a35ac5bc86a"
+}

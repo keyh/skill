@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "llm-wiki",
+  "repository": "lewislulu/llm-wiki-skill",
+  "commit": "d7751c0a2bb4c58d0808ccd6ddae2fdcc0de4824",
+  "source_path": "llm-wiki",
+  "source_archive_sha256": "3f70af0ca9b0b564d331aefb54ecffadf22309cd6be1f65b694862ffc902105b",
+  "original_name": "llm-wiki",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/lewislulu/llm-wiki-skill",
+  "original_skill_sha256": "fd851e4a4cfcfebead619334e6823ffd733e72c293ecd431f1b6a307a4e5879a"
+}

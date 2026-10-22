@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/analyze-data-quality",
+  "original_skill_sha256": "b55f1fea16306899bc28060d2a46c5318e15f85da62f3f533926861458a6dc15"
+}

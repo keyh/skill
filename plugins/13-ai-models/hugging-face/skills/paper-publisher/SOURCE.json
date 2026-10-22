@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/paper-publisher",
+  "original_skill_sha256": "04b59406cf88054ab365f5bbbc57fe2e2fcb369e942dff2841c4f4297318c353"
+}

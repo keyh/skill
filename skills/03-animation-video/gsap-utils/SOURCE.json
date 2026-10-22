@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "gsap-utils",
+  "repository": "greensock/gsap-skills",
+  "commit": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+  "source_path": "skills/gsap-utils",
+  "source_archive_sha256": "87a6a1c7f9bd6342af8713709c96e5c8057aef57590f1ba808b18fc8742c34cc",
+  "original_name": "gsap-utils",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/greensock/gsap-skills",
+  "original_skill_sha256": "21681f51743930bbd63df0e47d1eddf94fef63aea11d95695f3a5c2f627f4b38"
+}

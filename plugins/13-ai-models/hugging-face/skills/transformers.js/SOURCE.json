@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "hugging-face",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/transformers.js",
+  "original_skill_sha256": "89a70a8a0604fc90cf6ae1063cb0f7d2f625bdf4d337f4f24e3f19cea4f99511"
+}

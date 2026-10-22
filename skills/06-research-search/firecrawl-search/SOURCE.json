@@ -1,0 +1,8 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "firecrawl-search",
+  "original_skill_sha256": "f946059a5974cd8f7a9ef05d803fa553ce1d0b9aea0aa10d9cb0c07d937cf361",
+  "upstream_url": "https://github.com/firecrawl/skills",
+  "source_note": "来源项目；本次未从安装记录确认提交号"
+}

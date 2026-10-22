@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "spreadsheets",
+  "version": "26.1011.51657",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/excel-live-control",
+  "original_skill_sha256": "1c27488fa2a59ce2cc8925a12527ee9c7aa40ccf0701f3f2719ab17858586e8b"
+}

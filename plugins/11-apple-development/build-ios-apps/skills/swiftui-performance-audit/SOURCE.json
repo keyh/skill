@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftui-performance-audit",
+  "original_skill_sha256": "6fc6bd4d49b49ccb2089be706c449f195daa7db2c36d8097d883426488eb4b1a"
+}

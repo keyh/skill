@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "google-drive",
+  "version": "0.1.22",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/google-slides",
+  "original_skill_sha256": "f85bd1d7080becf8c043a3646b6c3a53fbcd6d2a77c62a15112b8d89e01a4b83"
+}

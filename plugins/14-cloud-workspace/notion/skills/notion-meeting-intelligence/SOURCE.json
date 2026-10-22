@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "notion",
+  "version": "3.0.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/notion-meeting-intelligence",
+  "original_skill_sha256": "73331739b54407000b86cfd546232c7736f33fc1052d4337b3647e4077c87acc"
+}

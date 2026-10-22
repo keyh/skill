@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/audio-setup-mixers",
+  "original_skill_sha256": "8c2643de6b5f6ff52dc746bbea647f819b249f6f5174aa724ac023b7780e1919"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftui-view-refactor",
+  "original_skill_sha256": "129cbb511987985ed7bf9e3f20443632a7becdf0c2824ded6b52241cc339243a"
+}

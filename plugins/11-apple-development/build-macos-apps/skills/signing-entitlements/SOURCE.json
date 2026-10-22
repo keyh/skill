@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/signing-entitlements",
+  "original_skill_sha256": "79326e5096325b53c4350db9e1586c9a2ef56976705f01c24d3643a592dc3030"
+}

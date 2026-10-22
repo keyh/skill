@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "guizang-ppt-skill",
+  "repository": "op7418/guizang-ppt-skill",
+  "commit": "c91369c449d34755d320a8b81d0734000d99d1ab",
+  "source_path": ".",
+  "source_archive_sha256": "bad6dd60bbd8a6b45e719313095a3e7af8dbb5c9b206a68d758eaf4a3b5416dd",
+  "original_name": "guizang-ppt-skill",
+  "changes": [
+    "exclude .github",
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/op7418/guizang-ppt-skill",
+  "original_skill_sha256": "0e7aab5c2690d823e47650fb7f66bfc0770cc2877ed809af846c433456c21de8"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/window-management",
+  "original_skill_sha256": "9fea3f84f6cd96c629bbb45cfe2715e9669a737f088a3453a20bd6083067e64d"
+}

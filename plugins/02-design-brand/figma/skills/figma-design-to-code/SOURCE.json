@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-design-to-code",
+  "original_skill_sha256": "a6e852421e4db72260b2ca641929b1f84684e5b067aead081e35111f5b5feee4"
+}

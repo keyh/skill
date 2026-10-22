@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-use-slides",
+  "original_skill_sha256": "0a69a65e686dcc223581afb409a4d31cf318716e2c65cc9c926839a8737e71a4"
+}

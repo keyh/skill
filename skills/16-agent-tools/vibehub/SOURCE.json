@@ -1,0 +1,16 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "vibehub",
+  "repository": "oil-oil/vibe-hub-skill",
+  "commit": "8d7715464e5279b341193e00e33b3bd43390aeea",
+  "source_path": "skills/vibehub",
+  "source_archive_sha256": "9b3825ccd1504a353109627f77ca67c045144131be514634c082982a1f419e1d",
+  "original_name": "vibehub",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "HTTPS same-origin API and no redirects"
+  ],
+  "upstream_url": "https://github.com/oil-oil/vibe-hub-skill",
+  "original_skill_sha256": "a9e02f2b072d6a763c020246bf6d83e0b5dc2ea0959b77382deb4caf55c22df0"
+}

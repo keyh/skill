@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/brand-check",
+  "original_skill_sha256": "b292189744392db22b9e72481056a0db94781bd64892480abe2ce50c76efbb73"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ios-simulator-browser",
+  "original_skill_sha256": "f3f0216323cd7713a73f1bc4beee1b740a7867f20affef331760dd1932a1ec4b"
+}

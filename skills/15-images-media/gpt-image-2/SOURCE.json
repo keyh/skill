@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "gpt-image-2",
+  "repository": "ConardLi/garden-skills",
+  "commit": "7a6d5a72e4f44bb4cc0c23c01b3d97205c723b68",
+  "source_path": "skills/gpt-image-2",
+  "source_archive_sha256": "24d4919a2152ff45b18b1ff328e2aabef69d3fda0c3d48a003b1a23b9d200d2c",
+  "original_name": "gpt-image-2",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/ConardLi/garden-skills",
+  "original_skill_sha256": "4ddbb9e690ed34a87ed6875c7ed36c89558b1f16f39c9ba5e1440c854a3873af"
+}

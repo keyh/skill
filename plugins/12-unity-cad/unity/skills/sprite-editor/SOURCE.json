@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/sprite-editor",
+  "original_skill_sha256": "d3f4a2bfb3aabe4ffe3dcd140abd587a27b4ba243beb33fe7682ad1688eba534"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/classroom-helper",
+  "original_skill_sha256": "d7f7aeedd72dc258c96c1f1d93e668ea19dc208e3cdda64e9ec7f2db93728f75"
+}

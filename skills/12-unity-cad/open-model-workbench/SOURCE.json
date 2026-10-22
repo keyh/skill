@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "open-model-workbench",
+  "repository": "icejyzy0430/open-model-workbench",
+  "commit": "f121a2a2396441e51f1679fee9e94569af805a78",
+  "source_path": "open-model-workbench",
+  "source_archive_sha256": "2344ddb19400a9f70ce4a85c5592cb69a9fefdbf9e1dfbfe0389a0673dc1be7f",
+  "original_name": "open-model-workbench",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/icejyzy0430/open-model-workbench",
+  "original_skill_sha256": "49b113a9de9ad268650158e19b4c20f667d8d399164be011b5125243103a353e"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "contentasoft-cad-converter",
+  "version": "1.0.3",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/contenta-cad",
+  "original_skill_sha256": "d58aaa299f7b51ebd1fb55d701ad0d7d2a1194257af24730ebdbda24512dc67a"
+}

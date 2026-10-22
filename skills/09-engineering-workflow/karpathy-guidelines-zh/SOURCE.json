@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "karpathy-guidelines-zh",
+  "repository": "twj515895394/andrej-karpathy-skills-12",
+  "commit": "1e3c6acb498ceb1e7d162890521ce9c5fd4a0b00",
+  "source_path": "skills/karpathy-guidelines-zh",
+  "source_archive_sha256": "b1f94708f0853ea6477bbbe3e9cfbc0ac2d310f67ef4c801eace80e18dbe580e",
+  "original_name": "karpathy-guidelines-zh",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/twj515895394/andrej-karpathy-skills-12",
+  "original_skill_sha256": "ec814c9318383789174f169096e405220ae808c4b47d32eee7d7f7728a8d66f2"
+}

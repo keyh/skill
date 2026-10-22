@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "superpowers",
+  "version": "6.4.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/systematic-debugging",
+  "original_skill_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787"
+}

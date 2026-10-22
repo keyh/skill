@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "product-design",
+  "version": "0.1.56",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ideate",
+  "original_skill_sha256": "649e8782ca93d5aece712964fae5be2b111cc3143577e1507b98df7f9d8e6bde"
+}

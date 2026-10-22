@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-ios-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftui-liquid-glass",
+  "original_skill_sha256": "8e9ec37d9b6ed146672faf12c88be61d367c280ab6159bfbc7726a122030b78b"
+}

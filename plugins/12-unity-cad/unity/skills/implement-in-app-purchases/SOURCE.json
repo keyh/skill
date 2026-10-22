@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/implement-in-app-purchases",
+  "original_skill_sha256": "44f781e56ecf0266c6931475e240cc0fd28c0c4c89348ea89720177b8e894d2d"
+}

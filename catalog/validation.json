@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "test_count": 13,
+  "checks": [
+    "dry-run writes nothing",
+    "standalone skill installs",
+    "existing destination is not overwritten",
+    "plugin shared parent references resolve",
+    "identical plugin bundle is reused",
+    "shared visualization references resolve",
+    "catalog-only entry refuses installation",
+    "colliding original names rejected",
+    "preset selection and dry-run work",
+    "unknown identifiers rejected",
+    "source repository cannot be used as destination",
+    "modified existing bundle rejected",
+    "checksum corruption rejected"
+  ],
+  "environment": "macOS / Python 3.9.6",
+  "scope": "File installation and integrity checks only; no skill business operations executed.",
+  "source_files_byte_verified": 17820,
+  "source_file_mismatches": 0,
+  "common_secret_pattern_findings": 0,
+  "snapshot_date": "2026-10-22",
+  "catalog_entries": 324,
+  "source_included_entries": 323,
+  "catalog_only_entries": 1
+}

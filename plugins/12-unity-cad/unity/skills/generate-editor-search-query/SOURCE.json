@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/generate-editor-search-query",
+  "original_skill_sha256": "b36e6762d575a514686e92e188aa82676ad39e8c99ba2e0c15d148ec69d620ae"
+}

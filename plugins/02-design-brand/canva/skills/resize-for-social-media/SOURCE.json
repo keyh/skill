@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "canva",
+  "version": "1.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/resize-for-social-media",
+  "original_skill_sha256": "bb36807630daf3ba7c2a27e83de64b329e03ce68457da874c36c5022ceff7094"
+}

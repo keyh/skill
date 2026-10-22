@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/design-kpis",
+  "original_skill_sha256": "6f3f3841371e4269d8bc6be406537145de3e86d7ca8d34d65af21548dfff2d46"
+}

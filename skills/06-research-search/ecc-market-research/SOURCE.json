@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "ecc-market-research",
+  "repository": "affaan-m/ECC",
+  "commit": "76aaa77df6adc5b889e689007bf99b9a4f74af34",
+  "source_path": ".agents/skills/market-research",
+  "source_archive_sha256": "a9b2ece734d936fb23368d694dde910e0ee48bae1516b0c6dc79faf11153129c",
+  "original_name": "market-research",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation False"
+  ],
+  "upstream_url": "https://github.com/affaan-m/ECC",
+  "original_skill_sha256": "353d96d7604c8262933dc4fe1fbf665396a0a2421d551b4424b7afe10c48dd48"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/swiftui-patterns",
+  "original_skill_sha256": "ebfc06b1c1e11cadec83e5c204b20f33f01db1c36cb5796639567bd8eac0fe07"
+}

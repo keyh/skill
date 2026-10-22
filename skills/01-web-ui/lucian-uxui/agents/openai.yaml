@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lucian 交互组件"
+  short_description: "检索并审查 Lucian 交互组件，按项目主题和框架移植并验证可用性"

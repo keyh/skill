@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/migrate-birp-to-urp",
+  "original_skill_sha256": "921b9deac2396ca1272a05e01a238b10b175d8d440010fb62ff4fc64057e446c"
+}

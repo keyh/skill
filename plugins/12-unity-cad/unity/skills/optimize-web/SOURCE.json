@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/optimize-web",
+  "original_skill_sha256": "f8d973a6704f17f9b4d1921d5c98642ec0a9c3bcc3bc72175f05fe52c3a2a95a"
+}

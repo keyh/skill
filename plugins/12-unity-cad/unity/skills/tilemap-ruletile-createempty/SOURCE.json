@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/tilemap-ruletile-createempty",
+  "original_skill_sha256": "9ee0e0670e52c3fbad79f2d90bc59d6da678f6c89d700c34ed8ce868c7b0c78b"
+}

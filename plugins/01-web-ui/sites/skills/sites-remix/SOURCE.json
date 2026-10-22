@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "sites",
+  "version": "1.1.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/sites-remix",
+  "original_skill_sha256": "34a249750d98e38f676fa391819593ab5c14e5f46f9137832a8c49180d47022d"
+}

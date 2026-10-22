@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/validate-urp-render-graph-renderer-feature",
+  "original_skill_sha256": "a523a72493e15cbb1b79ffe2ad0cd8d7aa8b6f92a7eee90b469c0958614384c4"
+}

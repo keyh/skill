@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-generate-diagram",
+  "original_skill_sha256": "7297638dbf2130d1b37bfd85df65d290a4dd0b11a11b54abafcf7d07565922b5"
+}

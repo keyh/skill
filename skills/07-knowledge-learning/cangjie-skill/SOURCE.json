@@ -1,0 +1,19 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "cangjie-skill",
+  "repository": "kangarooking/cangjie-skill",
+  "commit": "a28de55ba881b9928956a55048f743f7a9e3b23e",
+  "source_path": ".",
+  "source_archive_sha256": "af1eea16e1774108c81d8efbd7098f91a579af79e2a3daf64167875a045cfd4e",
+  "original_name": "cangjie-skill",
+  "changes": [
+    "exclude sample subtree books",
+    "exclude sample subtree dist",
+    "exclude sample subtree benchmarks",
+    "exclude .github",
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/kangarooking/cangjie-skill",
+  "original_skill_sha256": "42a88479558867151ded0b5f56d4a580fa943e1e594e783d5671ea77f07b71b7"
+}

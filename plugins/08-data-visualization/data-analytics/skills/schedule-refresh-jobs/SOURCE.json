@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "data-analytics",
+  "version": "1.0.11",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/schedule-refresh-jobs",
+  "original_skill_sha256": "6166180cd0fa05f9f761862a15e6ccb12aa8e1edbec3af52c4479123e02cb362"
+}

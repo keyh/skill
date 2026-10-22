@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-macos-apps",
+  "version": "0.1.4",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/build-run-debug",
+  "original_skill_sha256": "bd32f3fa611fd731d01113450929aaeab8b40bfdda669b6cad76d877a096b722"
+}

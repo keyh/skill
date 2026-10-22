@@ -1,0 +1,15 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "baoyu-design",
+  "repository": "JimLiu/baoyu-design",
+  "commit": "6530033592bf7fa58bc1a5a2a2ad278da45213a9",
+  "source_path": "skills/baoyu-design",
+  "source_archive_sha256": "774d3db2c7819afd544ca1e03adb32c6c0ac41879b9e074a00d4c2a085ce16fd",
+  "original_name": "baoyu-design",
+  "changes": [
+    "scope guard; no permission/tool grants; implicit invocation True"
+  ],
+  "upstream_url": "https://github.com/JimLiu/baoyu-design",
+  "original_skill_sha256": "27c8ad2b52db1d13be96d8d2c037aea9c910eb1204175b730beaf8e48847efe1"
+}

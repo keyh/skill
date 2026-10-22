@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-code-connect",
+  "original_skill_sha256": "87af3996edb167d6aa3c044cb1bbb6a0d8e2d631c731bb896b1e1e8669640415"
+}

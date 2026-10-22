@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "unity",
+  "version": "0.1.0-beta",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/ui-ugui",
+  "original_skill_sha256": "eed41fdb4fb12fa268e1e7c0466d9ed67eaa9e7ba29b9d3549018aecf026078b"
+}

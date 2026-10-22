@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "notion",
+  "version": "3.0.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/notion-research-documentation",
+  "original_skill_sha256": "6281956c3bcf5934aeb29bfed0e306b98d2f9ef728a5e1f071f647ddc9461b9d"
+}

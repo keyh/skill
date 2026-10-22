@@ -1,0 +1,17 @@
+{
+  "kind": "local",
+  "source_root": "codex-user",
+  "source_relative_path": "anysearch",
+  "repository": "anysearch-ai/anysearch-skill",
+  "commit": "9b91ee215164de60d61c7d63789c891a1948b039",
+  "source_path": ".",
+  "source_archive_sha256": "643d025efdc89d0634c717f9965265e72c87fc33904e4ddac078ff581b60a92c",
+  "original_name": "anysearch",
+  "changes": [
+    "exclude .github",
+    "scope guard; no permission/tool grants; implicit invocation False",
+    "moved non-Codex frontmatter fields into metadata: authors,credentials,version"
+  ],
+  "upstream_url": "https://github.com/anysearch-ai/anysearch-skill",
+  "original_skill_sha256": "80c2c0ceaaed4cabbff92658ce417c80513f37e2f21bd71ba685756f5eaa5d0e"
+}

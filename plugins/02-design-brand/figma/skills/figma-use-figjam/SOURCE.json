@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "figma",
+  "version": "16.0.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/figma-use-figjam",
+  "original_skill_sha256": "8d566444a1aaf31c122682a5fbe3d6f14c6a844a4e05164cda3de872752cea24"
+}

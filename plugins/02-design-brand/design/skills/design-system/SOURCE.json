@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "design",
+  "version": "1.2.0",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/design-system",
+  "original_skill_sha256": "fb31bd0144c43955106f01927126ae9fd2d4148be44c8d5887b3391f40c31445"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "build-web-apps",
+  "version": "0.1.2",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/stripe-best-practices",
+  "original_skill_sha256": "5062f0c980030af377a0ac33b77c9d233676e2ecbb57b3d3cd8734fc0da464b2"
+}

@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "plugin": "notion",
+  "version": "3.0.1",
+  "source_root": "codex-plugin-cache",
+  "source_relative_path": "skills/notion-database-designer",
+  "original_skill_sha256": "33a9fc74a08a214fdf229aa5fb12e0fff119219f30e9c1b2a4910a1d417396af"
+}
