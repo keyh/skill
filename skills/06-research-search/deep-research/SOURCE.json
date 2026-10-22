@@ -1,0 +1,6 @@
+{
+  "kind": "system",
+  "source_root": "claude-anthropic-example",
+  "source_relative_path": "deep-research",
+  "original_skill_sha256": "46ae8d5a0b95efad0329ac287ea5248c19fbbe195d8270231c4a78ba6217c024"
+}

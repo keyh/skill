@@ -1,6 +1,6 @@
 # 技能分类总目录
 
-快照日期：2026-10-22。共 324 个入口，其中 323 个包含技能文件，1 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
+快照日期：2026-10-22。共 342 个入口，其中 332 个包含技能文件，10 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
 
 英文编号和原始 name 保持稳定，中文名称用于检索和理解。`plugins/` 中保留共享引用关系；正文写到的工具名称不代表已在其他 AI 上安装。
 
@@ -32,7 +32,7 @@
 | `ui-interaction-brief`<br>界面交互需求说明 | 文本工作流 | [说明](skills/01-web-ui/ui-interaction-brief/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/ui-interaction-brief/SKILL.md) |
 | `web-design-engineer`<br>网页设计与前端实现 | 文本工作流 | [说明](skills/01-web-ui/web-design-engineer/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/web-design-engineer/SKILL.md) |
 
-## 设计与品牌（47）
+## 设计与品牌（48）
 
 品牌视觉、设计规范、用户体验研究和设计评审。
 
@@ -44,6 +44,7 @@
 | `canva--branded-presentation`<br>Canva：品牌演示文稿 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/branded-presentation/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/branded-presentation/SKILL.md) |
 | `canva--bulk-create`<br>Canva：批量创建设计 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/bulk-create/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/bulk-create/SKILL.md) |
 | `canva--classroom-helper`<br>Canva：课堂教学材料 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/classroom-helper/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/classroom-helper/SKILL.md) |
+| `canva--cli`<br>Canva：命令行与REST API操作 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/cli/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/cli/SKILL.md) |
 | `canva--design-translation`<br>Canva：设计内容翻译 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/design-translation/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/design-translation/SKILL.md) |
 | `canva--edit-design`<br>Canva：编辑现有设计 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/edit-design/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/edit-design/SKILL.md) |
 | `canva--get-design-feedback`<br>Canva：设计反馈 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/get-design-feedback/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/get-design-feedback/SKILL.md) |
@@ -116,12 +117,13 @@
 | `remotion-upgrade`<br>Remotion版本升级 | 脚本或工具依赖 | [说明](skills/03-animation-video/remotion-upgrade/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/03-animation-video/remotion-upgrade/SKILL.md) |
 | `web-motion-reference`<br>网页动效与三维参考库 | 脚本或工具依赖 | [说明](skills/03-animation-video/web-motion-reference/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/03-animation-video/web-motion-reference/SKILL.md) |
 
-## PPT与演示（12）
+## PPT与演示（13）
 
 汇报材料、可编辑幻灯片、图片转PPT和网页演示。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
+| `claude--pptx`<br>Claude官方PowerPoint处理 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
 | `codex-ppt`<br>Codex图片式PPT生成 | 脚本或工具依赖 | [说明](skills/04-presentations/codex-ppt/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/04-presentations/codex-ppt/SKILL.md) |
 | `dashi-ppt`<br>Dashi主题式HTML与PPT制作 | 脚本或工具依赖 | [说明](skills/04-presentations/dashi-ppt/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/04-presentations/dashi-ppt/SKILL.md) |
 | `ecc-frontend-slides`<br>动画网页演示文稿 | 文本工作流 | [说明](skills/04-presentations/ecc-frontend-slides/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/04-presentations/ecc-frontend-slides/SKILL.md) |
@@ -135,13 +137,18 @@
 | `presentations--presentations`<br>演示文稿：幻灯片读取制作与编辑 | 平台或插件依赖 | [说明](plugins/04-presentations/presentations/skills/presentations/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/04-presentations/presentations/skills/presentations/SKILL.md) |
 | `web-video-presentation`<br>网页视频式演示 | 脚本或工具依赖 | [说明](skills/04-presentations/web-video-presentation/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/04-presentations/web-video-presentation/SKILL.md) |
 
-## 文档与写作（9）
+## 文档与写作（14）
 
 文章、Word、PDF、内容编辑和正式文档。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
 | `beautiful-article`<br>精美HTML文章排版 | 脚本或工具依赖 | [说明](skills/05-documents-writing/beautiful-article/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/05-documents-writing/beautiful-article/SKILL.md) |
+| `claude--docx`<br>Claude官方Word文档创建与编辑 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--file-reading`<br>上传文件读取路由 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--pdf`<br>Claude官方PDF处理 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--pdf-reading`<br>PDF内容读取与检查 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `docs`<br>Claude Docs协作文档 | 平台或插件依赖 | [说明](skills/05-documents-writing/docs/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/05-documents-writing/docs/SKILL.md) |
 | `documents--documents`<br>Word文档：Word文档排版修订与校验 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
 | `ecc-article-writing`<br>长文章与专业内容写作 | 文本工作流 | [说明](skills/05-documents-writing/ecc-article-writing/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/05-documents-writing/ecc-article-writing/SKILL.md) |
 | `ecc-brand-voice`<br>品牌语气与写作风格 | 文本工作流 | [说明](skills/05-documents-writing/ecc-brand-voice/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/05-documents-writing/ecc-brand-voice/SKILL.md) |
@@ -151,13 +158,14 @@
 | `pdf--pdf`<br>PDF：PDF读取制作与校验 | 工具与环境适配 | [说明](plugins/05-documents-writing/pdf/skills/pdf/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/05-documents-writing/pdf/skills/pdf/SKILL.md) |
 | `template-creator--template-creator`<br>文档模板：个人文档模板制作 | 平台或插件依赖 | [说明](plugins/05-documents-writing/template-creator/skills/template-creator/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/05-documents-writing/template-creator/skills/template-creator/SKILL.md) |
 
-## 搜索与研究（20）
+## 搜索与研究（21）
 
 网页检索、站点采集、文献研究和竞争分析。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
 | `anysearch`<br>综合实时搜索 | 脚本或工具依赖 | [说明](skills/06-research-search/anysearch/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/anysearch/SKILL.md) |
+| `deep-research`<br>多来源深度研究与报告 | 平台或插件依赖 | [说明](skills/06-research-search/deep-research/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/deep-research/SKILL.md) |
 | `ecc-benchmark-methodology`<br>竞品评分与对标方法 | 文本工作流 | [说明](skills/06-research-search/ecc-benchmark-methodology/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/ecc-benchmark-methodology/SKILL.md) |
 | `ecc-competitive-platform-analysis`<br>竞品范围与平台分析 | 文本工作流 | [说明](skills/06-research-search/ecc-competitive-platform-analysis/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/ecc-competitive-platform-analysis/SKILL.md) |
 | `ecc-competitive-report-structure`<br>竞品研究报告编排 | 文本工作流 | [说明](skills/06-research-search/ecc-competitive-report-structure/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/ecc-competitive-report-structure/SKILL.md) |
@@ -178,7 +186,7 @@
 | `firecrawl-scrape`<br>单页内容抓取 | 脚本或工具依赖 | [说明](skills/06-research-search/firecrawl-scrape/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/firecrawl-scrape/SKILL.md) |
 | `firecrawl-search`<br>网页搜索与来源发现 | 脚本或工具依赖 | [说明](skills/06-research-search/firecrawl-search/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/06-research-search/firecrawl-search/SKILL.md) |
 
-## 知识库与学习（10）
+## 知识库与学习（11）
 
 资料入库、知识图谱、教材页面和学习路径。
 
@@ -194,8 +202,9 @@
 | `second-brain-lint`<br>第二大脑知识库检查 | 文本工作流 | [说明](skills/07-knowledge-learning/second-brain-lint/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/07-knowledge-learning/second-brain-lint/SKILL.md) |
 | `second-brain-query`<br>第二大脑检索问答 | 文本工作流 | [说明](skills/07-knowledge-learning/second-brain-query/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/07-knowledge-learning/second-brain-query/SKILL.md) |
 | `textbook-detail-page`<br>灵枢医学数字教材详情页 | 脚本或工具依赖 | [说明](skills/07-knowledge-learning/textbook-detail-page/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/07-knowledge-learning/textbook-detail-page/SKILL.md) |
+| `textbook-knowledge-graph`<br>教材知识先修图谱与学习路径 | 脚本或工具依赖 | [说明](skills/07-knowledge-learning/textbook-knowledge-graph/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/07-knowledge-learning/textbook-knowledge-graph/SKILL.md) |
 
-## 数据分析与可视化（41）
+## 数据分析与可视化（42）
 
 表格、业务指标、图表、仪表盘和数据质量。
 
@@ -219,6 +228,7 @@
 | `build-web-data-visualization--typescript-data-visualization-engineering`<br>网页数据可视化：TypeScript图表工程 | 工具与环境适配 | [说明](plugins/08-data-visualization/build-web-data-visualization/skills/typescript-data-visualization-engineering/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/build-web-data-visualization/skills/typescript-data-visualization-engineering/SKILL.md) |
 | `build-web-data-visualization--uml-and-software-architecture-visualization`<br>网页数据可视化：UML与软件架构图 | 工具与环境适配 | [说明](plugins/08-data-visualization/build-web-data-visualization/skills/uml-and-software-architecture-visualization/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/build-web-data-visualization/skills/uml-and-software-architecture-visualization/SKILL.md) |
 | `build-web-data-visualization--visualization-strategy-and-critique`<br>网页数据可视化：可视化方案与评审 | 工具与环境适配 | [说明](plugins/08-data-visualization/build-web-data-visualization/skills/visualization-strategy-and-critique/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/build-web-data-visualization/skills/visualization-strategy-and-critique/SKILL.md) |
+| `claude--xlsx`<br>Claude官方Excel表格处理 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
 | `data-analytics--analyze-data-quality`<br>数据分析：数据质量调查 | 平台或插件依赖 | [说明](plugins/08-data-visualization/data-analytics/skills/analyze-data-quality/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/data-analytics/skills/analyze-data-quality/SKILL.md) |
 | `data-analytics--build-dashboard`<br>数据分析：数据仪表盘搭建 | 平台或插件依赖 | [说明](plugins/08-data-visualization/data-analytics/skills/build-dashboard/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/data-analytics/skills/build-dashboard/SKILL.md) |
 | `data-analytics--build-report`<br>数据分析：分析报告编制 | 平台或插件依赖 | [说明](plugins/08-data-visualization/data-analytics/skills/build-report/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/08-data-visualization/data-analytics/skills/build-report/SKILL.md) |
@@ -387,7 +397,7 @@ iOS、macOS、SwiftUI、性能、构建和发布。
 | `hugging-face--transformers.js`<br>Hugging Face：浏览器模型推理 | 工具与环境适配 | [说明](plugins/13-ai-models/hugging-face/skills/transformers.js/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/13-ai-models/hugging-face/skills/transformers.js/SKILL.md) |
 | `hugging-face--vision-trainer`<br>Hugging Face：视觉模型训练 | 工具与环境适配 | [说明](plugins/13-ai-models/hugging-face/skills/vision-trainer/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/13-ai-models/hugging-face/skills/vision-trainer/SKILL.md) |
 
-## 云端协作与办公（14）
+## 云端协作与办公（16）
 
 Google Drive、Notion、ChatGPT Pages和外部应用。
 
@@ -398,6 +408,8 @@ Google Drive、Notion、ChatGPT Pages和外部应用。
 | `google-drive--google-drive-comments`<br>Google Workspace：文件批注 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/google-drive/skills/google-drive-comments/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/google-drive/skills/google-drive-comments/SKILL.md) |
 | `google-drive--google-sheets`<br>Google Workspace：Google Sheets表格 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/google-drive/skills/google-sheets/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/google-drive/skills/google-sheets/SKILL.md) |
 | `google-drive--google-slides`<br>Google Workspace：Google Slides演示 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/google-drive/skills/google-slides/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/google-drive/skills/google-slides/SKILL.md) |
+| `google-workspace`<br>Google文档、表格与幻灯片创建修改 | 平台或插件依赖 | [说明](skills/14-cloud-workspace/google-workspace/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/14-cloud-workspace/google-workspace/SKILL.md) |
+| `morning`<br>每日晨间简报 | 平台或插件依赖 | [说明](skills/14-cloud-workspace/morning/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/14-cloud-workspace/morning/SKILL.md) |
 | `notion--notion-database-designer`<br>Notion：Notion数据库设计 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/notion/skills/notion-database-designer/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/notion/skills/notion-database-designer/SKILL.md) |
 | `notion--notion-meeting-intelligence`<br>Notion：会议准备与纪要 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/notion/skills/notion-meeting-intelligence/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/notion/skills/notion-meeting-intelligence/SKILL.md) |
 | `notion--notion-research-documentation`<br>Notion：研究资料整理 | 平台或插件依赖 | [说明](plugins/14-cloud-workspace/notion/skills/notion-research-documentation/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/14-cloud-workspace/notion/skills/notion-research-documentation/SKILL.md) |
@@ -424,15 +436,21 @@ Google Drive、Notion、ChatGPT Pages和外部应用。
 | `gpt-image-2`<br>GPT图像生成与编辑 | 脚本或工具依赖 | [说明](skills/15-images-media/gpt-image-2/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/15-images-media/gpt-image-2/SKILL.md) |
 | `imagegen`<br>官方图像生成与编辑 | 脚本或工具依赖 | [说明](skills/15-images-media/imagegen/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/15-images-media/imagegen/SKILL.md) |
 
-## AI助手与技能管理（9）
+## AI助手与技能管理（15）
 
 技能管理、官方文档、助手工作方式和平台扩展。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
+| `claude--built-in-browser`<br>Claude内置浏览器操作 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--chrome-browser`<br>Claude in Chrome浏览器操作 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--computer-use`<br>Claude电脑桌面操作 | 平台限制，不复制 | [官方获取说明](docs/COMPATIBILITY.md#不复制正文的技能) |
+| `claude--skill-creator`<br>Claude技能创建、评测与描述优化 | 脚本或工具依赖 | [说明](skills/16-agent-tools/claude--skill-creator/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/claude--skill-creator/SKILL.md) |
 | `full-output-enforcement`<br>完整代码与内容输出约束 | 文本工作流 | [说明](skills/16-agent-tools/full-output-enforcement/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/full-output-enforcement/SKILL.md) |
+| `import-memory`<br>导入其他AI的记忆 | 平台或插件依赖 | [说明](skills/16-agent-tools/import-memory/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/import-memory/SKILL.md) |
 | `openai-docs`<br>OpenAI官方文档查询 | 脚本或工具依赖 | [说明](skills/16-agent-tools/openai-docs/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/openai-docs/SKILL.md) |
 | `plugin-management--plugin-management`<br>插件管理：插件查找与连接管理 | 平台或插件依赖 | [说明](plugins/16-agent-tools/plugin-management/skills/plugin-management/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/16-agent-tools/plugin-management/skills/plugin-management/SKILL.md) |
+| `product-self-knowledge`<br>Anthropic产品信息核对 | 文本工作流 | [说明](skills/16-agent-tools/product-self-knowledge/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/product-self-knowledge/SKILL.md) |
 | `skill-creator`<br>技能编写与更新 | 脚本或工具依赖 | [说明](skills/16-agent-tools/skill-creator/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/skill-creator/SKILL.md) |
 | `skill-installer`<br>从GitHub安装技能 | 脚本或工具依赖 | [说明](skills/16-agent-tools/skill-installer/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/skill-installer/SKILL.md) |
 | `vibehub`<br>AI编程工具与术语查询 | 脚本或工具依赖 | [说明](skills/16-agent-tools/vibehub/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/16-agent-tools/vibehub/SKILL.md) |

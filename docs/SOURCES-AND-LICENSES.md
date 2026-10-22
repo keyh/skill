@@ -4,9 +4,19 @@
 
 快照日期为2026-10-22，检查了本机 Codex 用户技能目录、系统技能目录、通用 Agents 技能目录，以及本次会话提供技能的插件包目录。按“技能根目录下存在 `SKILL.md`”统计入口，父技能内嵌的参考技能随父包收录，不重复统计。
 
-- 本地与系统入口：125个。
-- 插件入口：199个，其中包括插件内部辅助技能。
-- 合计：324个；323个包含源文件，1个仅保留获取说明。
+- 本地与系统入口：142个。
+- 插件入口：200个，其中包括插件内部辅助技能。
+- 合计：342个；332个包含源文件，10个仅保留获取说明。
+
+### 2026-10-22 Claude 同步（第二批）
+
+检查了 Claude 的官方技能目录、账号同步技能目录和插件目录（Unity、Canva、设计工作流、3D CAD）。按 [同步与查重规则](SYNC-AND-DEDUP.md) 比对后：
+
+- 45 个与仓库逐字节一致（Unity 31、设计工作流 7、Canva 6、CAD 1），未重复上传。
+- 新收录 9 个：`textbook-knowledge-graph`、`claude--skill-creator`、`deep-research`、`docs`、`google-workspace`、`morning`、`import-memory`、`product-self-knowledge`、`canva--cli`。
+- 新登记 9 个仅目录记录：Claude 官方 docx、pdf、pptx、xlsx、file-reading、pdf-reading、built-in-browser、chrome-browser、computer-use，其许可禁止平台外复制。
+- 2 个同名但版本不同：`frontend-design`、`web-motion-reference`，未覆盖，见 [版本差异记录](VERSION-CONFLICTS.md)。
+- Claude 运行环境自带、磁盘上没有文件的辅助技能（如 artifact-design、dataviz、cowork-plugin）未收录。
 - 额外发现20个官方模板缓存入口，因本次会话未列为可用插件，只记入 [cache-only.json](../catalog/cache-only.json)，不计入已安装技能数量，也不复制正文。
 
 ## 来源记录
@@ -24,7 +34,8 @@
 - Dashi PPT 内含专有导出组件，按完整技能保留原位置及其许可，不作为独立组件提取。其使用范围以该组件原许可为准。
 - Unity材料保留Unity Companion许可说明，适用范围以原许可为准。
 - 没有找到完整许可文件的，清单明确标注；本次不把“已安装”推定为“可任意公开再分发”。
-- 官方Word文档技能存在明确的平台外复制限制，正文和资源未收录，见 [兼容性说明](COMPATIBILITY.md)。
+- 官方Word文档技能存在明确的平台外复制限制，正文和资源未收录，见 [兼容性说明](COMPATIBILITY.md)。Claude 官方的 docx/pdf/pptx/xlsx/file-reading/pdf-reading/浏览器/电脑操作技能同理。
+- Claude 的 `deep-research`、`docs`、`google-workspace`、`morning`、`import-memory`、`product-self-knowledge` 本地没有许可文件，按“未发现完整许可文件；不视为获得额外授权”收录，仅供本人私密备份。
 
 ## 排除内容
 

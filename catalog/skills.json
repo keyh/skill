@@ -2,11 +2,11 @@
   "schema_version": 1,
   "snapshot_date": "2026-10-22",
   "repository": "keyh/skill",
-  "count": 324,
-  "source_included_count": 323,
-  "catalog_only_count": 1,
-  "local_count": 125,
-  "plugin_count": 199,
+  "count": 342,
+  "source_included_count": 332,
+  "catalog_only_count": 10,
+  "local_count": 142,
+  "plugin_count": 200,
   "categories": {
     "01-web-ui": {
       "title": "网页与界面",
@@ -824,6 +824,31 @@
         "source_root": "codex-plugin-cache",
         "source_relative_path": "skills/classroom-helper",
         "original_skill_sha256": "d7f7aeedd72dc258c96c1f1d93e668ea19dc208e3cdda64e9ec7f2db93728f75"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 1
+    },
+    {
+      "id": "canva--cli",
+      "name": "canva-cli",
+      "install_name": "cli",
+      "title_zh": "Canva：命令行与REST API操作",
+      "category": "02-design-brand",
+      "category_zh": "设计与品牌",
+      "summary_zh": "Canva：命令行与REST API操作。适用于品牌视觉、设计规范、用户体验研究和设计评审相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use the Canva CLI (`canva api`) for Canva REST API workflows with local files, scripts, and coding agents. Use when the request needs direct, programmatic work with Canva designs, folders, assets, exports, or other REST API resources.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "保留 Canva 整包目录；需要 Canva CLI（`canva api`）和 Canva 账号授权。复制技能文件不会安装插件、MCP、CLI或账号授权。",
+      "path": "plugins/02-design-brand/canva/skills/cli",
+      "bundle_path": "plugins/02-design-brand/canva",
+      "source": {
+        "kind": "plugin",
+        "source_root": "claude-plugin-cache",
+        "source_relative_path": "skills/cli",
+        "original_skill_sha256": "e9df563ce0cd5bc6356ad6b5e79f59075bf2517d29dd1163617e9bc1102919e4",
+        "plugin": "canva",
+        "version": "1.0.0"
       },
       "license": "本地未发现完整许可文件；不视为获得额外授权",
       "source_file_count": 1
@@ -2607,6 +2632,29 @@
       "source_file_count": 23
     },
     {
+      "id": "claude--pptx",
+      "name": "pptx",
+      "install_name": "pptx",
+      "title_zh": "Claude官方PowerPoint处理",
+      "category": "04-presentations",
+      "category_zh": "PPT与演示",
+      "summary_zh": "Claude官方PowerPoint处理。适用于汇报材料、可编辑幻灯片、图片转PPT和网页演示相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations as PowerPoint (.pptx) files; reading, parsing, or extracting text from any .pptx or .potx file (even if the extracted content will be used elsewhere, like in an email, summary, or creating a different type of slide deck); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates (.potx), layouts, speaker notes, or comments. Trigger whenever the user asks for a PowerPoint or .pptx file, or references a .pptx or .potx filename, regardless of what they plan to do with the content afterward. However, when the user asks for a deck, slides, a slide deck, or a presentation without naming a file format, default to using a dedicated slide-deck artifact type or a separate slides skill if this session offers one; otherwise, use this skill.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "pptx",
+        "original_skill_sha256": "d8bf85f2ef187ce78cf1afa0eab0566d8760df158ea99815b84ac8bc813f04ab"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 57
+    },
+    {
       "id": "codex-ppt",
       "name": "codex-ppt",
       "install_name": "codex-ppt",
@@ -3020,6 +3068,121 @@
       "source_file_count": 61
     },
     {
+      "id": "claude--docx",
+      "name": "docx",
+      "install_name": "docx",
+      "title_zh": "Claude官方Word文档创建与编辑",
+      "category": "05-documents-writing",
+      "category_zh": "文档与写作",
+      "summary_zh": "Claude官方Word文档创建与编辑。适用于文章、Word、PDF、内容编辑和正式文档相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx) or Word templates (.dotx). Triggers include: any mention of Microsoft Word Documents, such as 'Word doc', 'word document', '.docx', '.dotx', 'microsoft doc'. Also use when extracting or reorganizing content from .docx or .dotx files, inserting or replacing images in documents, find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a deliverable as a Word or .docx file (to download, email or print), use this skill. However, if they ask for a document, page, report, memo, or notes WITHOUT naming a file format and the session offers Claude's own dedicated document or page skill or connector, use that instead, even if they will email or print it. Do NOT use for PDFs, spreadsheets, Google Docs, or coding unrelated to document generation.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "docx",
+        "original_skill_sha256": "912cb15683a476a285033f9a40c5099248f9c6a06d581b106b95796f9d33d118"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 61
+    },
+    {
+      "id": "claude--file-reading",
+      "name": "file-reading",
+      "install_name": "file-reading",
+      "title_zh": "上传文件读取路由",
+      "category": "05-documents-writing",
+      "category_zh": "文档与写作",
+      "summary_zh": "上传文件读取路由。适用于文章、Word、PDF、内容编辑和正式文档相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill when a file has been uploaded but its content is NOT in your context — only its path at /mnt/user-data/uploads/ is listed in an uploaded_files block. This skill is a router: it tells you which tool to use for each file type (pdf, docx, xlsx, csv, json, images, archives, ebooks) so you read the right amount the right way instead of blindly running cat on a binary. Triggers: any mention of /mnt/user-data/uploads/, an uploaded_files section, a file_path tag, or a user asking about an uploaded file you have not yet read. Do NOT use this skill if the file content is already visible in your context inside a documents block — you already have it.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "file-reading",
+        "original_skill_sha256": "01ccda8f3014a3199e9668cd862391db5c41500f1821e60f013812dedf4dec88"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 2
+    },
+    {
+      "id": "claude--pdf",
+      "name": "pdf",
+      "install_name": "pdf",
+      "title_zh": "Claude官方PDF处理",
+      "category": "05-documents-writing",
+      "category_zh": "文档与写作",
+      "summary_zh": "Claude官方PDF处理。适用于文章、Word、PDF、内容编辑和正式文档相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "pdf",
+        "original_skill_sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 12
+    },
+    {
+      "id": "claude--pdf-reading",
+      "name": "pdf-reading",
+      "install_name": "pdf-reading",
+      "title_zh": "PDF内容读取与检查",
+      "category": "05-documents-writing",
+      "category_zh": "文档与写作",
+      "summary_zh": "PDF内容读取与检查。适用于文章、Word、PDF、内容编辑和正式文档相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill when you need to read, inspect, or extract content from PDF files — especially when file content is NOT in your context and you need to read it from disk. Covers content inventory, text extraction, page rasterization for visual inspection, embedded image/attachment/table/form-field extraction, and choosing the right reading strategy for different document types (text-heavy, scanned, slide-decks, forms, data-heavy). Do NOT use this skill for PDF creation, form filling, merging, splitting, watermarking, or encryption — use the pdf skill instead.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "pdf-reading",
+        "original_skill_sha256": "e2081f071b4f56fb0fd994dad13c3b7b1dc35d7f3655707ae38ccaf230b787b6"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 3
+    },
+    {
+      "id": "docs",
+      "name": "docs",
+      "install_name": "docs",
+      "title_zh": "Claude Docs协作文档",
+      "category": "05-documents-writing",
+      "category_zh": "文档与写作",
+      "summary_zh": "Claude Docs协作文档。适用于文章、Word、PDF、内容编辑和正式文档相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "docs (editable docs people share and comment on; the default for any document, named as a doc or not: a document, report, proposal, resume, cover letter, letter, contract, policy, form, template, worksheet, essay, handbook, guide, how-to, cheat sheet, SOP or other writing to keep, share, collaborate on, send, submit, print or sign; a doc exports to Word, PDF, Markdown or Google Docs, so needing a file to send, attach, upload, submit or print is no reason to pick Word, and a file nobody asked for is a doc, not Word; a plan, comparison, summary or notes asked in chat stays in chat; a pasted claude.ai artifact link may be a doc: check with docs tools first; Word or another file format named, tracked changes wanted, or a .docx to change or use as a template → that format's skill): making one → if no docs-connector instructions are in context, call its `guide` (topic.instructions) first; then create the doc (headings only, no body) before any search, file read or plan, even with files attached.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "需要 Claude Docs 连接器；其他 AI 上没有对等工具时只能作为写作流程参考。",
+      "path": "skills/05-documents-writing/docs",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "docs",
+        "original_skill_sha256": "98e4fb5934042152d57bc9cb8c0736d5d8e31c6c0122b13ff5836f4c2411fa3e"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 1
+    },
+    {
       "id": "documents--documents",
       "name": "documents",
       "install_name": "documents",
@@ -3287,6 +3450,29 @@
       },
       "license": "Apache-2.0；保留附加NOTICE",
       "source_file_count": 21
+    },
+    {
+      "id": "deep-research",
+      "name": "deep-research",
+      "install_name": "deep-research",
+      "title_zh": "多来源深度研究与报告",
+      "category": "06-research-search",
+      "category_zh": "搜索与研究",
+      "summary_zh": "多来源深度研究与报告。适用于网页检索、站点采集、文献研究和竞争分析相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill when the user's prompt requires (1) researching a topic across multiple sources, comparing options or alternatives, analyzing trends or history, understanding markets or industries, or reviewing literature or studies and (2) synthesizing that research into a comprehensive, narrative report. If you're planning to search the web or internal knowledge bases, consider using this skill. This skill coordinates research subagents, so use it only when you have a tool for spawning subagents (the Agent or Task tool); otherwise, research the question directly.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "为 Claude 平台编写：依赖 Claude 的工具名称、连接器或子代理能力；在其他 AI 上需把工具名映射为对等能力。复制技能文件不会安装插件、MCP、CLI或账号授权。",
+      "path": "skills/06-research-search/deep-research",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "deep-research",
+        "original_skill_sha256": "46ae8d5a0b95efad0329ac287ea5248c19fbbe195d8270231c4a78ba6217c024"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 3
     },
     {
       "id": "ecc-benchmark-methodology",
@@ -4114,6 +4300,30 @@
       "source_file_count": 22
     },
     {
+      "id": "textbook-knowledge-graph",
+      "name": "textbook-knowledge-graph",
+      "install_name": "textbook-knowledge-graph",
+      "title_zh": "教材知识先修图谱与学习路径",
+      "category": "07-knowledge-learning",
+      "category_zh": "知识库与学习",
+      "summary_zh": "教材知识先修图谱与学习路径。适用于资料入库、知识图谱、教材页面和学习路径相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "教材知识先修图谱：把一本数字教材的知识点拆成“一个可教、可检测的微知识点”，写清类型、达标证据、检测问题，连成带强弱和理由的先修关系图（有向无环），并校验、算出重点 / 难点 / 桥梁知识点、生成学习路径、导出编辑审核表和 3D 交互图谱。方法蒸馏自 Marble 开源课程图谱（os-taxonomy，1590 个微知识点、3221 条先修关系）。做数字教材的知识图谱、先修关系、学习路径、知识点拆分、能力图谱与知识图谱关联、详情页“知识图谱”栏目、学生端个性化路径或 AI 诊断“缺哪块前置知识”时都要用，即使用户只说“理一下知识点之间的关系”。",
+      "status": "source-included",
+      "portability": "脚本或工具依赖",
+      "dependencies_zh": "按 SKILL.md 安装和配置所需运行环境；本仓库安装器只复制文件，不执行技能脚本或启用后台功能。",
+      "path": "skills/07-knowledge-learning/textbook-knowledge-graph",
+      "bundle_path": null,
+      "source": {
+        "kind": "local",
+        "source_root": "claude-user-synced",
+        "source_relative_path": "textbook-knowledge-graph",
+        "original_skill_sha256": "38d4f03dafa58dc12cddfe67f63eca400ef8bec79009b3aa6d70938ff576eb13"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 12,
+      "notes_zh": "用户自建技能（灵枢医学数字教材），方法蒸馏自 Marble os-taxonomy。"
+    },
+    {
       "id": "build-web-data-visualization--accessibility-and-inclusive-visualization",
       "name": "accessibility-and-inclusive-visualization",
       "install_name": "accessibility-and-inclusive-visualization",
@@ -4562,6 +4772,29 @@
       },
       "license": "本地未发现完整许可文件；不视为获得额外授权",
       "source_file_count": 6
+    },
+    {
+      "id": "claude--xlsx",
+      "name": "xlsx",
+      "install_name": "xlsx",
+      "title_zh": "Claude官方Excel表格处理",
+      "category": "08-data-visualization",
+      "category_zh": "数据分析与可视化",
+      "summary_zh": "Claude官方Excel表格处理。适用于表格、业务指标、图表、仪表盘和数据质量相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .xltx, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \"the xlsx in my downloads\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "xlsx",
+        "original_skill_sha256": "6712b39718fe815054abca9c3ee72f989613e6f771c8a5c58f30a65a6c905622"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 53
     },
     {
       "id": "data-analytics--analyze-data-quality",
@@ -8211,6 +8444,52 @@
       "source_file_count": 16
     },
     {
+      "id": "google-workspace",
+      "name": "google-workspace",
+      "install_name": "google-workspace",
+      "title_zh": "Google文档、表格与幻灯片创建修改",
+      "category": "14-cloud-workspace",
+      "category_zh": "云端协作与办公",
+      "summary_zh": "Google文档、表格与幻灯片创建修改。适用于Google Drive、Notion、ChatGPT Pages和外部应用相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Read this before the first Google Drive, Docs, Sheets or Slides connector call whenever the task creates or changes a Google file. Use this skill whenever the user wants to create or change a Google Doc, Sheet or Slides file in their Google Drive. Triggers include: a request that names Google Docs, Sheets, Slides or Drive and asks to make, edit, format, copy or rename a file; a docs.google.com link with a request to change that file, even a one-line fix or suggested edits; and any follow-up change to a Google file from earlier in the chat, even \"change it\" or \"add a tab\". Includes helper scripts for document positions, cell ranges and slide layout. However, if the user asks for a doc, deck or spreadsheet without naming Google, or gives a Google file only as source material for something new, use Claude's own output type instead. Do NOT use for read-only questions about a Google file, or for Word, Excel, PowerPoint or PDF files.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "需要 Google Drive/Docs/Sheets/Slides 连接器；附带辅助脚本只做位置与布局计算。",
+      "path": "skills/14-cloud-workspace/google-workspace",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "google-workspace",
+        "original_skill_sha256": "073e4f759b4aa054be72a4f5bb9d8f51d3df3f8e02149605cf5c5dad3412bc83"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 9
+    },
+    {
+      "id": "morning",
+      "name": "morning",
+      "install_name": "morning",
+      "title_zh": "每日晨间简报",
+      "category": "14-cloud-workspace",
+      "category_zh": "云端协作与办公",
+      "summary_zh": "每日晨间简报。适用于Google Drive、Notion、ChatGPT Pages和外部应用相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Render the user's morning brief as a styled HTML artifact, or set it up as a recurring weekday task. Use only when the user explicitly asks to run, see, or set up their morning brief, or if they invoke /morning by name. A question about their day, schedule, or calendar is not by itself a request for the brief; answer it directly instead.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "需要日历、邮件等连接器以及定时任务能力；输出为 HTML 页面。",
+      "path": "skills/14-cloud-workspace/morning",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "morning",
+        "original_skill_sha256": "a7c4dbcb745799736991b027cceae39aae4880cc00ff43871ae5e87b38023bdd"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 3
+    },
+    {
       "id": "notion--notion-database-designer",
       "name": "notion-database-designer",
       "install_name": "notion-database-designer",
@@ -8667,6 +8946,100 @@
       "source_file_count": 12
     },
     {
+      "id": "claude--built-in-browser",
+      "name": "built-in-browser",
+      "install_name": "built-in-browser",
+      "title_zh": "Claude内置浏览器操作",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "Claude内置浏览器操作。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Read this skill before the first step that uses the built-in browser, the browser pane inside the Claude desktop app (also called the in-app browser, the browser pane, Claude's browser, or \"your own browser\"), whose tools are named mcp__Claude_Browser__* when the session runs in the desktop app and mcp__remote-devices__Claude_Browser__* when a cloud session is linked to the person's computer; before those tools are turned on there may be a single enable__mcp__remote-devices__Claude_Browser tool instead. It covers the pane's persistent sign-ins, tabs and preview_start, reading pages as text, site approvals, what the pane cannot open, and what to do when it cannot be reached. It is not for Claude in Chrome (mcp__claude-in-chrome__* tools), which has its own skill, and it does not decide which browser to use.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-synced",
+        "source_relative_path": "built-in-browser",
+        "original_skill_sha256": "b5a720afbcde0d6a77c1bc1d34ab56f3d4b09d071b92129783b4faf7f2a3fe62"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 2
+    },
+    {
+      "id": "claude--chrome-browser",
+      "name": "chrome-browser",
+      "install_name": "chrome-browser",
+      "title_zh": "Claude in Chrome浏览器操作",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "Claude in Chrome浏览器操作。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Read this skill before the first step that uses Claude in Chrome, the browser extension whose tools are named mcp__claude-in-chrome__* (also called Chrome, the browser extension, or the external browser) and which acts in the person's real Chrome with their own sign-ins; before those tools are turned on there may be a single enable__mcp__claude-in-chrome tool instead. It covers loading the tools in one ToolSearch call, checking the person's open tabs and working in a new tab, site permissions, GIF recordings, console logs, dialogs to avoid, and when to stop and ask. It is not for the built-in browser (mcp__Claude_Browser__* or mcp__remote-devices__Claude_Browser__* tools), which has its own skill, and it does not decide which browser to use.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-synced",
+        "source_relative_path": "chrome-browser",
+        "original_skill_sha256": "c8b0afeee246f333529be3c73c49efaf7d9d10a46d8948b4b736cc758cb4e885"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 2
+    },
+    {
+      "id": "claude--computer-use",
+      "name": "computer-use",
+      "install_name": "computer-use",
+      "title_zh": "Claude电脑桌面操作",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "Claude电脑桌面操作。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Read this skill before the first step of any request to do something in an app on the person's own computer (Notes, Finder, System Settings, any desktop app), to look at their screen, or for \"computer use\". Computer use (desktop control) lets Claude take screenshots of the person's desktop and control it with clicks, typing and scrolling through the Claude desktop app; its tools are named mcp__computer-use__* when the session runs in the desktop app and mcp__remote-devices__computer_* when a cloud session is linked to the person's computer; before computer use is turned on for a conversation there may be no such tools, only an enable__mcp__remote-devices__computer tool, which turns it on. It covers turning it on, picking the right tool, the access flow, and the safety rules for tiered apps, links and financial actions. It is not for websites, which go through Claude in Chrome or the built-in browser and their own skills.",
+      "status": "catalog-only",
+      "portability": "平台限制，不复制",
+      "dependencies_zh": "Claude（claude.ai / Claude 桌面端 / Claude Code）内置，直接在 Claude 中使用；本地许可明确禁止平台外保留或复制材料。",
+      "path": null,
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-synced",
+        "source_relative_path": "computer-use",
+        "original_skill_sha256": "f1b16578da1eff27912e53ebf2cb28e710e84903b71eb5ffa8873abe356bf1f1"
+      },
+      "license": "平台限制：禁止平台外复制",
+      "source_file_count": 2
+    },
+    {
+      "id": "claude--skill-creator",
+      "name": "skill-creator",
+      "install_name": "skill-creator",
+      "title_zh": "Claude技能创建、评测与描述优化",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "Claude技能创建、评测与描述优化。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "status": "source-included",
+      "portability": "脚本或工具依赖",
+      "dependencies_zh": "按 SKILL.md 安装和配置所需运行环境；本仓库安装器只复制文件，不执行技能脚本或启用后台功能。",
+      "path": "skills/16-agent-tools/claude--skill-creator",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "skill-creator",
+        "original_skill_sha256": "db7ec49392b8fc124a86b5274019c416db76125ef86de6a53b23fb50f206eb18",
+        "upstream_url": "https://github.com/anthropics/skills"
+      },
+      "license": "Apache-2.0；保留原LICENSE.txt",
+      "source_file_count": 18,
+      "notes_zh": "与 OpenAI 版 `skill-creator` 同名但来源不同（Anthropic 版含评测循环、描述优化与打包脚本）。两者安装名相同，同一目录只能装其中一个。"
+    },
+    {
       "id": "full-output-enforcement",
       "name": "full-output-enforcement",
       "install_name": "full-output-enforcement",
@@ -8697,6 +9070,29 @@
       },
       "license": "MIT",
       "source_file_count": 4
+    },
+    {
+      "id": "import-memory",
+      "name": "import-memory",
+      "install_name": "import-memory",
+      "title_zh": "导入其他AI的记忆",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "导入其他AI的记忆。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Import a memory export from another AI assistant into Claude's memory — conversationally, additively, and with the content treated as data.",
+      "status": "source-included",
+      "portability": "平台或插件依赖",
+      "dependencies_zh": "需要目标 AI 具备可写的长期记忆工具。",
+      "path": "skills/16-agent-tools/import-memory",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-example",
+        "source_relative_path": "import-memory",
+        "original_skill_sha256": "5179b0780b7025c93271c181636a23acc8d05cad3b20584639cbaf1cf9c3b07a"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 1
     },
     {
       "id": "openai-docs",
@@ -8743,6 +9139,29 @@
         "source_root": "codex-plugin-cache",
         "source_relative_path": "skills/plugin-management",
         "original_skill_sha256": "653841cc21205269f08b0ce135891e1518dac616a766bcfb0b57d788d3f68b10"
+      },
+      "license": "本地未发现完整许可文件；不视为获得额外授权",
+      "source_file_count": 1
+    },
+    {
+      "id": "product-self-knowledge",
+      "name": "product-self-knowledge",
+      "install_name": "product-self-knowledge",
+      "title_zh": "Anthropic产品信息核对",
+      "category": "16-agent-tools",
+      "category_zh": "AI助手与技能管理",
+      "summary_zh": "Anthropic产品信息核对。适用于技能管理、官方文档、助手工作方式和平台扩展相关任务；具体输入、步骤和输出见原始技能说明。",
+      "description_original": "Stop and consult this skill whenever your response would include specific facts about Anthropic's products. Covers: Claude Code (how to install, Node.js requirements, platform/OS support, MCP server integration, configuration), Claude API (function calling/tool use, batch processing, SDK usage, rate limits, pricing, models, streaming), and Claude.ai (Pro vs Team vs Enterprise plans, feature limits). Trigger this even for coding tasks that use the Anthropic SDK, content creation mentioning Claude capabilities or pricing, or LLM provider comparisons. Any time you would otherwise rely on memory for Anthropic product details, verify here instead — your training data may be outdated or wrong.",
+      "status": "source-included",
+      "portability": "文本工作流",
+      "dependencies_zh": "按 SKILL.md 安装和配置所需运行环境；本仓库安装器只复制文件，不执行技能脚本或启用后台功能。",
+      "path": "skills/16-agent-tools/product-self-knowledge",
+      "bundle_path": null,
+      "source": {
+        "kind": "system",
+        "source_root": "claude-anthropic-public",
+        "source_relative_path": "product-self-knowledge",
+        "original_skill_sha256": "216f66560c9f1088fb6cd589a1d0f089da5fb38318750ef09b24f1f0ec3c1125"
       },
       "license": "本地未发现完整许可文件；不视为获得额外授权",
       "source_file_count": 1

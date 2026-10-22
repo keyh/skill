@@ -8,5 +8,6 @@
 - Never overwrite an existing installed skill without separate authorization. The installer intentionally rejects collisions.
 - Do not add secrets, login state, user chat history, private memory or unrelated business documents.
 - Keep this repository private. Do not enable hooks, background services, auto-update or MCP registration as a side effect of organizing or installing skills.
+- After installing any new skill, sync it here following docs/SYNC-AND-DEDUP.md: run scripts/check_duplicates.py first. IDENTICAL → do not upload. VERSION-DIFFERENT → never overwrite; record it in docs/VERSION-CONFLICTS.md and ask the human which merge option to use. NEW → upload with SOURCE.json, SKILL-INFO.zh-CN.md and catalog updates.
 - Run scripts/verify.py after updating the snapshot. Regenerate catalog/files.sha256.json only after reviewing intended changes; exclude .git, Python caches and the checksum file itself.
 - Distinguish file/installer verification from real functionality tests of each skill.

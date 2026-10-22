@@ -1,0 +1,7 @@
+{
+  "kind": "system",
+  "source_root": "claude-anthropic-example",
+  "source_relative_path": "skill-creator",
+  "original_skill_sha256": "db7ec49392b8fc124a86b5274019c416db76125ef86de6a53b23fb50f206eb18",
+  "upstream_url": "https://github.com/anthropics/skills"
+}

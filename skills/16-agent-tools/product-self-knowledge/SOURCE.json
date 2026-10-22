@@ -1,0 +1,6 @@
+{
+  "kind": "system",
+  "source_root": "claude-anthropic-public",
+  "source_relative_path": "product-self-knowledge",
+  "original_skill_sha256": "216f66560c9f1088fb6cd589a1d0f089da5fb38318750ef09b24f1f0ec3c1125"
+}

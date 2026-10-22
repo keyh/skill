@@ -1,0 +1,6 @@
+{
+  "kind": "system",
+  "source_root": "claude-anthropic-example",
+  "source_relative_path": "import-memory",
+  "original_skill_sha256": "5179b0780b7025c93271c181636a23acc8d05cad3b20584639cbaf1cf9c3b07a"
+}

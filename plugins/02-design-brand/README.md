@@ -8,6 +8,7 @@
 - [Canva：品牌演示文稿](canva/skills/branded-presentation/SKILL-INFO.zh-CN.md) — `canva--branded-presentation`
 - [Canva：批量创建设计](canva/skills/bulk-create/SKILL-INFO.zh-CN.md) — `canva--bulk-create`
 - [Canva：课堂教学材料](canva/skills/classroom-helper/SKILL-INFO.zh-CN.md) — `canva--classroom-helper`
+- [Canva：命令行与REST API操作](canva/skills/cli/SKILL-INFO.zh-CN.md) — `canva--cli`
 - [Canva：设计内容翻译](canva/skills/design-translation/SKILL-INFO.zh-CN.md) — `canva--design-translation`
 - [Canva：编辑现有设计](canva/skills/edit-design/SKILL-INFO.zh-CN.md) — `canva--edit-design`
 - [Canva：设计反馈](canva/skills/get-design-feedback/SKILL-INFO.zh-CN.md) — `canva--get-design-feedback`

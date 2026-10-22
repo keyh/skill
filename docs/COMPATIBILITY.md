@@ -33,6 +33,14 @@
 
 本机这项技能的 `LICENSE.txt` 明确限制从服务中提取、在服务外保留或复制材料。因此本仓库仅保留这一用途说明和目录记录，没有复制它的 `SKILL.md`、脚本、资源或许可全文。请在已获授权的 Codex 官方文档功能中使用。安装器会明确拒绝安装此目录项。
 
+**Claude 官方技能（9 项，编号以 `claude--` 开头）：`docx`、`pdf`、`pptx`、`xlsx`、`file-reading`、`pdf-reading`、`built-in-browser`、`chrome-browser`、`computer-use`。**
+
+这些技能的 `LICENSE.txt` 写明不得从服务中提取或在服务外保留、复制材料。因此本仓库只登记用途、原始名称和 `SKILL.md` 的 SHA-256（用于查重），没有复制正文、脚本或资源。它们在 Claude（claude.ai、Claude 桌面端、Claude Code）中自带，直接在 Claude 里使用即可；其他 AI 请用自己平台的同类技能（例如本仓库的 `pdf--pdf`、`spreadsheets--*`、`presentations--*`）。
+
+## Claude 平台专用技能
+
+`docs`、`google-workspace`、`morning`、`import-memory`、`deep-research` 依赖 Claude 的连接器、记忆工具或子代理工具，正文里的工具名（如 `mcp__…`、`Agent`）在其他 AI 上需要换成对等能力，没有对等工具时只能当流程参考。
+
 ## 保留原文的适配事项
 
 原始 `SKILL.md` 保持字节一致，原有安全约束与调用方式也保留。有些技能含有专用工具标识、插件变量或本机路径，例如 `lucian-uxui` 存在历史安装路径；在新环境中需要映射到实际目录。不要直接把不存在的路径视为已配置。

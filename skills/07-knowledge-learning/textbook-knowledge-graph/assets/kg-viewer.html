@@ -1,0 +1,270 @@
+<meta charset="utf-8">
+<title>__KG_TITLE__知识先修图谱</title>
+<!--
+  教材知识先修图谱查看器（textbook-knowledge-graph skill 的模板）。
+  数据由 scripts/analyze.py --viewer 注入下方 KG 常量；只从 CDN 加载 3d-force-graph（MIT），不访问其他外部服务。
+  可直接作为 artifact 发布，也可以本地打开。正式上线时改用本地脚本，并按灵枢工程约束接入。
+-->
+<style>
+  /* 布局：全屏 3D 星图，上方工具条、左下项目筛选、右侧详情面板；深色优先 */
+  :root {
+    --bg:#061430; --panel:rgba(9,28,66,.86); --text:#e6f2ff; --muted:#93b1d6; --line:rgba(95,219,255,.22);
+    --accent:#5fdbff; --pre:#5fdbff; --post:#ffb15f; --tip-bg:rgba(6,20,48,.94); --tip-fg:#e6f2ff;
+    --font:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg:#f2f5fa; --panel:rgba(255,255,255,.92); --text:#11223d; --muted:#566b8c; --line:rgba(17,34,61,.16);
+      --accent:#2f6ff0; --pre:#2f6ff0; --post:#d4730c; --tip-bg:rgba(255,255,255,.96); --tip-fg:#11223d; color-scheme:light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#f2f5fa; --panel:rgba(255,255,255,.92); --text:#11223d; --muted:#566b8c; --line:rgba(17,34,61,.16);
+    --accent:#2f6ff0; --pre:#2f6ff0; --post:#d4730c; --tip-bg:rgba(255,255,255,.96); --tip-fg:#11223d; color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html, body { height:100%; margin:0; overflow:hidden; background:var(--bg); color:var(--text); font:14px/1.6 var(--font); }
+  #graph { position:fixed; inset:0; }
+  .bar { position:fixed; left:16px; right:16px; top:calc(12px + env(safe-area-inset-top, 0px)); display:flex; gap:8px; flex-wrap:wrap; align-items:center; pointer-events:none; }
+  .bar > * { pointer-events:auto; }
+  h1 { font-size:16px; margin:0 8px 0 0; font-weight:600; letter-spacing:.02em; text-wrap:balance; }
+  .ai-note { font-size:12px; color:var(--muted); border:1px dashed var(--line); border-radius:6px; padding:1px 8px; background:var(--panel); }
+  button, select, input { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:5px 10px; font:inherit; }
+  button { cursor:pointer; }
+  button.on { border-color:var(--accent); color:var(--accent); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  #search { width:11em; }
+  .units { position:fixed; left:16px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); max-width:min(46vw, 640px); display:flex; flex-wrap:wrap; gap:6px; }
+  .units label { background:var(--panel); border:1px solid var(--line); border-left-width:3px; border-radius:999px; padding:2px 10px 2px 8px; font-size:12px; cursor:pointer; user-select:none; }
+  .units input { margin:0 4px 0 0; vertical-align:-1px; padding:0; }
+  aside { position:fixed; right:16px; top:calc(64px + env(safe-area-inset-top, 0px)); bottom:calc(52px + env(safe-area-inset-bottom, 0px)); width:min(380px, calc(100vw - 32px)); background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; overflow:auto; backdrop-filter:blur(8px); }
+  aside h2 { font-size:17px; margin:0 0 4px; text-wrap:balance; }
+  .tag { display:inline-block; font-size:12px; color:var(--muted); margin-right:8px; }
+  aside h3 { font-size:12px; color:var(--muted); margin:14px 0 4px; font-weight:600; letter-spacing:.06em; }
+  aside ul, aside ol { margin:0; padding-left:18px; }
+  aside li { margin:3px 0; }
+  .lk { color:var(--accent); cursor:pointer; background:none; border:0; padding:0; font:inherit; text-align:left; }
+  .why { color:var(--muted); font-size:12px; }
+  .badge { font-size:11px; color:var(--muted); border:1px dashed var(--line); border-radius:4px; padding:0 4px; margin-left:6px; vertical-align:2px; }
+  .legend { position:fixed; right:16px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); font-size:12px; color:var(--muted); background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:6px 10px; }
+  .legend i { display:inline-block; width:12px; height:3px; margin:0 4px 2px 10px; vertical-align:middle; }
+  #fallback { position:fixed; inset:0; padding:calc(72px + env(safe-area-inset-top, 0px)) 16px 24px; overflow:auto; }
+  #fallback h3 { margin:18px 0 4px; font-size:14px; }
+  @media (max-width:760px) { .units { max-width:none; right:16px; } .legend { display:none; } aside { top:auto; height:55%; } }
+</style>
+
+<div id="graph"></div>
+<div id="fallback" hidden></div>
+<div class="bar">
+  <h1>__KG_TITLE__ · 知识先修图谱</h1>
+  <span class="ai-note" id="aiNote" hidden></span>
+  <button id="l-dag" data-layout="dag" class="on">按先修分层</button>
+  <button id="l-unit" data-layout="unit">按项目分层</button>
+  <button id="l-free" data-layout="free">自由布局</button>
+  <select id="colorBy" aria-label="着色方式"><option value="unit">按项目着色</option><option value="type">按类型着色</option></select>
+  <button id="softBtn" class="on">显示软依赖</button>
+  <button id="themeBtn">切换明暗</button>
+  <input id="search" list="names" placeholder="搜索知识点" aria-label="搜索知识点">
+  <datalist id="names"></datalist>
+</div>
+<div class="units" id="units"></div>
+<aside id="panel" hidden></aside>
+<div class="legend"><i style="background:var(--pre)"></i>必须先学<i style="background:var(--post)"></i>学完可解锁<span style="margin-left:10px">点选知识点查看</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.80.0/dist/3d-force-graph.min.js"></script>
+<script>
+const KG = /*__KG_DATA__*/null;
+const TYPE_NAME = { CONCEPTUAL:'概念', PROCEDURAL:'操作', REPRESENTATIONAL:'识读', LANGUAGE:'术语', META:'素养' };
+const TYPE_COLOR = { CONCEPTUAL:'#5fdbff', PROCEDURAL:'#35b37e', REPRESENTATIONAL:'#a08fff', LANGUAGE:'#f29a3a', META:'#ef5e9c' };
+const PALETTE = ['#2bb5c9','#4f7df3','#8b6cf0','#ef5e9c','#35b37e','#f29a3a'];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const byId = new Map(KG.nodes.map(n => [n.id, n]));
+const unitTitle = new Map((KG.units || []).map(u => [u.n, u.short || u.title]));
+const stageColor = new Map();
+(KG.stages || []).forEach(([name, ns, color], i) => ns.forEach(n => stageColor.set(n, color || PALETTE[i % PALETTE.length])));
+const units = [...new Set(KG.nodes.map(n => n.unit).filter(Boolean))].sort((a, b) => a - b);
+units.forEach((u, i) => { if (!stageColor.has(u)) stageColor.set(u, PALETTE[i % PALETTE.length]); });
+const maxDepth = Math.max(0, ...KG.nodes.map(n => n.depth || 0));
+const aiCount = KG.nodes.filter(n => n.status === 'ai').length;
+if (aiCount) { const el = document.getElementById('aiNote'); el.textContent = `AI 预生成 · 待审核 ${aiCount}/${KG.nodes.length}`; el.hidden = false; }
+
+const prereq = new Map(), unlock = new Map();
+for (const e of KG.edges) {
+  (prereq.get(e.topicId) || prereq.set(e.topicId, []).get(e.topicId)).push(e);
+  (unlock.get(e.prerequisiteId) || unlock.set(e.prerequisiteId, []).get(e.prerequisiteId)).push(e);
+}
+// 软依赖只表示“先学会更顺”，不沿它一路传递：链按硬依赖追溯到底，软依赖只取直接一层。
+const walk = (id, map, key, useSoft) => {
+  const seen = new Set(), stack = [id];
+  while (stack.length) for (const e of (map.get(stack.pop()) || [])) {
+    if (e.strength !== 'hard') continue;
+    const nx = e[key]; if (!seen.has(nx)) { seen.add(nx); stack.push(nx); }
+  }
+  if (useSoft) for (const e of (map.get(id) || [])) if (e.strength !== 'hard') seen.add(e[key]);
+  return seen;
+};
+
+let showSoft = true, colorBy = 'unit', layout = 'dag', focus = null, upSet = new Set(), downSet = new Set(), G = null;
+const hiddenUnits = new Set();
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function graphData () {
+  const nodes = KG.nodes.filter(n => !hiddenUnits.has(n.unit)).map(n => ({ ...n }));
+  const keep = new Set(nodes.map(n => n.id));
+  const links = KG.edges.filter(e => keep.has(e.topicId) && keep.has(e.prerequisiteId) && (showSoft || e.strength === 'hard'))
+    .map(e => ({ source: e.prerequisiteId, target: e.topicId, strength: e.strength }));
+  return { nodes, links };
+}
+function webglOk () { try { return !!document.createElement('canvas').getContext('webgl2'); } catch (e) { return false; } }
+
+function nodeColor (n) {
+  const base = colorBy === 'type' ? (TYPE_COLOR[n.type] || '#93b1d6') : (stageColor.get(n.unit) || '#93b1d6');
+  if (!focus) return base;
+  if (n.id === focus) return css('--text');
+  if (upSet.has(n.id)) return css('--pre');
+  if (downSet.has(n.id)) return css('--post');
+  return 'rgba(140,160,190,0.16)';
+}
+const ends = l => [typeof l.source === 'object' ? l.source.id : l.source, typeof l.target === 'object' ? l.target.id : l.target];
+function linkState (l) {
+  if (!focus) return 0;
+  const [s, t] = ends(l);
+  if ((upSet.has(s) || s === focus) && (upSet.has(t) || t === focus)) return 1;
+  if ((downSet.has(t) || t === focus) && (downSet.has(s) || s === focus)) return 2;
+  return 0;
+}
+
+function placeNodes (nodes) {
+  nodes.forEach(n => {
+    n.fy = undefined;
+    if (layout === 'dag') n.fy = (maxDepth / 2 - (n.depth || 0)) * 46;            // 按硬依赖层级：起点在上
+    if (layout === 'unit') n.fy = ((units.length - 1) / 2 - units.indexOf(n.unit)) * 40; // 项目 1 在上
+  });
+}
+
+function start () {
+  const data = graphData();
+  placeNodes(data.nodes);
+  G = ForceGraph3D({ controlType: 'orbit' })(document.getElementById('graph'))
+    .graphData(data)
+    .backgroundColor('rgba(0,0,0,0)')
+    .nodeId('id')
+    .nodeLabel(n => `<div style="background:${css('--tip-bg')};color:${css('--tip-fg')};padding:4px 8px;border-radius:6px;font-size:13px">${esc(n.name)}<br><span style="opacity:.7">P${n.unit ?? '?'} ${esc(unitTitle.get(n.unit) || '')} · ${TYPE_NAME[n.type] || ''}</span></div>`)
+    .nodeVal(n => 1.5 + (n.centrality || 0) * 12)
+    .nodeColor(nodeColor)
+    .nodeOpacity(0.95)
+    .linkColor(l => [focus ? 'rgba(140,160,190,0.05)' : (l.strength === 'hard' ? 'rgba(147,177,214,0.45)' : 'rgba(147,177,214,0.16)'), css('--pre'), css('--post')][linkState(l)])
+    .linkWidth(l => linkState(l) ? 1.2 : (l.strength === 'hard' ? 0.5 : 0))
+    .linkDirectionalArrowLength(l => linkState(l) ? 3.5 : (l.strength === 'hard' ? 2 : 0))
+    .linkDirectionalArrowRelPos(1)
+    .linkDirectionalParticles(l => (!reduced && linkState(l)) ? 2 : 0)
+    .linkDirectionalParticleWidth(1.6)
+    .linkDirectionalParticleSpeed(0.008)
+    .onNodeClick(n => select(n.id))
+    .onBackgroundClick(() => select(null))
+    .cooldownTicks(reduced ? 60 : 220);
+  G.d3Force('charge').strength(-40);
+  let fitted = false;
+  G.onEngineStop(() => { if (!fitted && !focus) { fitted = true; G.zoomToFit(reduced ? 0 : 700, 60); } });
+  const c = G.controls(); if (c && !reduced) { c.autoRotate = true; c.autoRotateSpeed = 0.35; }
+  addEventListener('resize', () => G.width(innerWidth).height(innerHeight));
+}
+
+// 重新设置 graphData 会自动重启力模拟；不要在初始化后立刻调用 d3ReheatSimulation——
+// 布局引擎是异步建立的，此时调用会抛错并让渲染循环停住（页面一片空白）。
+function reload () { if (!G) return; const d = graphData(); placeNodes(d.nodes); G.graphData(d); }
+
+function setLayout (mode) {
+  layout = mode;
+  document.querySelectorAll('[data-layout]').forEach(b => b.classList.toggle('on', b.dataset.layout === mode));
+  if (!G) return;
+  const data = G.graphData();
+  placeNodes(data.nodes);
+  G.graphData(data);
+}
+
+function refresh () { if (G) G.nodeColor(G.nodeColor()).linkColor(G.linkColor()).linkWidth(G.linkWidth()).linkDirectionalParticles(G.linkDirectionalParticles()).linkDirectionalArrowLength(G.linkDirectionalArrowLength()); }
+
+function select (id) {
+  focus = id;
+  upSet = id ? walk(id, prereq, 'prerequisiteId', showSoft) : new Set();
+  downSet = id ? walk(id, unlock, 'topicId', showSoft) : new Set();
+  refresh();
+  const panel = document.getElementById('panel');
+  const c = G && G.controls(); if (c) c.autoRotate = !id && !reduced;
+  if (!id) { panel.hidden = true; return; }
+  const n = byId.get(id);
+  const live = G && G.graphData().nodes.find(x => x.id === id);
+  if (live && live.x !== undefined && !reduced) {
+    const d = 300, r = 1 + d / Math.hypot(live.x || 1, live.y || 1, live.z || 1);
+    G.cameraPosition({ x: live.x * r, y: live.y * r, z: live.z * r }, live, 800);
+  }
+  const pre = (prereq.get(id) || []).filter(e => showSoft || e.strength === 'hard');
+  const post = (unlock.get(id) || []).filter(e => showSoft || e.strength === 'hard');
+  const path = learnPath(id);
+  const item = (eid, extra = '') => `<button class="lk" data-id="${eid}">${esc(byId.get(eid)?.name)}</button>${extra}`;
+  panel.innerHTML = `
+    <h2>${esc(n.name)}${n.status === 'ai' ? '<span class="badge">AI 预生成 · 待审核</span>' : ''}</h2>
+    <span class="tag">P${n.unit ?? '?'} ${esc(unitTitle.get(n.unit) || '')}</span><span class="tag">${TYPE_NAME[n.type] || ''}</span><span class="tag">中心度 ${n.centrality ?? '-'}</span>
+    <p>${esc(n.description)}</p>
+    ${(n.evidence || []).length ? `<h3>达标证据</h3><ul>${n.evidence.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    ${n.assessmentPrompt ? `<h3>检测问题</h3><p>${esc(n.assessmentPrompt.replace(/\{\{name\}\}/g, '同学'))}</p>` : ''}
+    <h3>直接先修（${pre.length}）</h3>${pre.length ? `<ul>${pre.map(e => `<li>${item(e.prerequisiteId, e.strength === 'hard' ? '' : ' <span class="why">（建议先看）</span>')}<br><span class="why">${esc(e.reason)}</span></li>`).join('')}</ul>` : '<p class="why">无，是起点知识。</p>'}
+    <h3>直接解锁（${post.length}）</h3>${post.length ? `<ul>${post.map(e => `<li>${item(e.topicId, e.strength === 'hard' ? '' : ' <span class="why">（软）</span>')}</li>`).join('')}</ul>` : '<p class="why">暂无后续。</p>'}
+    <h3>学习路径（必须先学 ${path.length - 1} 个，按硬依赖）</h3><ol>${path.map(x => `<li>${item(x)} <span class="why">P${byId.get(x).unit ?? '?'}</span></li>`).join('')}</ol>`;
+  panel.hidden = false;
+  panel.querySelectorAll('.lk').forEach(a => a.onclick = () => select(a.dataset.id));
+}
+
+function learnPath (id) {
+  const need = new Set([id, ...walk(id, prereq, 'prerequisiteId', false)]);
+  const indeg = new Map([...need].map(x => [x, 0]));
+  for (const x of need) for (const e of (prereq.get(x) || [])) if (need.has(e.prerequisiteId) && e.strength === 'hard') indeg.set(x, indeg.get(x) + 1);
+  const cmp = (a, b) => ((byId.get(a).unit ?? 999) - (byId.get(b).unit ?? 999)) || (a < b ? -1 : 1);
+  const ready = [...need].filter(x => !indeg.get(x)).sort(cmp), out = [];
+  while (ready.length) {
+    const x = ready.shift(); out.push(x);
+    for (const e of (unlock.get(x) || [])) {
+      if (!need.has(e.topicId) || e.strength !== 'hard') continue;
+      indeg.set(e.topicId, indeg.get(e.topicId) - 1);
+      if (!indeg.get(e.topicId)) { ready.push(e.topicId); ready.sort(cmp); }
+    }
+  }
+  return out;
+}
+
+function renderUnits () {
+  const box = document.getElementById('units');
+  box.innerHTML = units.map(u => `<label for="u-${u}" style="border-left-color:${stageColor.get(u)}"><input type="checkbox" id="u-${u}" data-u="${u}"${hiddenUnits.has(u) ? '' : ' checked'}>P${u} ${esc(unitTitle.get(u) || '')}</label>`).join('');
+  box.querySelectorAll('input').forEach(i => i.onchange = () => {
+    const u = +i.dataset.u; i.checked ? hiddenUnits.delete(u) : hiddenUnits.add(u);
+    if (G) { reload(); }
+  });
+}
+
+function renderFallback () {
+  document.getElementById('graph').hidden = true;
+  const fb = document.getElementById('fallback'); fb.hidden = false;
+  fb.innerHTML = '<p class="why">当前浏览器无法显示 3D 图谱，下面按项目列出每个知识点的直接先修。</p>' + units.map(u => `<h3>P${u} ${esc(unitTitle.get(u) || '')}</h3><ul>` +
+    KG.nodes.filter(n => n.unit === u).map(n => `<li><b>${esc(n.name)}</b>：先修 ${(prereq.get(n.id) || []).map(e => esc(byId.get(e.prerequisiteId)?.name) + (e.strength === 'hard' ? '' : '（软）')).join('、') || '无'}</li>`).join('') + '</ul>').join('');
+}
+
+document.querySelectorAll('[data-layout]').forEach(b => b.onclick = () => setLayout(b.dataset.layout));
+document.getElementById('colorBy').onchange = e => { colorBy = e.target.value; refresh(); };
+document.getElementById('softBtn').onclick = e => { showSoft = !showSoft; e.target.classList.toggle('on', showSoft); e.target.textContent = showSoft ? '显示软依赖' : '只看硬依赖'; if (G) { reload(); } if (focus) select(focus); };
+document.getElementById('themeBtn').onclick = () => {
+  const root = document.documentElement, dark = root.dataset.theme ? root.dataset.theme === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark'; refresh();
+};
+document.getElementById('names').innerHTML = KG.nodes.map(n => `<option value="${esc(n.name)}">`).join('');
+document.getElementById('search').onchange = e => {
+  const q = e.target.value.trim(); if (!q) return;
+  const hit = KG.nodes.find(n => n.name === q) || KG.nodes.find(n => n.name.includes(q) || n.id === q);
+  if (hit) { if (hiddenUnits.delete(hit.unit)) { renderUnits(); if (G) { reload(); } } select(hit.id); }
+};
+renderUnits();
+if (!window.ForceGraph3D || !webglOk()) renderFallback(); else start();
+</script>

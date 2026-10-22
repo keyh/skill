@@ -1,0 +1,711 @@
+{
+ "version": "kg-1",
+ "book": {
+  "id": "b09",
+  "title": "老年疾病照护",
+  "major": "智慧健康养老服务与管理专业",
+  "level": "高职专科",
+  "edition": "第 1 版"
+ },
+ "units": [
+  {
+   "n": 1,
+   "title": "认知老年疾病照护基础",
+   "short": "认知基础",
+   "stage": "认知基础"
+  },
+  {
+   "n": 3,
+   "title": "高血压老年人照护",
+   "short": "高血压",
+   "stage": "常见慢病"
+  }
+ ],
+ "stages": [
+  [
+   "认知基础",
+   [
+    1
+   ],
+   "#2bb5c9"
+  ],
+  [
+   "常见慢病",
+   [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "#4f7df3"
+  ],
+  [
+   "系统疾病",
+   [
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "#8b6cf0"
+  ],
+  [
+   "综合照护",
+   [
+    13,
+    14
+   ],
+   "#ef5e9c"
+  ],
+  [
+   "智慧赋能",
+   [
+    15,
+    16
+   ],
+   "#35b37e"
+  ]
+ ],
+ "nodes": [
+  {
+   "id": "kp_p01_102",
+   "name": "老年人常见疾病特点",
+   "type": "CONCEPTUAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "老年人的疾病常常多病共存、表现不典型，个体差异大；理解这些特点，才能避免用中青年的经验判断老年人的病情。",
+   "evidence": [
+    "能说出老年疾病的 3 个常见特点，并各举一个照护中的例子",
+    "能指出一个案例中“症状轻但病情重”的线索"
+   ],
+   "assessmentPrompt": "{{name}}，一位老人说自己“没什么不舒服”，但最近吃饭少、走路慢了，你会怎么想？",
+   "standards": [
+    "skill:P1T1-疾病与功能影响分析"
+   ],
+   "sub": [
+    "多病共存",
+    "疾病表现不典型",
+    "疾病与功能个体差异明显",
+    "病程迁延，身心社会因素相互作用"
+   ],
+   "anchors": [
+    [
+     1,
+     0,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 1.0,
+   "depth": 0,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p01_201",
+   "name": "老年人常见疾病综合评估内容",
+   "type": "CONCEPTUAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "老年人综合评估覆盖躯体疾病、功能状态、心理、社会支持和环境等方面，目的是找出影响生活的主要问题。",
+   "evidence": [
+    "能列出综合评估的主要维度",
+    "能说明为什么老年人不能只评估疾病本身"
+   ],
+   "assessmentPrompt": "只记录老人的诊断，不评估日常生活能力，会漏掉什么？",
+   "standards": [
+    "skill:P1T2-评估全面性"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     1,
+     1,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.6666,
+   "depth": 0,
+   "unlocks": 3
+  },
+  {
+   "id": "kp_p01_202",
+   "name": "老年人综合评估常用工具",
+   "type": "PROCEDURAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "按评估目的选用合适的量表和工具，规范实施并正确解读结果。",
+   "evidence": [
+    "能为日常生活能力、跌倒风险、营养状况各选出一个常用工具",
+    "能按工具说明完成一次评估并记录结果"
+   ],
+   "assessmentPrompt": "要判断老人跌倒风险高不高，你会用什么工具？结果怎么看？",
+   "standards": [
+    "skill:P1T2-工具使用能力",
+    "cert:养老护理员"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     1,
+     1,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.5363,
+   "depth": 1,
+   "unlocks": 2
+  },
+  {
+   "id": "kp_p01_301",
+   "name": "老年人生理改变带来的用药特点",
+   "type": "CONCEPTUAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "随着年龄增长，药物在体内的吸收、分布、代谢和排泄都会改变，同样的剂量对老年人的作用可能更强、持续更久。",
+   "evidence": [
+    "能说出老年人药物代谢变化的 2 个方面",
+    "能解释为什么老年人用药常需“小剂量开始”"
+   ],
+   "assessmentPrompt": "为什么同一种药，老人吃了更容易出现不良反应？",
+   "standards": [
+    "skill:P1T3-用药特点分析"
+   ],
+   "sub": [
+    "药物吸收",
+    "药物分布",
+    "药物代谢",
+    "药物排泄",
+    "机体耐受差"
+   ],
+   "anchors": [
+    [
+     1,
+     2,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.6109,
+   "depth": 0,
+   "unlocks": 4
+  },
+  {
+   "id": "kp_p01_302",
+   "name": "老年人常见用药安全风险",
+   "type": "CONCEPTUAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "老年人用药的主要风险包括依从性差、多重用药带来的相互作用、潜在不适当用药等，照护者要能识别这些风险信号。",
+   "evidence": [
+    "能说出老年人用药的 3 类主要风险",
+    "能在用药清单中指出可能存在的风险点"
+   ],
+   "assessmentPrompt": "一位老人每天吃 9 种药，你最担心什么？",
+   "standards": [
+    "skill:P1T3-风险识别",
+    "cert:养老护理员"
+   ],
+   "sub": [
+    "依从性风险",
+    "多重用药与药物相互作用风险",
+    "潜在不适当用药风险",
+    "给药操作安全风险",
+    "保健品与药物混用风险",
+    "不良反应识别延迟风险"
+   ],
+   "anchors": [
+    [
+     1,
+     2,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.4707,
+   "depth": 1,
+   "unlocks": 3
+  },
+  {
+   "id": "kp_p01_402",
+   "name": "有效沟通的核心原则与技巧",
+   "type": "PROCEDURAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "掌握尊重、耐心、简明、确认理解等沟通原则，并会使用倾听、复述、提问等技巧与老年人沟通。",
+   "evidence": [
+    "能在模拟沟通中使用至少两种沟通技巧",
+    "能用“请您说一遍”的方式确认老人已理解"
+   ],
+   "assessmentPrompt": "老人听你讲完用药方法一直点头，你怎么确认他真的听懂了？",
+   "standards": [
+    "skill:P1T4-沟通技巧"
+   ],
+   "sub": [
+    "四大核心沟通原则",
+    "高频实操沟通技巧"
+   ],
+   "anchors": [
+    [
+     1,
+     3,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.3003,
+   "depth": 0,
+   "unlocks": 1
+  },
+  {
+   "id": "kp_p01_404",
+   "name": "老年疾病照护中的健康教育",
+   "type": "PROCEDURAL",
+   "unit": 1,
+   "stage": "认知基础",
+   "domain": "认知基础",
+   "description": "根据老人的理解能力和需求，选择合适的内容和方式开展健康教育，并检查教育效果。",
+   "evidence": [
+    "能为一位老人设计一次 5 分钟的健康教育",
+    "能用提问或演示检查教育效果"
+   ],
+   "assessmentPrompt": "给一位记性不好的老人讲饮食注意事项，你会怎么讲、怎么检查效果？",
+   "standards": [
+    "skill:P1T4-健康教育"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     1,
+     3,
+     3
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.2619,
+   "depth": 0,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p03_101",
+   "name": "老年高血压的诊断标准与分级",
+   "type": "CONCEPTUAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "掌握老年高血压的诊断标准和血压分级，能根据测量结果判断属于哪一级。",
+   "evidence": [
+    "能说出老年高血压的诊断标准",
+    "能根据一组血压值判断分级"
+   ],
+   "assessmentPrompt": "{{name}}，张奶奶连续三天的血压都在 165/95 左右，属于哪一级？",
+   "standards": [
+    "skill:P3T1-健康状况评估"
+   ],
+   "sub": [
+    "老年高血压的诊断标准",
+    "老年人血压分类和分级"
+   ],
+   "anchors": [
+    [
+     3,
+     0,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.5363,
+   "depth": 0,
+   "unlocks": 2
+  },
+  {
+   "id": "kp_p03_102",
+   "name": "老年高血压的特点",
+   "type": "CONCEPTUAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "老年高血压以收缩压升高、脉压增大、血压波动大、症状少而并发症多为特点，照护中要据此调整观察重点。",
+   "evidence": [
+    "能说出老年高血压的 3 个特点",
+    "能根据特点说明照护观察的重点"
+   ],
+   "assessmentPrompt": "老年高血压“症状少”，对照护观察意味着什么？",
+   "standards": [
+    "skill:P3T1-健康状况评估"
+   ],
+   "sub": [
+    "收缩压增高、脉压增大",
+    "血压波动大",
+    "症状少，并发症多",
+    "假性高血压（PHT）",
+    "白大衣高血压（WCH）",
+    "难治性高血压"
+   ],
+   "anchors": [
+    [
+     3,
+     0,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.2619,
+   "depth": 0,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p03_105",
+   "name": "老年高血压的风险评估",
+   "type": "PROCEDURAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "综合血压分级、危险因素、靶器官损害和伴随疾病，对老年高血压患者做风险分层，作为照护和转诊的依据。",
+   "evidence": [
+    "能完成一个案例的风险分层并说明依据",
+    "能根据风险等级提出观察和转诊建议"
+   ],
+   "assessmentPrompt": "同样是 2 级高血压，有糖尿病和没有糖尿病的老人，风险一样吗？",
+   "standards": [
+    "skill:P3T1-风险评估",
+    "cert:技能大赛养老照护赛项"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     3,
+     0,
+     4
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.7661,
+   "depth": 2,
+   "unlocks": 1
+  },
+  {
+   "id": "kp_p03_201",
+   "name": "生活方式干预原则",
+   "type": "CONCEPTUAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "生活方式干预是所有高血压老人的基础措施，包括限盐、合理膳食、控制体重、适量运动、戒烟限酒和心理平衡，并要结合老人的情况循序渐进。",
+   "evidence": [
+    "能说出生活方式干预的主要内容",
+    "能说明为老人制定干预计划时要考虑哪些个人情况"
+   ],
+   "assessmentPrompt": "为什么说生活方式干预对吃药的老人同样重要？",
+   "standards": [
+    "skill:P3T2-生活照护"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     3,
+     1,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.3387,
+   "depth": 0,
+   "unlocks": 1
+  },
+  {
+   "id": "kp_p03_202",
+   "name": "限制钠盐摄入",
+   "type": "PROCEDURAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "指导老人减少食盐摄入，会估算日常饮食中的含盐量，并找到老人能接受的替代办法。",
+   "evidence": [
+    "能估算一份家常菜单的大致含盐量",
+    "能为口味重的老人提出 3 个可行的减盐办法"
+   ],
+   "assessmentPrompt": "老人说“不咸吃不下饭”，你会怎么帮他慢慢减盐？",
+   "standards": [
+    "skill:P3T2-饮食指导"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     3,
+     1,
+     1
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.2107,
+   "depth": 1,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p03_301",
+   "name": "老年高血压药物治疗启动时机与降压目标",
+   "type": "CONCEPTUAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "了解老年高血压开始用药的时机和不同情况下的降压目标，知道降压不宜过快过低。",
+   "evidence": [
+    "能说出老年人常用的降压目标范围",
+    "能解释为什么老年人降压要平稳"
+   ],
+   "assessmentPrompt": "为什么不能让老人的血压一下子降得很低？",
+   "standards": [
+    "skill:P3T3-用药照护"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     3,
+     2,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.3147,
+   "depth": 3,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p03_303",
+   "name": "常用降压药物及照护要点",
+   "type": "PROCEDURAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "认识常用降压药的类别，掌握服药时间、观察要点和常见不良反应的照护处理。",
+   "evidence": [
+    "能说出常用降压药的主要类别",
+    "能为一种降压药写出服药观察要点"
+   ],
+   "assessmentPrompt": "老人服用利尿剂后，你需要特别观察什么？",
+   "standards": [
+    "skill:P3T3-用药照护",
+    "cert:养老护理员"
+   ],
+   "sub": [],
+   "anchors": [
+    [
+     3,
+     2,
+     2
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.4282,
+   "depth": 2,
+   "unlocks": 2
+  },
+  {
+   "id": "kp_p03_304",
+   "name": "识别用药误区并支持依从性",
+   "type": "PROCEDURAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "识别老人常见的用药误区（如血压正常就停药），用沟通和提醒工具帮助老人坚持规范用药。",
+   "evidence": [
+    "能识别案例中的用药误区并说明危害",
+    "能为老人设计一个提高依从性的办法"
+   ],
+   "assessmentPrompt": "{{name}}，老人说“血压正常了，药可以停了吧”，你怎么回应？",
+   "standards": [
+    "skill:P3T3-依从性支持"
+   ],
+   "sub": [
+    "识别误区",
+    "沟通方法",
+    "建立支持条件"
+   ],
+   "anchors": [
+    [
+     3,
+     2,
+     3
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.2107,
+   "depth": 3,
+   "unlocks": 0
+  },
+  {
+   "id": "kp_p03_401",
+   "name": "识别与应对体位性低血压",
+   "type": "PROCEDURAL",
+   "unit": 3,
+   "stage": "常见慢病",
+   "domain": "高血压",
+   "description": "识别体位性低血压的表现，做好预防，并在发生时正确处置，防止跌倒。",
+   "evidence": [
+    "能说出体位性低血压的典型表现",
+    "能演示起床“三个半分钟”的防护方法",
+    "能说出发生时的应急处置步骤"
+   ],
+   "assessmentPrompt": "老人早上起床时突然头晕眼前发黑，你应该怎么做？",
+   "standards": [
+    "skill:P3T4-应急处置",
+    "cert:技能大赛养老照护赛项"
+   ],
+   "sub": [
+    "体位性低血压的识别",
+    "防范与应急处置"
+   ],
+   "anchors": [
+    [
+     3,
+     3,
+     0
+    ]
+   ],
+   "status": "ai",
+   "centrality": 0.2107,
+   "depth": 3,
+   "unlocks": 0
+  }
+ ],
+ "edges": [
+  {
+   "topicId": "kp_p01_201",
+   "prerequisiteId": "kp_p01_102",
+   "strength": "soft",
+   "reason": "知道老年疾病多病共存、表现不典型，才明白综合评估为什么要覆盖疾病以外的多个方面",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p01_202",
+   "prerequisiteId": "kp_p01_201",
+   "strength": "hard",
+   "reason": "先明确要评估哪些方面，才能为每个方面选择合适的工具",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p01_302",
+   "prerequisiteId": "kp_p01_301",
+   "strength": "hard",
+   "reason": "用药风险大多源于老年人药物代谢的改变，要先理解代谢特点才能识别风险",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_102",
+   "prerequisiteId": "kp_p01_102",
+   "strength": "soft",
+   "reason": "老年高血压“症状少、并发症多”是老年疾病表现不典型的具体体现",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_105",
+   "prerequisiteId": "kp_p03_101",
+   "strength": "hard",
+   "reason": "风险分层以血压分级为起点，不会判断分级就无法分层",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_105",
+   "prerequisiteId": "kp_p01_202",
+   "strength": "hard",
+   "reason": "风险分层要用到危险因素和功能状况的评估结果，需要会使用评估工具",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_201",
+   "prerequisiteId": "kp_p03_105",
+   "strength": "soft",
+   "reason": "干预计划的强度和重点要参考风险分层结果",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_202",
+   "prerequisiteId": "kp_p03_201",
+   "strength": "hard",
+   "reason": "限盐是生活方式干预的具体措施，要先理解干预的整体原则",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_202",
+   "prerequisiteId": "kp_p01_404",
+   "strength": "soft",
+   "reason": "减盐指导本身是一次健康教育，会用健康教育方法能让指导更有效",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_301",
+   "prerequisiteId": "kp_p03_105",
+   "strength": "hard",
+   "reason": "是否启动药物治疗、目标定多少，取决于风险分层结果",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_303",
+   "prerequisiteId": "kp_p01_302",
+   "strength": "hard",
+   "reason": "观察降压药时要识别跌倒、低血压、相互作用等用药风险",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_303",
+   "prerequisiteId": "kp_p03_301",
+   "strength": "soft",
+   "reason": "知道降压目标，才能判断用药后血压控制是否达标",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_304",
+   "prerequisiteId": "kp_p03_303",
+   "strength": "hard",
+   "reason": "识别用药误区要先知道药物的正确用法和停药风险",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_304",
+   "prerequisiteId": "kp_p01_402",
+   "strength": "hard",
+   "reason": "纠正误区、支持依从性要靠沟通，需要先掌握沟通原则和技巧",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_401",
+   "prerequisiteId": "kp_p03_303",
+   "strength": "hard",
+   "reason": "体位性低血压常与降压药有关，要先知道哪些药物和服药时段风险高",
+   "status": "ai"
+  },
+  {
+   "topicId": "kp_p03_401",
+   "prerequisiteId": "kp_p03_102",
+   "strength": "soft",
+   "reason": "老年人血压波动大，理解这一特点有助于预判体位性低血压",
+   "status": "ai"
+  }
+ ],
+ "hints": [],
+ "clusters": [
+  {
+   "unit": 1,
+   "summary": "这一部分打基础：认识老年疾病的共同特点，学会综合评估、安全用药和有效沟通。后面每一种疾病的照护都会反复用到这些方法。"
+  },
+  {
+   "unit": 3,
+   "summary": "从判断血压分级和风险分层开始，依次学习生活方式干预、用药照护和应急处置。用药照护建立在项目一的用药安全知识上。"
+  }
+ ],
+ "provenance": {
+  "source": "老年疾病照护 book.json（项目 1、3 节选）",
+  "note": "写法样例：节点与关系均为 AI 预生成，未经编辑审核，仅示范格式与写法。"
+ }
+}

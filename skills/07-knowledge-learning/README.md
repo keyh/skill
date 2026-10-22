@@ -14,3 +14,4 @@
 - [第二大脑知识库检查](second-brain-lint/SKILL-INFO.zh-CN.md) — `second-brain-lint`
 - [第二大脑检索问答](second-brain-query/SKILL-INFO.zh-CN.md) — `second-brain-query`
 - [灵枢医学数字教材详情页](textbook-detail-page/SKILL-INFO.zh-CN.md) — `textbook-detail-page`
+- [教材知识先修图谱与学习路径](textbook-knowledge-graph/SKILL-INFO.zh-CN.md) — `textbook-knowledge-graph`

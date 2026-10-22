@@ -5,6 +5,7 @@
 [完整清单](../../CATALOG.md)
 
 - [综合实时搜索](anysearch/SKILL-INFO.zh-CN.md) — `anysearch`
+- [多来源深度研究与报告](deep-research/SKILL-INFO.zh-CN.md) — `deep-research`
 - [竞品评分与对标方法](ecc-benchmark-methodology/SKILL-INFO.zh-CN.md) — `ecc-benchmark-methodology`
 - [竞品范围与平台分析](ecc-competitive-platform-analysis/SKILL-INFO.zh-CN.md) — `ecc-competitive-platform-analysis`
 - [竞品研究报告编排](ecc-competitive-report-structure/SKILL-INFO.zh-CN.md) — `ecc-competitive-report-structure`

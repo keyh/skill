@@ -1,0 +1,8 @@
+{
+  "kind": "plugin",
+  "source_root": "claude-plugin-cache",
+  "source_relative_path": "skills/cli",
+  "original_skill_sha256": "e9df563ce0cd5bc6356ad6b5e79f59075bf2517d29dd1163617e9bc1102919e4",
+  "plugin": "canva",
+  "version": "1.0.0"
+}
