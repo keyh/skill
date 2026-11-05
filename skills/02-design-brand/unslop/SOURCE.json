@@ -1,0 +1,14 @@
+{
+  "kind": "local",
+  "source_root": "claude-session-clone",
+  "source_relative_path": "unslop",
+  "repository": "heydamir/unslop",
+  "commit": "a6f121eee5f29c2f74976b75456feae8b66afb3a",
+  "source_path": "skills/unslop",
+  "original_name": "unslop",
+  "changes": [
+    "none"
+  ],
+  "upstream_url": "https://github.com/heydamir/unslop",
+  "original_skill_sha256": "9e49b2ff7643fa09729e8665890a18f6bfa58a82e6fcbba330da38136ccdc393"
+}

@@ -1,6 +1,6 @@
 # 技能分类总目录
 
-快照日期：2026-10-22。共 342 个入口，其中 332 个包含技能文件，10 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
+快照日期：2026-11-06。共 343 个入口，其中 333 个包含技能文件，10 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
 
 英文编号和原始 name 保持稳定，中文名称用于检索和理解。`plugins/` 中保留共享引用关系；正文写到的工具名称不代表已在其他 AI 上安装。
 
@@ -32,7 +32,7 @@
 | `ui-interaction-brief`<br>界面交互需求说明 | 文本工作流 | [说明](skills/01-web-ui/ui-interaction-brief/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/ui-interaction-brief/SKILL.md) |
 | `web-design-engineer`<br>网页设计与前端实现 | 文本工作流 | [说明](skills/01-web-ui/web-design-engineer/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/web-design-engineer/SKILL.md) |
 
-## 设计与品牌（48）
+## 设计与品牌（49）
 
 品牌视觉、设计规范、用户体验研究和设计评审。
 
@@ -86,6 +86,7 @@
 | `product-design--share`<br>产品设计：原型共享与部署 | 工具与环境适配 | [说明](plugins/02-design-brand/product-design/skills/share/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/product-design/skills/share/SKILL.md) |
 | `product-design--url-to-code`<br>产品设计：网页参考转代码 | 工具与环境适配 | [说明](plugins/02-design-brand/product-design/skills/url-to-code/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/product-design/skills/url-to-code/SKILL.md) |
 | `product-design--user-context`<br>产品设计：用户设计背景管理 | 工具与环境适配 | [说明](plugins/02-design-brand/product-design/skills/user-context/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/product-design/skills/user-context/SKILL.md) |
+| `unslop`<br>去AI味界面打磨 | 脚本或工具依赖 | [说明](skills/02-design-brand/unslop/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/02-design-brand/unslop/SKILL.md) |
 
 ## 动效与视频（23）
 
