@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-10",
+  "skills": [
+    {
+      "name": "concept-design",
+      "source": "Abhinavbwj/Skills-Architects",
+      "commit": "30a0845dddcaebd765fc396059573d02e99c5b63",
+      "version": "1.1.0",
+      "skill_sha256": "ccfd082c8714b6c484a10f4312406e4c6c6a66ab776036bd5fb0d306254e3e4e",
+      "payload_sha256": "10590f6f24a6c57fee86eb4ce756e58b07a30f84fbb8a4ebae66a19b83c3b360",
+      "upstream_files": 3,
+      "archive_path": "skills/02-design-brand/concept-design"
+    },
+    {
+      "name": "spatial-planning",
+      "source": "Abhinavbwj/Skills-Architects",
+      "commit": "30a0845dddcaebd765fc396059573d02e99c5b63",
+      "version": "1.1.0",
+      "skill_sha256": "ed41a80bfe210361133eaa11c9ce80144b3a446bee53917bec827dce56b46580",
+      "payload_sha256": "b0fdd6755c6518c786a585d799e961c5a10741fe681ffb61488e9ffbf2c62c92",
+      "upstream_files": 3,
+      "archive_path": "skills/02-design-brand/spatial-planning"
+    },
+    {
+      "name": "blender-web-3d",
+      "source": "czlonkowski/blender-web-3d-skill",
+      "commit": "858762f1add7f1d9f5dcb1fb1d0b55f71906bf0d",
+      "version": "2.0",
+      "skill_sha256": "002acbd5a0242b592c85feab4d3ffa4129c49fa85ee7f0ed893ee3eaa2b4b565",
+      "payload_sha256": "e2d663778d08a2cd276e2c34d8cea6f9cfec12ebc2ab5e88bb3ca141f80923be",
+      "upstream_files": 28,
+      "archive_path": "skills/12-unity-cad/blender-web-3d"
+    }
+  ],
+  "verification": "Upstream payload equals installed payload, fixed commit, MIT, SHA-256; no hooks/services/MCP/account integration added."
+}

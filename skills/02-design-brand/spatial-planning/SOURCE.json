@@ -1,0 +1,18 @@
+{
+  "kind": "local",
+  "repository": "https://github.com/Abhinavbwj/Skills-Architects",
+  "commit": "30a0845dddcaebd765fc396059573d02e99c5b63",
+  "version": "1.1.0",
+  "source_relative_path": "skills/spatial-planning",
+  "source_root": "codex-user",
+  "upstream_url": "https://github.com/Abhinavbwj/Skills-Architects/tree/30a0845dddcaebd765fc396059573d02e99c5b63/skills/spatial-planning",
+  "original_skill_sha256": "ed41a80bfe210361133eaa11c9ce80144b3a446bee53917bec827dce56b46580",
+  "payload_sha256": "b0fdd6755c6518c786a585d799e961c5a10741fe681ffb61488e9ffbf2c62c92",
+  "payload_sha256_method": "SHA-256 of sorted SHA256 + two spaces + relative path + LF, upstream files only",
+  "upstream_files": {
+    "SKILL.md": "ed41a80bfe210361133eaa11c9ce80144b3a446bee53917bec827dce56b46580",
+    "references/circulation-patterns.md": "a3285810265852341fc53a2e01e7354ca61652a196b1d868cb40775f37b57dca",
+    "references/core-design.md": "d3ecebc365ac68b32e3491b618d16c944ec25a8225261f3a0ca8964d23b4766b"
+  },
+  "license": "MIT"
+}

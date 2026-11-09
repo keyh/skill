@@ -1,6 +1,6 @@
 # 技能分类总目录
 
-快照日期：2026-11-06。共 343 个入口，其中 333 个包含技能文件，10 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
+快照日期：2026-11-10。共 346 个入口，其中 336 个包含技能文件，10 个仅提供获取说明。嵌套子技能随父包保留，不重复计入入口数。
 
 英文编号和原始 name 保持稳定，中文名称用于检索和理解。`plugins/` 中保留共享引用关系；正文写到的工具名称不代表已在其他 AI 上安装。
 
@@ -32,12 +32,14 @@
 | `ui-interaction-brief`<br>界面交互需求说明 | 文本工作流 | [说明](skills/01-web-ui/ui-interaction-brief/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/ui-interaction-brief/SKILL.md) |
 | `web-design-engineer`<br>网页设计与前端实现 | 文本工作流 | [说明](skills/01-web-ui/web-design-engineer/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/01-web-ui/web-design-engineer/SKILL.md) |
 
-## 设计与品牌（49）
+## 设计与品牌（51）
 
 品牌视觉、设计规范、用户体验研究和设计评审。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
+| `spatial-planning`<br>建筑空间规划 | 文本工作流 | [说明](skills/02-design-brand/spatial-planning/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/02-design-brand/spatial-planning/SKILL.md) |
+| `concept-design`<br>建筑概念设计 | 文本工作流 | [说明](skills/02-design-brand/concept-design/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/02-design-brand/concept-design/SKILL.md) |
 | `baoyu-design`<br>宝玉设计与交互原型 | 脚本或工具依赖 | [说明](skills/02-design-brand/baoyu-design/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/02-design-brand/baoyu-design/SKILL.md) |
 | `brandkit`<br>品牌视觉指南生成 | 文本工作流 | [说明](skills/02-design-brand/brandkit/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/02-design-brand/brandkit/SKILL.md) |
 | `canva--brand-check`<br>Canva：品牌规范检查 | 平台或插件依赖 | [说明](plugins/02-design-brand/canva/skills/brand-check/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/02-design-brand/canva/skills/brand-check/SKILL.md) |
@@ -340,12 +342,13 @@ iOS、macOS、SwiftUI、性能、构建和发布。
 | `build-macos-apps--view-refactor`<br>macOS开发：视图重构 | 工具与环境适配 | [说明](plugins/11-apple-development/build-macos-apps/skills/view-refactor/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/11-apple-development/build-macos-apps/skills/view-refactor/SKILL.md) |
 | `build-macos-apps--window-management`<br>macOS开发：窗口管理 | 工具与环境适配 | [说明](plugins/11-apple-development/build-macos-apps/skills/window-management/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/11-apple-development/build-macos-apps/skills/window-management/SKILL.md) |
 
-## Unity与CAD（33）
+## Unity与CAD（34）
 
 游戏、编辑器、场景、音频、渲染和三维文件转换。
 
 | 编号 / 中文名称 | 兼容性 | 文件与说明 |
 |---|---|---|
+| `blender-web-3d`<br>Blender 模型与网页三维 | 脚本或工具依赖 | [说明](skills/12-unity-cad/blender-web-3d/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/12-unity-cad/blender-web-3d/SKILL.md) |
 | `contentasoft-cad-converter--contenta-cad`<br>Contenta CAD：CAD与网格文件转换 | 平台或插件依赖 | [说明](plugins/12-unity-cad/contentasoft-cad-converter/skills/contenta-cad/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/12-unity-cad/contentasoft-cad-converter/skills/contenta-cad/SKILL.md) |
 | `open-model-workbench`<br>本地三维模型工作台 | 脚本或工具依赖 | [说明](skills/12-unity-cad/open-model-workbench/SKILL-INFO.zh-CN.md) · [SKILL.md](skills/12-unity-cad/open-model-workbench/SKILL.md) |
 | `unity--2d-pixel-perfect`<br>Unity：二维像素精确显示 | 平台或插件依赖 | [说明](plugins/12-unity-cad/unity/skills/2d-pixel-perfect/SKILL-INFO.zh-CN.md) · [SKILL.md](plugins/12-unity-cad/unity/skills/2d-pixel-perfect/SKILL.md) |

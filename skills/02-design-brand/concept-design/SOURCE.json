@@ -1,0 +1,18 @@
+{
+  "kind": "local",
+  "repository": "https://github.com/Abhinavbwj/Skills-Architects",
+  "commit": "30a0845dddcaebd765fc396059573d02e99c5b63",
+  "version": "1.1.0",
+  "source_relative_path": "skills/concept-design",
+  "source_root": "codex-user",
+  "upstream_url": "https://github.com/Abhinavbwj/Skills-Architects/tree/30a0845dddcaebd765fc396059573d02e99c5b63/skills/concept-design",
+  "original_skill_sha256": "ccfd082c8714b6c484a10f4312406e4c6c6a66ab776036bd5fb0d306254e3e4e",
+  "payload_sha256": "10590f6f24a6c57fee86eb4ce756e58b07a30f84fbb8a4ebae66a19b83c3b360",
+  "payload_sha256_method": "SHA-256 of sorted SHA256 + two spaces + relative path + LF, upstream files only",
+  "upstream_files": {
+    "SKILL.md": "ccfd082c8714b6c484a10f4312406e4c6c6a66ab776036bd5fb0d306254e3e4e",
+    "references/parti-strategies.md": "eb0b32fc785a2141fd5f6f499df5ffd94878401bc65404a16edfa684cce8f51f",
+    "references/massing-methods.md": "dd9e4fed500f44e105a2d5794dc54365a4aa62e8bab162299648d5c3b7feadb3"
+  },
+  "license": "MIT"
+}

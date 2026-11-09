@@ -5,3 +5,5 @@
 [完整清单](../../CATALOG.md)
 
 - [本地三维模型工作台](open-model-workbench/SKILL-INFO.zh-CN.md) — `open-model-workbench`
+
+- [Blender 模型与网页三维](blender-web-3d/SKILL-INFO.zh-CN.md)
